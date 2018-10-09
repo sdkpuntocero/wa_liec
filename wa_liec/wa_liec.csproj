@@ -1,5 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,7 +43,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.18.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -62,22 +76,399 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="acceso.aspx" />
+    <Content Include="acceso\css\main.css" />
+    <Content Include="acceso\css\util.css" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="acceso\fonts\Linearicons-Free-v1.0.0\icon-font.min.css" />
+    <Content Include="acceso\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
+    <Content Include="acceso\fonts\montserrat\OFL.txt" />
+    <Content Include="acceso\fonts\raleway\OFL.txt" />
+    <Content Include="acceso\fonts\ubuntu\UFL.txt" />
+    <Content Include="acceso\images\icons\favicon.ico" />
+    <Content Include="acceso\images\icons\icon-google.png" />
+    <Content Include="acceso\images\icons\map-marker.png" />
+    <Content Include="acceso\images\icons\symbol-01.png" />
+    <Content Include="acceso\js\main.js" />
+    <Content Include="acceso\vendor\animate\animate.css" />
+    <Content Include="acceso\vendor\animsition\css\animsition.css" />
+    <Content Include="acceso\vendor\animsition\css\animsition.min.css" />
+    <Content Include="acceso\vendor\animsition\js\animsition.js" />
+    <Content Include="acceso\vendor\animsition\js\animsition.min.js" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="acceso\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="acceso\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="acceso\vendor\bootstrap\js\popper.js" />
+    <Content Include="acceso\vendor\bootstrap\js\popper.min.js" />
+    <Content Include="acceso\vendor\bootstrap\js\tooltip.js" />
+    <Content Include="acceso\vendor\countdowntime\countdowntime.js" />
+    <Content Include="acceso\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="acceso\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="acceso\vendor\daterangepicker\daterangepicker.css" />
+    <Content Include="acceso\vendor\daterangepicker\daterangepicker.js" />
+    <Content Include="acceso\vendor\daterangepicker\moment.js" />
+    <Content Include="acceso\vendor\daterangepicker\moment.min.js" />
+    <Content Include="acceso\vendor\jquery\jquery-3.2.1.min.js" />
+    <Content Include="acceso\vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="acceso\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="acceso\vendor\select2\select2.css" />
+    <Content Include="acceso\vendor\select2\select2.js" />
+    <Content Include="acceso\vendor\select2\select2.min.css" />
+    <Content Include="acceso\vendor\select2\select2.min.js" />
+    <Content Include="Content\all.css" />
+    <Content Include="Content\all.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\brands.css" />
+    <Content Include="Content\brands.min.css" />
+    <Content Include="Content\fontawesome.css" />
+    <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\regular.css" />
+    <Content Include="Content\regular.min.css" />
+    <Content Include="Content\solid.css" />
+    <Content Include="Content\solid.min.css" />
+    <Content Include="Content\svg-with-js.css" />
+    <Content Include="Content\svg-with-js.min.css" />
+    <Content Include="Content\v4-shims.css" />
+    <Content Include="Content\v4-shims.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="HtmlTemplate.html" />
+    <Content Include="img\ico_liec.png" />
+    <Content Include="img\Logo-LIEC.png" />
+    <Content Include="img\logo_liec256.png" />
+    <Content Include="md_liec.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>md_liec.edmx</DependentUpon>
+      <LastGenOutput>md_liec.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="md_liec.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>md_liec.edmx</DependentUpon>
+      <LastGenOutput>md_liec.cs</LastGenOutput>
+    </Content>
+    <Content Include="pnl_cont.aspx" />
+    <Content Include="Scripts\all.js" />
+    <Content Include="Scripts\all.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\brands.js" />
+    <Content Include="Scripts\brands.min.js" />
+    <Content Include="Scripts\fontawesome.js" />
+    <Content Include="Scripts\fontawesome.min.js" />
+    <EntityDeploy Include="md_liec.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>md_liec.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="md_liec.edmx.diagram">
+      <DependentUpon>md_liec.edmx</DependentUpon>
+    </Content>
+    <Content Include="acceso\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="acceso\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="acceso\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.eot" />
+    <Content Include="acceso\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.ttf" />
+    <Content Include="acceso\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff" />
+    <Content Include="acceso\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-Black.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-BlackItalic.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-Bold.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-BoldItalic.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-ExtraBold.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-ExtraLight.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-Italic.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-Light.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-LightItalic.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-Medium.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-MediumItalic.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-Regular.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-SemiBold.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-Thin.ttf" />
+    <Content Include="acceso\fonts\montserrat\Montserrat-ThinItalic.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-Black.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-Light.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Include="acceso\fonts\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-Black.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-BlackItalic.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-Bold.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-BoldItalic.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-ExtraBold.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-ExtraBoldItalic.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-ExtraLight.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-ExtraLightItalic.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-Italic.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-Light.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-LightItalic.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-Medium.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-MediumItalic.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-Regular.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-SemiBold.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-SemiBoldItalic.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-Thin.ttf" />
+    <Content Include="acceso\fonts\raleway\Raleway-ThinItalic.ttf" />
+    <Content Include="acceso\fonts\ubuntu\Ubuntu-Bold.ttf" />
+    <Content Include="acceso\fonts\ubuntu\Ubuntu-BoldItalic.ttf" />
+    <Content Include="acceso\fonts\ubuntu\Ubuntu-Italic.ttf" />
+    <Content Include="acceso\fonts\ubuntu\Ubuntu-Light.ttf" />
+    <Content Include="acceso\fonts\ubuntu\Ubuntu-LightItalic.ttf" />
+    <Content Include="acceso\fonts\ubuntu\Ubuntu-Medium.ttf" />
+    <Content Include="acceso\fonts\ubuntu\Ubuntu-MediumItalic.ttf" />
+    <Content Include="acceso\fonts\ubuntu\Ubuntu-Regular.ttf" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="acceso\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\regular.js" />
+    <Content Include="Scripts\regular.min.js" />
+    <Content Include="Scripts\solid.js" />
+    <Content Include="Scripts\solid.min.js" />
+    <Content Include="Scripts\v4-shims.js" />
+    <Content Include="Scripts\v4-shims.min.js" />
+    <Content Include="styles\estilos_concreto.css" />
+    <Content Include="styles\estilos_liec.css" />
+    <Content Include="styles\style.css" />
     <Content Include="Web.config" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.eot" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="acceso.aspx.cs">
+      <DependentUpon>acceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="acceso.aspx.designer.cs">
+      <DependentUpon>acceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cn.cs" />
+    <Compile Include="encrypta.cs" />
+    <Compile Include="fact_areas.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_departamento.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_especimen.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_estatus.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_areas.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_caja.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_clte.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_concreto.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_e_env.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_e_recep.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_gast.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_obra.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_rub.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_rubm.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_generos.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_perfil.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_tipo_rfc.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_tipo_rubro.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_tipo_servicio.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fac_sit_concreto.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fac_tipo_concreto.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="inf_caja.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_clte.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_clte_obras.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_conc_ec.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_control_montos.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_cont_usr.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_email_envio.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_email_recepcion.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_emp.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_gastos.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_gastos_dep.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_mrp_concreto.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_rubro.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_rubro_mes.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_sepomex.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_usuarios.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="md_liec.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>md_liec.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="md_liec.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="md_liec.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>md_liec.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="pnl_cont.aspx.cs">
+      <DependentUpon>pnl_cont.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pnl_cont.aspx.designer.cs">
+      <DependentUpon>pnl_cont.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -88,6 +479,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -118,7 +512,7 @@
     <PropertyGroup>
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

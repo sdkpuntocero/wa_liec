@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a4e46a3f548c4714a9b8183e7b152429" Name="Diagram1">
+        <EntityTypeShape EntityType="dd_liecModel.fac_sit_concreto" Width="1.5" PointX="6.75" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fac_tipo_concreto" Width="1.5" PointX="6.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_areas" Width="1.5" PointX="3" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_departamento" Width="1.5" PointX="9" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_especimen" Width="1.5" PointX="6.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_areas" Width="1.5" PointX="0.75" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_caja" Width="1.5" PointX="3.75" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_clte" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_concreto" Width="1.5" PointX="6.75" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_e_env" Width="1.5" PointX="0.75" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_e_recep" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_gast" Width="1.5" PointX="3.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_obra" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_rub" Width="1.5" PointX="6.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_rubm" Width="1.5" PointX="12" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_estatus" Width="1.5" PointX="9" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_generos" Width="1.5" PointX="9" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_perfil" Width="1.5" PointX="9" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_rfc" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_rubro" Width="1.5" PointX="6.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_servicio" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_caja" Width="1.5" PointX="6" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_clte" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_clte_obras" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_conc_ec" Width="1.5" PointX="11.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_cont_usr" Width="1.5" PointX="13.5" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_control_montos" Width="1.5" PointX="11.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_email_envio" Width="1.5" PointX="3" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_email_recepcion" Width="1.5" PointX="6" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_emp" Width="1.5" PointX="0.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_gastos" Width="1.5" PointX="6" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_gastos_dep" Width="1.5" PointX="8.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_mrp_concreto" Width="1.5" PointX="9" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_rubro" Width="1.5" PointX="9" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_rubro_mes" Width="1.5" PointX="14.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_sepomex" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_usuarios" Width="1.5" PointX="11.25" PointY="27.75" IsExpanded="true" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_mrp_concreto_fac_situacion_concreto" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_mrp_concreto_fac_tipo_concreto" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_fact_areas_fact_estatus_areas" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_fact_areas_inf_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_usuarios_fact_areas" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_general_usuarios_fact_departamento" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_mrp_concreto_fact_especimen" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_caja_fact_est_caja" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_clte_fact_estatus_clte" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_mrp_concreto_fact_est_concreto" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_email_envio_fact_est_e_env" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_email_recepcion_fact_est_e_recep" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_gastos_fact_est_gast" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_clte_obras_fact_estatus_obra" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_rubro_fact_est_rub" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_rubro_mes_fact_est_rubm" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_general_usuarios_fact_estatus" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_general_usuarios_fact_generos" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_general_usuarios_fact_perfil" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_clte_fact_tipo_rfc" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_rubro_fact_tipo_rubro" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_clte_obras_fact_tipo_servicio" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_caja_inf_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_clte_inf_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_clte_obras_inf_clte" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_conc_ec_inf_mrp_concreto" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_contacto_usuarios_general_usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_control_montos_inf_rubro" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_email_envio_inf_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_email_recepcion_inf_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_gastos_inf_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_mrp_concreto_inf_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_rubro_inf_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_gastos_dep_inf_gastos" ManuallyRouted="false" />
+        <AssociationConnector Association="dd_liecModel.FK_inf_rubro_mes_inf_rubro" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
