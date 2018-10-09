@@ -165,7 +165,9 @@
       <DependentUpon>md_liec.edmx</DependentUpon>
       <LastGenOutput>md_liec.cs</LastGenOutput>
     </Content>
+    <Content Include="pnl_capt.aspx" />
     <Content Include="pnl_cont.aspx" />
+    <Content Include="pnl_ctrl.aspx" />
     <Content Include="Scripts\all.js" />
     <Content Include="Scripts\all.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -286,6 +288,7 @@
     <Content Include="acceso\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="acceso\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="acceso\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -456,12 +459,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>md_liec.edmx</DependentUpon>
     </Compile>
+    <Compile Include="pnl_capt.aspx.cs">
+      <DependentUpon>pnl_capt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pnl_capt.aspx.designer.cs">
+      <DependentUpon>pnl_capt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pnl_cont.aspx.cs">
       <DependentUpon>pnl_cont.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pnl_cont.aspx.designer.cs">
       <DependentUpon>pnl_cont.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pnl_ctrl.aspx.cs">
+      <DependentUpon>pnl_ctrl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pnl_ctrl.aspx.designer.cs">
+      <DependentUpon>pnl_ctrl.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

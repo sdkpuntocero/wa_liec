@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,7 +22,7 @@
     <script src="Scripts/bootstrap.min.js"></script>
 
     <link rel="shortcut icon" href="img/ico_liec.png" type="image/png" />
-    <title>/ CONCRETO</title>
+    <title>/ CONTABILIDAD</title>
 </head>
 <body>
     <script>
@@ -53,23 +52,23 @@
 
                         <div class="col-lg-6">
                             <div>
-                               <p class="text-right">
+                                <p class="text-right">
 
                                     <label class="control-label fuente_css02">BIENVENID@:</label>
                                     <asp:LinkButton CssClass="buttonClass" ID="lkb_usr_oper" runat="server">
-                                        <asp:Label CssClass="buttonClass" ID="lbl_usr_oper" runat="server" Text=""></asp:Label>&nbsp;<i class="fa fa-male" id="i_usr_oper" runat="server"></i>
+                                        <asp:Label CssClass="buttonClass" ID="lbl_usr_oper" runat="server" Text=""></asp:Label>&nbsp;<i class="fas fa-user-cog" id="i_usr_oper" runat="server"></i>
                                     </asp:LinkButton>
 
                                     <br />
 
                                     <label class="control-label fuente_css02">PERFIL:</label>
-                                    <asp:Label CssClass="buttonClass" ID="lbl_tusr" runat="server" Text=""></asp:Label>
+                                    <asp:Label CssClass="fuente_css02" ID="lbl_tusr" runat="server" Text=""></asp:Label>&nbsp;<i class="fas fa-user-shield fuente_css02" id="i1" runat="server"></i> 
 
                                     <br />
 
                                     <label class="control-label fuente_css02">EMPRESA:</label>
                                     <asp:LinkButton CssClass="buttonClass" ID="lkb_emp_oper" runat="server">
-                                        <asp:Label CssClass="buttonClass" ID="lbl_emp_oper" runat="server" Text=""></asp:Label>&nbsp;<i class="fa fa-puzzle-piece" id="i_emp_oper" runat="server"></i>
+                                        <asp:Label CssClass="buttonClass" ID="lbl_emp_oper" runat="server" Text=""></asp:Label>&nbsp;<i class="fas fa-building" id="i_emp_oper" runat="server"></i>
                                     </asp:LinkButton>
                                 </p>
                             </div>
@@ -108,14 +107,14 @@
                                                     </asp:LinkButton>
                                                 </li>
                                                 <li>
-                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_cont_caja" runat="server">
+                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_cont_caja" runat="server" OnClick="lkb_cont_caja_Click">
                                                         <i class="fab fa-stack-overflow" id="i_cont_caja" runat="server"></i>
                                                         <asp:Label CssClass="buttonClass" ID="lbl_cont_caja" runat="server" Text="CAJA"></asp:Label>
                                                     </asp:LinkButton>
                                                 </li>
                                                 <br />
                                                 <li>
-                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_salir" runat="server">
+                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_salir" runat="server" OnClick="lkb_salir_Click">
                                                         <i class="fas fa-power-off" id="i_salir" runat="server"></i>
                                                         <asp:Label CssClass="buttonClass" ID="lbl_salir" runat="server" Text="SALIR"></asp:Label>
                                                     </asp:LinkButton>
@@ -139,7 +138,7 @@
                                             <p class="text-left">
                                                 <div class="input-group" id="div_busc_rub" runat="server" visible="false">
                                                     <span class="input-group-addon">
-                                                        <asp:Label CssClass="control-label fuente_css02" ID="lbl_buscar_rub" runat="server" Text="*Buscar Rubro:"></asp:Label>
+                                                        <asp:Label CssClass="control-label fuente_css02" ID="lbl_buscar_rub" runat="server" Text="*BUSCAR RUBRO:"></asp:Label>
                                                     </span>
                                                     <asp:TextBox CssClass="form-control input-box" ID="txt_buscar_rub" runat="server" placeholder="letras/numeros" TextMode="Search" TabIndex="3"></asp:TextBox>
                                                     <span class="input-group-btn">
@@ -150,26 +149,26 @@
                                                     <ajaxToolkit:AutoCompleteExtender ID="ace_buscar_rub" runat="server" ServiceMethod="SearchCustomers" MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="true" CompletionSetCount="10" TargetControlID="txt_buscar_rub" FirstRowSelected="false"></ajaxToolkit:AutoCompleteExtender>
                                                     <asp:RequiredFieldValidator ID="rfv_buscar_rub" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_buscar_rub" ForeColor="white" Enabled="false"></asp:RequiredFieldValidator>
                                                 </div>
-                                            </p>
-                                            <p class="text-right">
-                                                REGISTRO DE RUBROS
-
-                                        <span>
-                                            <asp:LinkButton CssClass="btn btn02" ID="btn_agr_rubro" runat="server" ToolTip="AGREGAR RUBRO" TabIndex="1" OnClick="btn_agr_rubro_Click">
+                                                <p>
+                                                </p>
+                                                <p class="text-right">
+                                                    REGISTRO DE RUBROS <span>
+                                                    <asp:LinkButton ID="btn_agr_rubro" runat="server" CssClass="btn btn02" OnClick="btn_agr_rubro_Click" TabIndex="1" ToolTip="AGREGAR RUBRO">
                                                 <i class="fas fa-plus" id="i_agr_rubro" runat="server"></i>
                                             </asp:LinkButton>
-                                            <asp:LinkButton CssClass="btn btn02" ID="btn_edit_rubro" runat="server" ToolTip="EDITAR RUBRO" TabIndex="2" OnClick="btn_edit_rubro_Click">
+                                                    <asp:LinkButton ID="btn_edit_rubro" runat="server" CssClass="btn btn02" OnClick="btn_edit_rubro_Click" TabIndex="2" ToolTip="EDITAR RUBRO">
                                                 <i class="far fa-edit" id="i_edit_rubro" runat="server"></i>
                                             </asp:LinkButton>
-                                        </span>
-                                                <br />
-                                                <asp:CheckBox ID="chkb_des_rubro" runat="server" AutoPostBack="true" Text="Desactivar validaciones" OnCheckedChanged="chkb_des_rubro_CheckedChanged" />
+                                                    </span>
+                                                    <br />
+                                                    <asp:CheckBox ID="chkb_des_rubro" runat="server" AutoPostBack="true" OnCheckedChanged="chkb_des_rubro_CheckedChanged" Text="Desactivar validaciones" />
+                                                </p>
+                                                <p>
+                                                </p>
                                             </p>
                                         </div>
-
                                         <div class="panel-body">
                                             <div class="row">
-
                                                 <div class="col-lg-12">
                                                     <asp:GridView CssClass="table" ID="gv_rubro" runat="server" AutoGenerateColumns="False" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_rubro_PageIndexChanging" OnRowDataBound="gv_rubro_RowDataBound">
                                                         <Columns>
@@ -208,8 +207,9 @@
                                             <div class="row">
                                                 <div class="col-lg-3">
                                                     <div class="form-group">
-                                                        <label for="ddl_tipo_rubro" class="fuente_css02">*Tipo Rubro</label>
-                                                        <asp:DropDownList CssClass="form-control input-box" ID="ddl_tipo_rubro" runat="server" TabIndex="4"></asp:DropDownList>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="**Tipo Rubro"></asp:Label>
+                                                        
+                                                        <asp:DropDownList CssClass="form-control input-box" ID="ddl_tipo_rubro" runat="server" TabIndex="4" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
                                                         <div class="text-right">
                                                             <asp:RequiredFieldValidator ID="rfv_tipo_rubro" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="ddl_tipo_rubro" InitialValue="0" ForeColor="DarkRed " Enabled="false"></asp:RequiredFieldValidator>
                                                         </div>
@@ -217,7 +217,8 @@
                                                 </div>
                                                 <div class="col-lg-2">
                                                     <div class="form-group">
-                                                        <label for="eti_rub" class="fuente_css02">*Etiqueta Rubro</label>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Etiqueta Rubro"></asp:Label>
+                                                        
                                                         <asp:TextBox CssClass="form-control input-box" ID="eti_rub" runat="server" placeholder="[a-z/0-9]" TabIndex="5"></asp:TextBox>
                                                         <div class="text-right">
                                                             <asp:RequiredFieldValidator ID="rfv_eti_rub" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="eti_rub" ForeColor="DarkRed " Enabled="false"></asp:RequiredFieldValidator>
@@ -226,8 +227,9 @@
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
-                                                        <label class="fuente_css02">*Descripción Rubro</label>
-                                                        <asp:TextBox CssClass="form-control input-box" ID="desc_rubro" runat="server" TextMode="MultiLine" placeholder="[a-z/0-9]" TabIndex="6"></asp:TextBox>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Descripción Rubro"></asp:Label>
+                                                        
+                                                        <asp:TextBox CssClass="form-control input-box" ID="desc_rubro" runat="server" TextMode="MultiLine" placeholder="[a-z/0-9]" TabIndex="6" BackColor="LightGray" ForeColor="#104D8D"></asp:TextBox>
                                                         <div class="text-right">
                                                             <asp:RequiredFieldValidator ID="rfv_desc_rubro" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="desc_rubro" ForeColor="DarkRed " Enabled="false"></asp:RequiredFieldValidator>
                                                         </div>
@@ -235,7 +237,8 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <div class="form-group text-left">
-                                                        <label class="fuente_css02">*Monto fijo</label>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Monto"></asp:Label>
+                                                        
                                                         <div class="input-group">
                                                             <asp:TextBox CssClass="form-control input-box" ID="mont_rubro" runat="server" AutoPostBack="true" OnTextChanged="mont_rubro_TextChanged" placeholder="[0-9]" TabIndex="7"></asp:TextBox>
                                                             <div class="text-right">
@@ -249,7 +252,8 @@
 
                                                 <div class="col-lg-2">
                                                     <div class="form-group text-left">
-                                                        <label class="fuente_css02">*Minimo: % 0</label>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Minimo: % 0"></asp:Label>
+                                                        
                                                         <asp:TextBox CssClass="form-control input-box" ID="minimo_rubro" runat="server" TextMode="Number" placeholder="[0-9]" TabIndex="8"></asp:TextBox>
                                                         <div class="text-right">
                                                             <asp:RequiredFieldValidator ID="rfv_minimo_rubro" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="minimo_rubro" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
@@ -258,7 +262,9 @@
                                                 </div>
                                                 <div class="col-lg-2">
                                                     <div class="form-group text-left">
-                                                        <label class="fuente_css02">*Máximo: % 0</label>
+
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Máximo: % 0"></asp:Label>
+                                                        
                                                         <asp:TextBox CssClass="form-control input-box " ID="maximo_rubro" runat="server" TextMode="Number" placeholder="[0-9]" TabIndex="9"></asp:TextBox>
                                                         <div class="text-right">
                                                             <asp:RequiredFieldValidator ID="rfv_maximo_rubro" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="maximo_rubro" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
@@ -267,7 +273,8 @@
                                                 </div>
                                                 <div class="col-lg-2">
                                                     <div class="form-group text-left">
-                                                        <label class="fuente_css02">*Monto extra</label>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Monto extra"></asp:Label>
+                                                        
                                                         <div class="input-group">
                                                             <asp:TextBox CssClass="form-control input-box" ID="monto_extra" runat="server" AutoPostBack="true" OnTextChanged="mont_rubro_TextChanged" placeholder="[0-9]" Enabled="false" TabIndex="10"></asp:TextBox>
                                                             <div class="text-right">
@@ -278,7 +285,8 @@
                                                 </div>
                                                 <div class="col-lg-2">
                                                     <div class="form-group text-left">
-                                                        <label class="fuente_css02">*Monto gastado</label>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Monto gastado"></asp:Label>
+                                                        
                                                         <div class="input-group">
                                                             <asp:TextBox CssClass="form-control input-box" ID="monto_gastado" runat="server" AutoPostBack="true" OnTextChanged="mont_rubro_TextChanged" placeholder="[0-9]" Enabled="false" TabIndex="11"></asp:TextBox>
                                                             <div class="text-right">
@@ -314,7 +322,7 @@
                                             <p class="text-left">
                                                 <div class="input-group" id="div_busc_gasto" runat="server" visible="false">
                                                     <span class="input-group-addon">
-                                                        <asp:Label CssClass="control-label fuente_css02" ID="lbl_buscar_gasto" runat="server" Text="*Buscar Rubro:"></asp:Label>
+                                                        <asp:Label CssClass="control-label fuente_css02" ID="lbl_buscar_gasto" runat="server" Text="*BUSCAR GASTO:"></asp:Label>
                                                     </span>
                                                     <asp:TextBox CssClass="form-control input-box" ID="txt_buscar_gasto" runat="server" placeholder="letras/numeros" TextMode="Search" TabIndex="3"></asp:TextBox>
                                                     <span class="input-group-btn">
@@ -339,6 +347,8 @@
                                         </span>
                                                 <br />
                                                 <asp:CheckBox ID="chkb_des_gastoro" runat="server" AutoPostBack="true" Text="Desactivar validaciones" OnCheckedChanged="chkb_des_gasto_CheckedChanged" />
+                                                 <br />
+                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_tgast" runat="server" Text=""></asp:Label>
                                             </p>
                                         </div>
 
@@ -353,10 +363,10 @@
                                                                     <asp:CheckBox ID="chk_gasto" runat="server" onclick="CheckOne(this)" AutoPostBack="true" OnCheckedChanged="chk_gasto_CheckedChanged" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:BoundField DataField="codigo_caja" HeaderText="ID" SortExpression="codigo_caja" Visible="true" />
+                                                            <asp:BoundField DataField="codigo_gasto" HeaderText="ID" SortExpression="codigo_gasto" Visible="true" />
                                                             <asp:BoundField DataField="tipo_rubro" HeaderText="TIPO RUBRO" SortExpression="tipo_rubro" />
-                                                            <asp:BoundField DataField="rubro" HeaderText="RUBRO" SortExpression="rubro" />
-                                                            <asp:BoundField DataField="desc_caja" HeaderText="DESCRIPCIÓN CAJA" SortExpression="desc_caja" />
+                                                            <asp:BoundField DataField="etiqueta_rubro" HeaderText="RUBRO" SortExpression="etiqueta_rubro" />
+                                                            <asp:BoundField DataField="desc_gasto" HeaderText="DESCRIPCIÓN GASTO" SortExpression="desc_gasto" />
                                                             <asp:BoundField DataField="fecha_registro" HeaderText="FECHA DE REGISTRO" SortExpression="fecha_registro" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
                                                             <asp:TemplateField HeaderText="Estatus">
                                                                 <ItemTemplate>
@@ -383,17 +393,19 @@
                                             <div class="row">
                                                 <div class="col-lg-2">
                                                     <div class="form-group">
-                                                        <label for="ddl_tipo_gastoro" class="fuente_css02">*Tipo Rubro</label>
-                                                        <asp:DropDownList CssClass="form-control input-box" ID="ddl_tipo_gasto" runat="server" TabIndex="4" OnSelectedIndexChanged="ddl_tipo_gasto_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Tipo Rubro"></asp:Label>
+                                                        
+                                                        <asp:DropDownList CssClass="form-control input-box" ID="ddl_tipo_gasto" runat="server" TabIndex="4" OnSelectedIndexChanged="ddl_tipo_gasto_SelectedIndexChanged" AutoPostBack="true" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
                                                         <div class="text-right">
-                                                            <asp:RequiredFieldValidator ID="rfv_tipo_gasto" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="ddl_tipo_gasto" InitialValue="0" ForeColor="DarkRed " Enabled="false" ></asp:RequiredFieldValidator>
+                                                            <asp:RequiredFieldValidator ID="rfv_tipo_gasto" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="ddl_tipo_gasto" InitialValue="0" ForeColor="DarkRed " Enabled="false"></asp:RequiredFieldValidator>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-2">
                                                     <div class="form-group">
-                                                        <label for="eti_gasto" class="fuente_css02">*Etiqueta Rubro</label>
-                                                        <asp:DropDownList CssClass="form-control input-box" ID="ddl_eti_gasto" runat="server" TabIndex="5" ></asp:DropDownList>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Etiqueta Rubro"></asp:Label>
+                                                        
+                                                        <asp:DropDownList CssClass="form-control input-box" ID="ddl_eti_gasto" runat="server" TabIndex="5" OnSelectedIndexChanged="ddl_eti_gasto_SelectedIndexChanged" AutoPostBack="true" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
                                                         <div class="text-right">
                                                             <asp:RequiredFieldValidator ID="rfv_eti_gasto" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="ddl_eti_gasto" InitialValue="0" ForeColor="DarkRed " Enabled="false"></asp:RequiredFieldValidator>
                                                         </div>
@@ -401,8 +413,9 @@
                                                 </div>
                                                 <div class="col-lg-5">
                                                     <div class="form-group">
-                                                        <label class="fuente_css02">*Descripción Gasto</label>
-                                                        <asp:TextBox CssClass="form-control input-box" ID="desc_gasto" runat="server" TextMode="MultiLine" placeholder="[a-z/0-9]" TabIndex="6"></asp:TextBox>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Descripción Gasto"></asp:Label>
+                                                        
+                                                        <asp:TextBox CssClass="form-control input-box" ID="desc_gasto" runat="server" TextMode="MultiLine" placeholder="[a-z/0-9]" TabIndex="6" BackColor="LightGray" ForeColor="#104D8D"></asp:TextBox>
                                                         <div class="text-right">
                                                             <asp:RequiredFieldValidator ID="rfv_desc_gasto" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="desc_gasto" ForeColor="DarkRed " Enabled="false"></asp:RequiredFieldValidator>
                                                         </div>
@@ -410,22 +423,152 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <div class="form-group text-left">
-                                                        <label class="fuente_css02">*Monto fijo</label>
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Monto"></asp:Label>
+                                                        
                                                         <div class="form-group">
                                                             <asp:TextBox CssClass="form-control input-box" ID="mont_gasto" runat="server" AutoPostBack="true" OnTextChanged="mont_gasto_TextChanged" placeholder="[0-9]" TabIndex="7"></asp:TextBox>
                                                             <div class="text-right">
                                                                 <asp:RequiredFieldValidator ID="rfv_mont_gasto" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="mont_gasto" ForeColor="DarkRed " Enabled="false"></asp:RequiredFieldValidator>
                                                             </div>
                                                         </div>
-                                                         <div class="form-group text-right">
-                                                   
+                                                        <div class="form-group text-right">
                                                             <asp:Button CssClass="btn btn02" ID="btn_guardar_gasto" runat="server" Text="GUARDAR" OnClick="btn_guardar_gasto_Click" TabIndex="12" />
                                                         </div>
                                                     </div>
-                                                 
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                    </Triggers>
+                </asp:UpdatePanel>
+                         <asp:UpdatePanel ID="up_caja" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="col-lg-10">
+                            <div class="col-lg-12 ">
+                                <div class="row">
+                                    <div class="panel panel-default" id="pnl_caja" runat="server" visible="false">
+                                        <div class="panel-heading">
+                                            <p class="text-left">
+                                                <div class="input-group" id="div_busc_caja" runat="server" visible="false">
+                                                    <span class="input-group-addon">
+                                                        <asp:Label CssClass="control-label fuente_css02" ID="lbl_buscar_caja" runat="server" Text="*BUSCAR GASTO CAJA:"></asp:Label>
+                                                    </span>
+                                                    <asp:TextBox CssClass="form-control input-box" ID="txt_buscar_caja" runat="server" placeholder="letras/numeros" TextMode="Search" TabIndex="3"></asp:TextBox>
+                                                    <span class="input-group-btn">
+                                                        <asp:Button CssClass="btn btn01" ID="btn_buscar_caja" runat="server" Text="ACEPTAR" OnClick="btn_buscar_caja_Click" TabIndex="4" />
+                                                    </span>
+                                                </div>
+                                                <div class="text-right">
+                                                    <ajaxToolkit:AutoCompleteExtender ID="ace_buscar_caja" runat="server" ServiceMethod="SearchCustomers" MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="true" CompletionSetCount="10" TargetControlID="txt_buscar_caja" FirstRowSelected="false"></ajaxToolkit:AutoCompleteExtender>
+                                                    <asp:RequiredFieldValidator ID="rfv_buscar_caja" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_buscar_caja" ForeColor="white" Enabled="false"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </p>
+                                            <p class="text-right">
+                                                REGISTRO DE CAJA
 
+                                        <span>
+                                            <asp:LinkButton CssClass="btn btn02" ID="btn_agr_caja" runat="server" ToolTip="AGREGAR RUBRO" TabIndex="1" OnClick="btn_agr_caja_Click">
+                                                <i class="fas fa-plus" id="i_agr_caja" runat="server"></i>
+                                            </asp:LinkButton>
+                                            <asp:LinkButton CssClass="btn btn02" ID="btn_edit_caja" runat="server" ToolTip="EDITAR RUBRO" TabIndex="2" OnClick="btn_edit_caja_Click">
+                                                <i class="far fa-edit" id="i_edit_caja" runat="server"></i>
+                                            </asp:LinkButton>
+                                        </span>
+                                                <br />
+                                                <asp:CheckBox ID="chkb_des_cajaro" runat="server" AutoPostBack="true" Text="Desactivar validaciones" OnCheckedChanged="chkb_des_caja_CheckedChanged" />
+                                            </p>
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="row">
+
+                                                <div class="col-lg-12">
+                                                    <asp:GridView CssClass="table" ID="gv_caja" runat="server" AutoGenerateColumns="False" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_caja_PageIndexChanging" OnRowDataBound="gv_caja_RowDataBound">
+                                                        <Columns>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:CheckBox ID="chk_caja" runat="server" onclick="CheckOne(this)" AutoPostBack="true" OnCheckedChanged="chk_caja_CheckedChanged" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="codigo_caja" HeaderText="ID" SortExpression="codigo_caja" Visible="true" />
+                                                            <asp:BoundField DataField="tipo_rubro" HeaderText="TIPO RUBRO" SortExpression="tipo_rubro" />
+                                                            <asp:BoundField DataField="etiqueta_rubro" HeaderText="RUBRO" SortExpression="etiqueta_rubro" />
+                                                            <asp:BoundField DataField="desc_caja" HeaderText="DESCRIPCIÓN GASTO" SortExpression="desc_caja" />
+                                                            <asp:BoundField DataField="fecha_registro" HeaderText="FECHA DE REGISTRO" SortExpression="fecha_registro" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
+                                                            <asp:TemplateField HeaderText="Estatus">
+                                                                <ItemTemplate>
+                                                                    <asp:DropDownList ID="ddl_caja_est" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_caja_est_SelectedIndexChanged">
+                                                                    </asp:DropDownList>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                        <EditRowStyle BackColor="#999999" />
+                                                        <FooterStyle BackColor="#5D7B9D" ForeColor="White" />
+                                                        <HeaderStyle BackColor="#104D8d" ForeColor="White" />
+                                                        <PagerSettings Mode="NumericFirstLast" FirstPageText="Inicio" LastPageText="Final" />
+                                                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                                    </asp:GridView>
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Tipo Rubro"></asp:Label>
+                                                        
+                                                        <asp:DropDownList CssClass="form-control input-box" ID="ddl_tipo_caja" runat="server" TabIndex="4" OnSelectedIndexChanged="ddl_tipo_caja_SelectedIndexChanged" AutoPostBack="true" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
+                                                        <div class="text-right">
+                                                            <asp:RequiredFieldValidator ID="rfv_tipo_caja" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="ddl_tipo_caja" InitialValue="0" ForeColor="DarkRed " Enabled="false"></asp:RequiredFieldValidator>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Etiqueta Rubro"></asp:Label>
+                                                        
+                                                        <asp:DropDownList CssClass="form-control input-box" ID="ddl_eti_caja" runat="server" TabIndex="5" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
+                                                        <div class="text-right">
+                                                            <asp:RequiredFieldValidator ID="rfv_eti_caja" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="ddl_eti_caja" InitialValue="0" ForeColor="DarkRed " Enabled="false" ></asp:RequiredFieldValidator>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Descripción Caja"></asp:Label>
+                                                        <asp:TextBox CssClass="form-control input-box" ID="desc_caja" runat="server" TextMode="MultiLine" placeholder="[a-z/0-9]" TabIndex="6" BackColor="LightGray" ForeColor="#104D8D"></asp:TextBox>
+                                                        <div class="text-right">
+                                                            <asp:RequiredFieldValidator ID="rfv_desc_caja" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="desc_caja" ForeColor="DarkRed " Enabled="false" ></asp:RequiredFieldValidator>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group text-left">
+                                                        <asp:Label CssClass="control-label fuente_css02"  runat="server" Text="*Monto"></asp:Label>
+                                                        
+                                                        <div class="form-group">
+                                                            <asp:TextBox CssClass="form-control input-box" ID="mont_caja" runat="server" AutoPostBack="true" OnTextChanged="mont_caja_TextChanged" placeholder="[0-9]" TabIndex="7"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_mont_caja" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="mont_caja" ForeColor="DarkRed " Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group text-right">
+                                                            <asp:Button CssClass="btn btn02" ID="btn_guardar_caja" runat="server" Text="GUARDAR" OnClick="btn_guardar_caja_Click" TabIndex="12" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
