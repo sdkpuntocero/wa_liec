@@ -62,5 +62,6 @@ namespace wa_liec
         public virtual DbSet<inf_rubro_mes> inf_rubro_mes { get; set; }
         public virtual DbSet<inf_sepomex> inf_sepomex { get; set; }
         public virtual DbSet<inf_usuarios> inf_usuarios { get; set; }
+        public virtual DbSet<v_ensa_comp> v_ensa_comp { get; set; }
     }
 }

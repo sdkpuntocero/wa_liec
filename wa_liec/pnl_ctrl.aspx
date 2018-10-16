@@ -256,8 +256,8 @@
                                     <div class="panel-heading">
                                         <p class="text-right">
                                             <asp:LinkButton   ID="lkb_capt_i" runat="server" OnClick="lkb_capt_i_Click" ForeColor="white">
-                                                <i class="fas fa-file-signature" id="i_capt_i" runat="server"></i>
-                                                <asp:Label  ID="lbl_capt_i" runat="server" Text="CAPTURA"></asp:Label>
+                                                <i class="fas fa-2x fa-file-signature" id="i_capt_i" runat="server"></i>
+                                                <%--<asp:Label  ID="lbl_capt_i" runat="server" Text="CAPTURA"></asp:Label>--%>
                                             </asp:LinkButton>
                                         </p>
                                     </div>
@@ -278,8 +278,8 @@
                                     <div class="panel-heading">
                                         <p class="text-right">
                                             <asp:LinkButton   ID="lkb_cont_i" runat="server" OnClick="lkb_cont_i_Click" ForeColor="white">
-                                                <i class="fas fa-dollar-sign" id="i_cont_i" runat="server"></i>
-                                                <asp:Label  ID="lbl_cont_i" runat="server" Text="CONTABILIDAD"></asp:Label>
+                                                <i class="fas fa-2x fa-dollar-sign" id="i_cont_i" runat="server"></i>
+                                                <%--<asp:Label  ID="lbl_cont_i" runat="server" Text="CONTABILIDAD"></asp:Label>--%>
                                             </asp:LinkButton>
                                         </p>
                                     </div>

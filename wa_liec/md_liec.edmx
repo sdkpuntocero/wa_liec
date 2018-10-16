@@ -157,6 +157,11 @@
           <Property Name="id_tipo_servicio" Type="int" Nullable="false" />
           <Property Name="desc_tipo_servicio" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'dd_liec.dbo.filtro' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="filtro">
+          <Property Name="filtro" Type="varchar" MaxLength="50" />
+        </EntityType>-->
         <EntityType Name="inf_caja">
           <Key>
             <PropertyRef Name="id_caja" />
@@ -214,33 +219,18 @@
             <PropertyRef Name="id_conc_ec" />
           </Key>
           <Property Name="id_conc_ec" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="cde" Type="int" />
+          <Property Name="cdem" Type="int" />
           <Property Name="clave_ensa_a" Type="int" />
-          <Property Name="calve_ensa_b" Type="varchar" MaxLength="50" />
           <Property Name="masa_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="masa_b" Type="decimal" Precision="18" Scale="4" />
           <Property Name="altura_a" Type="decimal" Precision="18" Scale="4" />
           <Property Name="altura_b" Type="decimal" Precision="18" Scale="4" />
           <Property Name="lados_a" Type="decimal" Precision="18" Scale="4" />
           <Property Name="lados_b" Type="decimal" Precision="18" Scale="4" />
           <Property Name="directo_a" Type="int" />
-          <Property Name="directo_b" Type="int" />
           <Property Name="intensidad_a" Type="varchar" MaxLength="50" />
-          <Property Name="intensidad_b" Type="varchar" MaxLength="50" />
-          <Property Name="area_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="area_b" Type="decimal" Precision="18" Scale="4" />
           <Property Name="presion_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="presion_b" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="esfuerzo_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="esfuerzo_b" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="eprom_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="e_prom_b" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="masa_vol_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="masa_vol_b" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="masa_volprom_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="masa_volprom_b" Type="decimal" Precision="18" Scale="4" />
           <Property Name="tipofalla_a" Type="varchar" MaxLength="50" />
-          <Property Name="tipofalla_b" Type="varchar" MaxLength="50" />
-          <Property Name="dif_ab" Type="varchar" MaxLength="50" />
           <Property Name="fecha_registro" Type="datetime" />
           <Property Name="id_mrp_concreto" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -347,12 +337,24 @@
           <Property Name="id_tipo_especimen" Type="int" Nullable="false" />
           <Property Name="id_tipo_concreto" Type="int" Nullable="false" />
           <Property Name="id_sit_concreto" Type="int" Nullable="false" />
-          <Property Name="C24_horas" Type="datetime" />
-          <Property Name="C3_dias" Type="datetime" />
-          <Property Name="C7_dias" Type="datetime" />
-          <Property Name="C14_dias" Type="datetime" />
-          <Property Name="C28_dias" Type="datetime" />
-          <Property Name="otra" Type="int" />
+          <Property Name="c1_dias" Type="bit" />
+          <Property Name="num_1dias" Type="int" />
+          <Property Name="e_1dias" Type="bit" />
+          <Property Name="c3_dias" Type="bit" />
+          <Property Name="num_3dias" Type="int" />
+          <Property Name="e_3dias" Type="bit" />
+          <Property Name="c7_dias" Type="bit" />
+          <Property Name="num_7dias" Type="int" />
+          <Property Name="e_7dias" Type="bit" />
+          <Property Name="c14_dias" Type="bit" />
+          <Property Name="num_14dias" Type="int" />
+          <Property Name="e_14dias" Type="bit" />
+          <Property Name="c28_dias" Type="bit" />
+          <Property Name="num_28dias" Type="int" />
+          <Property Name="e_28dias" Type="bit" />
+          <Property Name="cotro_dias" Type="bit" />
+          <Property Name="num_otro_dias" Type="int" />
+          <Property Name="e_otro_dias" Type="bit" />
           <Property Name="id_usuario" Type="uniqueidentifier" Nullable="false" />
           <Property Name="fecha_registro" Type="datetime" />
           <Property Name="id_emp" Type="uniqueidentifier" Nullable="false" />
@@ -428,6 +430,43 @@
           <Property Name="fecha_nacimiento" Type="datetime" />
           <Property Name="fecha_registro" Type="datetime" />
           <Property Name="id_emp" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="v_ensa_comp">
+          <Key>
+            <PropertyRef Name="id_tipo_especimen" />
+            <PropertyRef Name="id_tipo_concreto" />
+            <PropertyRef Name="id_sit_concreto" />
+            <PropertyRef Name="fa1" />
+            <PropertyRef Name="fa3" />
+            <PropertyRef Name="fa7" />
+            <PropertyRef Name="fa14" />
+            <PropertyRef Name="fa28" />
+            <PropertyRef Name="fao" />
+            <PropertyRef Name="fpfe" />
+          </Key>
+          <Property Name="no_muesra" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_colado" Type="datetime" />
+          <Property Name="presion" Type="int" />
+          <Property Name="id_tipo_especimen" Type="int" Nullable="false" />
+          <Property Name="id_tipo_concreto" Type="int" Nullable="false" />
+          <Property Name="id_sit_concreto" Type="int" Nullable="false" />
+          <Property Name="fa1" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="fa3" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="fa7" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="fa14" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="fa28" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="fao" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="ne1" Type="int" />
+          <Property Name="ne3" Type="int" />
+          <Property Name="ne7" Type="int" />
+          <Property Name="ne14" Type="int" />
+          <Property Name="ne28" Type="int" />
+          <Property Name="neo" Type="int" />
+          <Property Name="f_ensa_comp" Type="datetime" />
+          <Property Name="fpfe" Type="int" Nullable="false" />
+          <Property Name="fne" Type="int" />
         </EntityType>
         <Association Name="FK_contacto_usuarios_general_usuarios">
           <End Role="inf_usuarios" Type="Self.inf_usuarios" Multiplicity="1" />
@@ -887,6 +926,31 @@
           <EntitySet Name="inf_rubro_mes" EntityType="Self.inf_rubro_mes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_sepomex" EntityType="Self.inf_sepomex" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_usuarios" EntityType="Self.inf_usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_ensa_comp" EntityType="Self.v_ensa_comp" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_ensa_comp].[no_muesra] AS [no_muesra], 
+    [v_ensa_comp].[fecha_colado] AS [fecha_colado], 
+    [v_ensa_comp].[presion] AS [presion], 
+    [v_ensa_comp].[id_tipo_especimen] AS [id_tipo_especimen], 
+    [v_ensa_comp].[id_tipo_concreto] AS [id_tipo_concreto], 
+    [v_ensa_comp].[id_sit_concreto] AS [id_sit_concreto], 
+    [v_ensa_comp].[fa1] AS [fa1], 
+    [v_ensa_comp].[fa3] AS [fa3], 
+    [v_ensa_comp].[fa7] AS [fa7], 
+    [v_ensa_comp].[fa14] AS [fa14], 
+    [v_ensa_comp].[fa28] AS [fa28], 
+    [v_ensa_comp].[fao] AS [fao], 
+    [v_ensa_comp].[ne1] AS [ne1], 
+    [v_ensa_comp].[ne3] AS [ne3], 
+    [v_ensa_comp].[ne7] AS [ne7], 
+    [v_ensa_comp].[ne14] AS [ne14], 
+    [v_ensa_comp].[ne28] AS [ne28], 
+    [v_ensa_comp].[neo] AS [neo], 
+    [v_ensa_comp].[f_ensa_comp] AS [f_ensa_comp], 
+    [v_ensa_comp].[fpfe] AS [fpfe], 
+    [v_ensa_comp].[fne] AS [fne]
+    FROM [dbo].[v_ensa_comp] AS [v_ensa_comp]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_contacto_usuarios_general_usuarios" Association="Self.FK_contacto_usuarios_general_usuarios">
             <End Role="inf_usuarios" EntitySet="inf_usuarios" />
             <End Role="inf_cont_usr" EntitySet="inf_cont_usr" />
@@ -1070,6 +1134,7 @@
           <EntitySet Name="inf_rubro_mes" EntityType="dd_liecModel.inf_rubro_mes" />
           <EntitySet Name="inf_sepomex" EntityType="dd_liecModel.inf_sepomex" />
           <EntitySet Name="inf_usuarios" EntityType="dd_liecModel.inf_usuarios" />
+          <EntitySet Name="v_ensa_comp" EntityType="dd_liecModel.v_ensa_comp" />
           <AssociationSet Name="FK_inf_mrp_concreto_fac_situacion_concreto" Association="dd_liecModel.FK_inf_mrp_concreto_fac_situacion_concreto">
             <End Role="fac_sit_concreto" EntitySet="fac_sit_concreto" />
             <End Role="inf_mrp_concreto" EntitySet="inf_mrp_concreto" />
@@ -1452,33 +1517,18 @@
             <PropertyRef Name="id_conc_ec" />
           </Key>
           <Property Name="id_conc_ec" Type="Guid" Nullable="false" />
+          <Property Name="cde" Type="Int32" />
+          <Property Name="cdem" Type="Int32" />
           <Property Name="clave_ensa_a" Type="Int32" />
-          <Property Name="calve_ensa_b" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="masa_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="masa_b" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="altura_a" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="altura_b" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="lados_a" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="lados_b" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="directo_a" Type="Int32" />
-          <Property Name="directo_b" Type="Int32" />
           <Property Name="intensidad_a" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="intensidad_b" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="area_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="area_b" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="presion_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="presion_b" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="esfuerzo_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="esfuerzo_b" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="eprom_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="e_prom_b" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="masa_vol_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="masa_vol_b" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="masa_volprom_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="masa_volprom_b" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="tipofalla_a" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="tipofalla_b" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dif_ab" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="fecha_registro" Type="DateTime" Precision="3" />
           <Property Name="id_mrp_concreto" Type="Guid" Nullable="false" />
           <NavigationProperty Name="inf_mrp_concreto" Relationship="dd_liecModel.FK_inf_conc_ec_inf_mrp_concreto" FromRole="inf_conc_ec" ToRole="inf_mrp_concreto" />
@@ -1604,12 +1654,24 @@
           <Property Name="id_tipo_especimen" Type="Int32" Nullable="false" />
           <Property Name="id_tipo_concreto" Type="Int32" Nullable="false" />
           <Property Name="id_sit_concreto" Type="Int32" Nullable="false" />
-          <Property Name="C24_horas" Type="DateTime" Precision="3" />
-          <Property Name="C3_dias" Type="DateTime" Precision="3" />
-          <Property Name="C7_dias" Type="DateTime" Precision="3" />
-          <Property Name="C14_dias" Type="DateTime" Precision="3" />
-          <Property Name="C28_dias" Type="DateTime" Precision="3" />
-          <Property Name="otra" Type="Int32" />
+          <Property Name="c1_dias" Type="Boolean" />
+          <Property Name="num_1dias" Type="Int32" />
+          <Property Name="e_1dias" Type="Boolean" />
+          <Property Name="c3_dias" Type="Boolean" />
+          <Property Name="num_3dias" Type="Int32" />
+          <Property Name="e_3dias" Type="Boolean" />
+          <Property Name="c7_dias" Type="Boolean" />
+          <Property Name="num_7dias" Type="Int32" />
+          <Property Name="e_7dias" Type="Boolean" />
+          <Property Name="c14_dias" Type="Boolean" />
+          <Property Name="num_14dias" Type="Int32" />
+          <Property Name="e_14dias" Type="Boolean" />
+          <Property Name="c28_dias" Type="Boolean" />
+          <Property Name="num_28dias" Type="Int32" />
+          <Property Name="e_28dias" Type="Boolean" />
+          <Property Name="cotro_dias" Type="Boolean" />
+          <Property Name="num_otro_dias" Type="Int32" />
+          <Property Name="e_otro_dias" Type="Boolean" />
           <Property Name="id_usuario" Type="Guid" Nullable="false" />
           <Property Name="fecha_registro" Type="DateTime" Precision="3" />
           <Property Name="id_emp" Type="Guid" Nullable="false" />
@@ -1704,6 +1766,41 @@
           <NavigationProperty Name="fact_generos" Relationship="dd_liecModel.FK_general_usuarios_fact_generos" FromRole="inf_usuarios" ToRole="fact_generos" />
           <NavigationProperty Name="fact_perfil" Relationship="dd_liecModel.FK_general_usuarios_fact_perfil" FromRole="inf_usuarios" ToRole="fact_perfil" />
           <NavigationProperty Name="inf_cont_usr" Relationship="dd_liecModel.FK_contacto_usuarios_general_usuarios" FromRole="inf_usuarios" ToRole="inf_cont_usr" />
+        </EntityType>
+        <EntityType Name="v_ensa_comp">
+          <Key>
+            <PropertyRef Name="id_tipo_especimen" />
+            <PropertyRef Name="id_tipo_concreto" />
+            <PropertyRef Name="id_sit_concreto" />
+            <PropertyRef Name="fa1" />
+            <PropertyRef Name="fa3" />
+            <PropertyRef Name="fa7" />
+            <PropertyRef Name="fa14" />
+            <PropertyRef Name="fa28" />
+            <PropertyRef Name="fao" />
+            <PropertyRef Name="fpfe" />
+          </Key>
+          <Property Name="no_muesra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_colado" Type="DateTime" Precision="3" />
+          <Property Name="presion" Type="Int32" />
+          <Property Name="id_tipo_especimen" Type="Int32" Nullable="false" />
+          <Property Name="id_tipo_concreto" Type="Int32" Nullable="false" />
+          <Property Name="id_sit_concreto" Type="Int32" Nullable="false" />
+          <Property Name="fa1" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="fa3" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="fa7" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="fa14" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="fa28" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="fao" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ne1" Type="Int32" />
+          <Property Name="ne3" Type="Int32" />
+          <Property Name="ne7" Type="Int32" />
+          <Property Name="ne14" Type="Int32" />
+          <Property Name="ne28" Type="Int32" />
+          <Property Name="neo" Type="Int32" />
+          <Property Name="f_ensa_comp" Type="DateTime" Precision="3" />
+          <Property Name="fpfe" Type="Int32" Nullable="false" />
+          <Property Name="fne" Type="Int32" />
         </EntityType>
         <Association Name="FK_inf_mrp_concreto_fac_situacion_concreto">
           <End Type="dd_liecModel.fac_sit_concreto" Role="fac_sit_concreto" Multiplicity="1" />
@@ -2125,7 +2222,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2364,33 +2461,18 @@
               <MappingFragment StoreEntitySet="inf_conc_ec">
                 <ScalarProperty Name="id_mrp_concreto" ColumnName="id_mrp_concreto" />
                 <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
-                <ScalarProperty Name="dif_ab" ColumnName="dif_ab" />
-                <ScalarProperty Name="tipofalla_b" ColumnName="tipofalla_b" />
                 <ScalarProperty Name="tipofalla_a" ColumnName="tipofalla_a" />
-                <ScalarProperty Name="masa_volprom_b" ColumnName="masa_volprom_b" />
-                <ScalarProperty Name="masa_volprom_a" ColumnName="masa_volprom_a" />
-                <ScalarProperty Name="masa_vol_b" ColumnName="masa_vol_b" />
-                <ScalarProperty Name="masa_vol_a" ColumnName="masa_vol_a" />
-                <ScalarProperty Name="e_prom_b" ColumnName="e_prom_b" />
-                <ScalarProperty Name="eprom_a" ColumnName="eprom_a" />
-                <ScalarProperty Name="esfuerzo_b" ColumnName="esfuerzo_b" />
-                <ScalarProperty Name="esfuerzo_a" ColumnName="esfuerzo_a" />
-                <ScalarProperty Name="presion_b" ColumnName="presion_b" />
                 <ScalarProperty Name="presion_a" ColumnName="presion_a" />
-                <ScalarProperty Name="area_b" ColumnName="area_b" />
-                <ScalarProperty Name="area_a" ColumnName="area_a" />
-                <ScalarProperty Name="intensidad_b" ColumnName="intensidad_b" />
                 <ScalarProperty Name="intensidad_a" ColumnName="intensidad_a" />
-                <ScalarProperty Name="directo_b" ColumnName="directo_b" />
                 <ScalarProperty Name="directo_a" ColumnName="directo_a" />
                 <ScalarProperty Name="lados_b" ColumnName="lados_b" />
                 <ScalarProperty Name="lados_a" ColumnName="lados_a" />
                 <ScalarProperty Name="altura_b" ColumnName="altura_b" />
                 <ScalarProperty Name="altura_a" ColumnName="altura_a" />
-                <ScalarProperty Name="masa_b" ColumnName="masa_b" />
                 <ScalarProperty Name="masa_a" ColumnName="masa_a" />
-                <ScalarProperty Name="calve_ensa_b" ColumnName="calve_ensa_b" />
                 <ScalarProperty Name="clave_ensa_a" ColumnName="clave_ensa_a" />
+                <ScalarProperty Name="cdem" ColumnName="cdem" />
+                <ScalarProperty Name="cde" ColumnName="cde" />
                 <ScalarProperty Name="id_conc_ec" ColumnName="id_conc_ec" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2497,12 +2579,24 @@
                 <ScalarProperty Name="id_emp" ColumnName="id_emp" />
                 <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-                <ScalarProperty Name="otra" ColumnName="otra" />
-                <ScalarProperty Name="C28_dias" ColumnName="C28_dias" />
-                <ScalarProperty Name="C14_dias" ColumnName="C14_dias" />
-                <ScalarProperty Name="C7_dias" ColumnName="C7_dias" />
-                <ScalarProperty Name="C3_dias" ColumnName="C3_dias" />
-                <ScalarProperty Name="C24_horas" ColumnName="C24_horas" />
+                <ScalarProperty Name="e_otro_dias" ColumnName="e_otro_dias" />
+                <ScalarProperty Name="num_otro_dias" ColumnName="num_otro_dias" />
+                <ScalarProperty Name="cotro_dias" ColumnName="cotro_dias" />
+                <ScalarProperty Name="e_28dias" ColumnName="e_28dias" />
+                <ScalarProperty Name="num_28dias" ColumnName="num_28dias" />
+                <ScalarProperty Name="c28_dias" ColumnName="c28_dias" />
+                <ScalarProperty Name="e_14dias" ColumnName="e_14dias" />
+                <ScalarProperty Name="num_14dias" ColumnName="num_14dias" />
+                <ScalarProperty Name="c14_dias" ColumnName="c14_dias" />
+                <ScalarProperty Name="e_7dias" ColumnName="e_7dias" />
+                <ScalarProperty Name="num_7dias" ColumnName="num_7dias" />
+                <ScalarProperty Name="c7_dias" ColumnName="c7_dias" />
+                <ScalarProperty Name="e_3dias" ColumnName="e_3dias" />
+                <ScalarProperty Name="num_3dias" ColumnName="num_3dias" />
+                <ScalarProperty Name="c3_dias" ColumnName="c3_dias" />
+                <ScalarProperty Name="e_1dias" ColumnName="e_1dias" />
+                <ScalarProperty Name="num_1dias" ColumnName="num_1dias" />
+                <ScalarProperty Name="c1_dias" ColumnName="c1_dias" />
                 <ScalarProperty Name="id_sit_concreto" ColumnName="id_sit_concreto" />
                 <ScalarProperty Name="id_tipo_concreto" ColumnName="id_tipo_concreto" />
                 <ScalarProperty Name="id_tipo_especimen" ColumnName="id_tipo_especimen" />
@@ -2588,6 +2682,33 @@
                 <ScalarProperty Name="id_genero" ColumnName="id_genero" />
                 <ScalarProperty Name="id_est_usr" ColumnName="id_est_usr" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_ensa_comp">
+            <EntityTypeMapping TypeName="dd_liecModel.v_ensa_comp">
+              <MappingFragment StoreEntitySet="v_ensa_comp">
+                <ScalarProperty Name="fne" ColumnName="fne" />
+                <ScalarProperty Name="fpfe" ColumnName="fpfe" />
+                <ScalarProperty Name="f_ensa_comp" ColumnName="f_ensa_comp" />
+                <ScalarProperty Name="neo" ColumnName="neo" />
+                <ScalarProperty Name="ne28" ColumnName="ne28" />
+                <ScalarProperty Name="ne14" ColumnName="ne14" />
+                <ScalarProperty Name="ne7" ColumnName="ne7" />
+                <ScalarProperty Name="ne3" ColumnName="ne3" />
+                <ScalarProperty Name="ne1" ColumnName="ne1" />
+                <ScalarProperty Name="fao" ColumnName="fao" />
+                <ScalarProperty Name="fa28" ColumnName="fa28" />
+                <ScalarProperty Name="fa14" ColumnName="fa14" />
+                <ScalarProperty Name="fa7" ColumnName="fa7" />
+                <ScalarProperty Name="fa3" ColumnName="fa3" />
+                <ScalarProperty Name="fa1" ColumnName="fa1" />
+                <ScalarProperty Name="id_sit_concreto" ColumnName="id_sit_concreto" />
+                <ScalarProperty Name="id_tipo_concreto" ColumnName="id_tipo_concreto" />
+                <ScalarProperty Name="id_tipo_especimen" ColumnName="id_tipo_especimen" />
+                <ScalarProperty Name="presion" ColumnName="presion" />
+                <ScalarProperty Name="fecha_colado" ColumnName="fecha_colado" />
+                <ScalarProperty Name="no_muesra" ColumnName="no_muesra" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

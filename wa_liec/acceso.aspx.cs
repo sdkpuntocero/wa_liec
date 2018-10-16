@@ -58,9 +58,14 @@ namespace wa_liec
 
                     Response.Redirect("pnl_cont.aspx");
                     break;
+                case "LIEC-AREA009":
 
+                    Session["ss_idusr"] = guid_idusr;
+
+                    Response.Redirect("pnl_capt.aspx");
+                    break;
                 default:
-                    Console.WriteLine("Default case");
+            
                     break;
             }
         }

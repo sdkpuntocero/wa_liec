@@ -31,12 +31,24 @@ namespace wa_liec
         public int id_tipo_especimen { get; set; }
         public int id_tipo_concreto { get; set; }
         public int id_sit_concreto { get; set; }
-        public Nullable<System.DateTime> C24_horas { get; set; }
-        public Nullable<System.DateTime> C3_dias { get; set; }
-        public Nullable<System.DateTime> C7_dias { get; set; }
-        public Nullable<System.DateTime> C14_dias { get; set; }
-        public Nullable<System.DateTime> C28_dias { get; set; }
-        public Nullable<int> otra { get; set; }
+        public Nullable<bool> c1_dias { get; set; }
+        public Nullable<int> num_1dias { get; set; }
+        public Nullable<bool> e_1dias { get; set; }
+        public Nullable<bool> c3_dias { get; set; }
+        public Nullable<int> num_3dias { get; set; }
+        public Nullable<bool> e_3dias { get; set; }
+        public Nullable<bool> c7_dias { get; set; }
+        public Nullable<int> num_7dias { get; set; }
+        public Nullable<bool> e_7dias { get; set; }
+        public Nullable<bool> c14_dias { get; set; }
+        public Nullable<int> num_14dias { get; set; }
+        public Nullable<bool> e_14dias { get; set; }
+        public Nullable<bool> c28_dias { get; set; }
+        public Nullable<int> num_28dias { get; set; }
+        public Nullable<bool> e_28dias { get; set; }
+        public Nullable<bool> cotro_dias { get; set; }
+        public Nullable<int> num_otro_dias { get; set; }
+        public Nullable<bool> e_otro_dias { get; set; }
         public System.Guid id_usuario { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public System.Guid id_emp { get; set; }

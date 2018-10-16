@@ -63,6 +63,19 @@ namespace wa_liec
                 int_idperf = i_usuario.id_perfil;
                 lbl_emp_oper.Text = i_usuario.razon_social;
                 guid_emp = i_usuario.id_emp;
+
+                switch (int_idperf)
+                {
+                    case 1:
+                    
+                        break;
+                    case 2:
+             
+                        break;
+                    default:
+              
+                        break;
+                }
             }
         }
 
@@ -202,8 +215,8 @@ namespace wa_liec
 
                 mailMessage.IsBodyHtml = true;
 
-                mailMessage.To.Add(new MailAddress(correo_r));
-
+                mailMessage.To.Add(new MailAddress("svaldes@liec.com.mx"));
+                mailMessage.CC.Add(new MailAddress("egarcia@liec.com.mx"));
                 SmtpClient smtp = new SmtpClient();
 
                 smtp.Host = smtp_e;
@@ -1128,7 +1141,7 @@ namespace wa_liec
             rfv_tipo_gasto.Enabled = false;
             rfv_mont_gasto.Enabled = false;
 
-            rfv_buscar_rub.Enabled = false;
+            rfv_buscar_gasto.Enabled = false;
         }
 
         protected void gv_gasto_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -1826,7 +1839,7 @@ namespace wa_liec
             rfv_tipo_caja.Enabled = false;
             rfv_mont_caja.Enabled = false;
 
-            rfv_buscar_rub.Enabled = false;
+            rfv_buscar_caja.Enabled = false;
         }
 
         protected void gv_caja_PageIndexChanging(object sender, GridViewPageEventArgs e)
