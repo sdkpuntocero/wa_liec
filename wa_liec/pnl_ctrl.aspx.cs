@@ -224,7 +224,7 @@ namespace wa_liec
 
         protected void lkb_recu_hum_i_Click(object sender, EventArgs e)
         {
-            Response.Redirect("pnl_recu_hum.aspx");
+            Response.Redirect("pnl_rh.aspx");
         }
 
         protected void lkb_cont_i_Click(object sender, EventArgs e)

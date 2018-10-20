@@ -86,6 +86,13 @@
           <Property Name="id_est_e_recep" Type="int" Nullable="false" />
           <Property Name="desc_est_e_recep" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="fact_est_ensaye">
+          <Key>
+            <PropertyRef Name="id_est_ensaye" />
+          </Key>
+          <Property Name="id_est_ensaye" Type="int" Nullable="false" />
+          <Property Name="desc_est_ensaye" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="fact_est_gast">
           <Key>
             <PropertyRef Name="id_est_gast" />
@@ -157,11 +164,6 @@
           <Property Name="id_tipo_servicio" Type="int" Nullable="false" />
           <Property Name="desc_tipo_servicio" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'dd_liec.dbo.filtro' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="filtro">
-          <Property Name="filtro" Type="varchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="inf_caja">
           <Key>
             <PropertyRef Name="id_caja" />
@@ -219,6 +221,10 @@ advertencia 6013: La tabla o vista 'dd_liec.dbo.filtro' no tiene definida una cl
             <PropertyRef Name="id_conc_ec" />
           </Key>
           <Property Name="id_conc_ec" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="dia_ensaye" Type="varchar" MaxLength="50" />
+          <Property Name="num_muesra" Type="int" />
+          <Property Name="fecha_ensaye" Type="date" />
+          <Property Name="id_est_ensaye" Type="int" Nullable="false" />
           <Property Name="cde" Type="int" />
           <Property Name="cdem" Type="int" />
           <Property Name="clave_ensa_a" Type="int" />
@@ -337,24 +343,22 @@ advertencia 6013: La tabla o vista 'dd_liec.dbo.filtro' no tiene definida una cl
           <Property Name="id_tipo_especimen" Type="int" Nullable="false" />
           <Property Name="id_tipo_concreto" Type="int" Nullable="false" />
           <Property Name="id_sit_concreto" Type="int" Nullable="false" />
-          <Property Name="c1_dias" Type="bit" />
-          <Property Name="num_1dias" Type="int" />
-          <Property Name="e_1dias" Type="bit" />
-          <Property Name="c3_dias" Type="bit" />
-          <Property Name="num_3dias" Type="int" />
-          <Property Name="e_3dias" Type="bit" />
-          <Property Name="c7_dias" Type="bit" />
-          <Property Name="num_7dias" Type="int" />
-          <Property Name="e_7dias" Type="bit" />
-          <Property Name="c14_dias" Type="bit" />
-          <Property Name="num_14dias" Type="int" />
-          <Property Name="e_14dias" Type="bit" />
-          <Property Name="c28_dias" Type="bit" />
-          <Property Name="num_28dias" Type="int" />
-          <Property Name="e_28dias" Type="bit" />
-          <Property Name="cotro_dias" Type="bit" />
-          <Property Name="num_otro_dias" Type="int" />
-          <Property Name="e_otro_dias" Type="bit" />
+          <Property Name="procedecia" Type="varchar" MaxLength="50" />
+          <Property Name="elemento" Type="varchar" MaxLength="50" />
+          <Property Name="dosificacion" Type="varchar" MaxLength="50" />
+          <Property Name="resistencia" Type="varchar" MaxLength="50" />
+          <Property Name="clase" Type="int" />
+          <Property Name="reva" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="tma" Type="int" />
+          <Property Name="olla" Type="varchar" MaxLength="50" />
+          <Property Name="remision" Type="varchar" MaxLength="50" />
+          <Property Name="sali_planta" Type="time" Precision="7" />
+          <Property Name="llega_obra" Type="time" Precision="7" />
+          <Property Name="desca_ini" Type="time" Precision="7" />
+          <Property Name="desca_term" Type="time" Precision="7" />
+          <Property Name="vol" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="revb" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="localiza" Type="varchar" MaxLength="150" />
           <Property Name="id_usuario" Type="uniqueidentifier" Nullable="false" />
           <Property Name="fecha_registro" Type="datetime" />
           <Property Name="id_emp" Type="uniqueidentifier" Nullable="false" />
@@ -432,41 +436,45 @@ advertencia 6013: La tabla o vista 'dd_liec.dbo.filtro' no tiene definida una cl
           <Property Name="id_emp" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="v_ensa_comp">
+advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="v_pfe">
           <Key>
+            <PropertyRef Name="id_mrp_concreto" />
+            <PropertyRef Name="id_est_concreto" />
             <PropertyRef Name="id_tipo_especimen" />
             <PropertyRef Name="id_tipo_concreto" />
             <PropertyRef Name="id_sit_concreto" />
-            <PropertyRef Name="fa1" />
-            <PropertyRef Name="fa3" />
-            <PropertyRef Name="fa7" />
-            <PropertyRef Name="fa14" />
-            <PropertyRef Name="fa28" />
-            <PropertyRef Name="fao" />
-            <PropertyRef Name="fpfe" />
           </Key>
+          <Property Name="id_mrp_concreto" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_est_concreto" Type="int" Nullable="false" />
           <Property Name="no_muesra" Type="varchar" MaxLength="50" />
           <Property Name="fecha_colado" Type="datetime" />
+          <Property Name="fecha_recibe" Type="datetime" />
+          <Property Name="entrega" Type="varchar" MaxLength="50" />
+          <Property Name="recibe" Type="varchar" MaxLength="50" />
           <Property Name="presion" Type="int" />
           <Property Name="id_tipo_especimen" Type="int" Nullable="false" />
           <Property Name="id_tipo_concreto" Type="int" Nullable="false" />
           <Property Name="id_sit_concreto" Type="int" Nullable="false" />
-          <Property Name="fa1" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="fa3" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="fa7" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="fa14" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="fa28" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="fao" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="ne1" Type="int" />
-          <Property Name="ne3" Type="int" />
-          <Property Name="ne7" Type="int" />
-          <Property Name="ne14" Type="int" />
-          <Property Name="ne28" Type="int" />
-          <Property Name="neo" Type="int" />
-          <Property Name="f_ensa_comp" Type="datetime" />
-          <Property Name="fpfe" Type="int" Nullable="false" />
-          <Property Name="fne" Type="int" />
+          <Property Name="dia_ensaye" Type="varchar" MaxLength="50" />
+          <Property Name="n_m" Type="int" />
+          <Property Name="fecha_ensaye" Type="date" />
+          <Property Name="procedecia" Type="varchar" MaxLength="50" />
+          <Property Name="elemento" Type="varchar" MaxLength="50" />
+          <Property Name="dosificacion" Type="varchar" MaxLength="50" />
+          <Property Name="resistencia" Type="varchar" MaxLength="50" />
+          <Property Name="clase" Type="int" />
+          <Property Name="reva" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="tma" Type="int" />
+          <Property Name="olla" Type="varchar" MaxLength="50" />
+          <Property Name="remision" Type="varchar" MaxLength="50" />
+          <Property Name="sali_planta" Type="time" Precision="7" />
+          <Property Name="llega_obra" Type="time" Precision="7" />
+          <Property Name="desca_ini" Type="time" Precision="7" />
+          <Property Name="vol" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="desca_term" Type="time" Precision="7" />
+          <Property Name="revb" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="localiza" Type="varchar" MaxLength="150" />
         </EntityType>
         <Association Name="FK_contacto_usuarios_general_usuarios">
           <End Role="inf_usuarios" Type="Self.inf_usuarios" Multiplicity="1" />
@@ -645,6 +653,18 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
             </Principal>
             <Dependent Role="inf_clte_obras">
               <PropertyRef Name="id_clte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_conc_ec_fact_est_ensaye">
+          <End Role="fact_est_ensaye" Type="Self.fact_est_ensaye" Multiplicity="1" />
+          <End Role="inf_conc_ec" Type="Self.inf_conc_ec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fact_est_ensaye">
+              <PropertyRef Name="id_est_ensaye" />
+            </Principal>
+            <Dependent Role="inf_conc_ec">
+              <PropertyRef Name="id_est_ensaye" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -888,6 +908,22 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="tbl_pfe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="no_muesra" Type="varchar" MaxLength="50" />
+                <Property Name="fecha_colado" Type="datetime" />
+                <Property Name="uno" Type="int" />
+                <Property Name="tres" Type="int" />
+                <Property Name="siete" Type="int" />
+                <Property Name="catorce" Type="int" />
+                <Property Name="vienteocho" Type="int" />
+                <Property Name="cero" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="dd_liecModelStoreContainer">
           <EntitySet Name="fac_sit_concreto" EntityType="Self.fac_sit_concreto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fac_tipo_concreto" EntityType="Self.fac_tipo_concreto" Schema="dbo" store:Type="Tables" />
@@ -900,6 +936,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
           <EntitySet Name="fact_est_concreto" EntityType="Self.fact_est_concreto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_est_e_env" EntityType="Self.fact_est_e_env" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_est_e_recep" EntityType="Self.fact_est_e_recep" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fact_est_ensaye" EntityType="Self.fact_est_ensaye" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_est_gast" EntityType="Self.fact_est_gast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_est_obra" EntityType="Self.fact_est_obra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_est_rub" EntityType="Self.fact_est_rub" Schema="dbo" store:Type="Tables" />
@@ -926,30 +963,39 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
           <EntitySet Name="inf_rubro_mes" EntityType="Self.inf_rubro_mes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_sepomex" EntityType="Self.inf_sepomex" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_usuarios" EntityType="Self.inf_usuarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="v_ensa_comp" EntityType="Self.v_ensa_comp" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="v_pfe" EntityType="Self.v_pfe" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [v_ensa_comp].[no_muesra] AS [no_muesra], 
-    [v_ensa_comp].[fecha_colado] AS [fecha_colado], 
-    [v_ensa_comp].[presion] AS [presion], 
-    [v_ensa_comp].[id_tipo_especimen] AS [id_tipo_especimen], 
-    [v_ensa_comp].[id_tipo_concreto] AS [id_tipo_concreto], 
-    [v_ensa_comp].[id_sit_concreto] AS [id_sit_concreto], 
-    [v_ensa_comp].[fa1] AS [fa1], 
-    [v_ensa_comp].[fa3] AS [fa3], 
-    [v_ensa_comp].[fa7] AS [fa7], 
-    [v_ensa_comp].[fa14] AS [fa14], 
-    [v_ensa_comp].[fa28] AS [fa28], 
-    [v_ensa_comp].[fao] AS [fao], 
-    [v_ensa_comp].[ne1] AS [ne1], 
-    [v_ensa_comp].[ne3] AS [ne3], 
-    [v_ensa_comp].[ne7] AS [ne7], 
-    [v_ensa_comp].[ne14] AS [ne14], 
-    [v_ensa_comp].[ne28] AS [ne28], 
-    [v_ensa_comp].[neo] AS [neo], 
-    [v_ensa_comp].[f_ensa_comp] AS [f_ensa_comp], 
-    [v_ensa_comp].[fpfe] AS [fpfe], 
-    [v_ensa_comp].[fne] AS [fne]
-    FROM [dbo].[v_ensa_comp] AS [v_ensa_comp]</DefiningQuery>
+    [v_pfe].[id_mrp_concreto] AS [id_mrp_concreto], 
+    [v_pfe].[id_est_concreto] AS [id_est_concreto], 
+    [v_pfe].[no_muesra] AS [no_muesra], 
+    [v_pfe].[fecha_colado] AS [fecha_colado], 
+    [v_pfe].[fecha_recibe] AS [fecha_recibe], 
+    [v_pfe].[entrega] AS [entrega], 
+    [v_pfe].[recibe] AS [recibe], 
+    [v_pfe].[presion] AS [presion], 
+    [v_pfe].[id_tipo_especimen] AS [id_tipo_especimen], 
+    [v_pfe].[id_tipo_concreto] AS [id_tipo_concreto], 
+    [v_pfe].[id_sit_concreto] AS [id_sit_concreto], 
+    [v_pfe].[dia_ensaye] AS [dia_ensaye], 
+    [v_pfe].[n_m] AS [n_m], 
+    [v_pfe].[fecha_ensaye] AS [fecha_ensaye], 
+    [v_pfe].[procedecia] AS [procedecia], 
+    [v_pfe].[elemento] AS [elemento], 
+    [v_pfe].[dosificacion] AS [dosificacion], 
+    [v_pfe].[resistencia] AS [resistencia], 
+    [v_pfe].[clase] AS [clase], 
+    [v_pfe].[reva] AS [reva], 
+    [v_pfe].[tma] AS [tma], 
+    [v_pfe].[olla] AS [olla], 
+    [v_pfe].[remision] AS [remision], 
+    [v_pfe].[sali_planta] AS [sali_planta], 
+    [v_pfe].[llega_obra] AS [llega_obra], 
+    [v_pfe].[desca_ini] AS [desca_ini], 
+    [v_pfe].[vol] AS [vol], 
+    [v_pfe].[desca_term] AS [desca_term], 
+    [v_pfe].[revb] AS [revb], 
+    [v_pfe].[localiza] AS [localiza]
+    FROM [dbo].[v_pfe] AS [v_pfe]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_contacto_usuarios_general_usuarios" Association="Self.FK_contacto_usuarios_general_usuarios">
             <End Role="inf_usuarios" EntitySet="inf_usuarios" />
@@ -1010,6 +1056,10 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
           <AssociationSet Name="FK_inf_clte_obras_inf_clte" Association="Self.FK_inf_clte_obras_inf_clte">
             <End Role="inf_clte" EntitySet="inf_clte" />
             <End Role="inf_clte_obras" EntitySet="inf_clte_obras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_conc_ec_fact_est_ensaye" Association="Self.FK_inf_conc_ec_fact_est_ensaye">
+            <End Role="fact_est_ensaye" EntitySet="fact_est_ensaye" />
+            <End Role="inf_conc_ec" EntitySet="inf_conc_ec" />
           </AssociationSet>
           <AssociationSet Name="FK_inf_conc_ec_inf_mrp_concreto" Association="Self.FK_inf_conc_ec_inf_mrp_concreto">
             <End Role="inf_mrp_concreto" EntitySet="inf_mrp_concreto" />
@@ -1108,6 +1158,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
           <EntitySet Name="fact_est_concreto" EntityType="dd_liecModel.fact_est_concreto" />
           <EntitySet Name="fact_est_e_env" EntityType="dd_liecModel.fact_est_e_env" />
           <EntitySet Name="fact_est_e_recep" EntityType="dd_liecModel.fact_est_e_recep" />
+          <EntitySet Name="fact_est_ensaye" EntityType="dd_liecModel.fact_est_ensaye" />
           <EntitySet Name="fact_est_gast" EntityType="dd_liecModel.fact_est_gast" />
           <EntitySet Name="fact_est_obra" EntityType="dd_liecModel.fact_est_obra" />
           <EntitySet Name="fact_est_rub" EntityType="dd_liecModel.fact_est_rub" />
@@ -1134,7 +1185,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
           <EntitySet Name="inf_rubro_mes" EntityType="dd_liecModel.inf_rubro_mes" />
           <EntitySet Name="inf_sepomex" EntityType="dd_liecModel.inf_sepomex" />
           <EntitySet Name="inf_usuarios" EntityType="dd_liecModel.inf_usuarios" />
-          <EntitySet Name="v_ensa_comp" EntityType="dd_liecModel.v_ensa_comp" />
+          <EntitySet Name="v_pfe" EntityType="dd_liecModel.v_pfe" />
           <AssociationSet Name="FK_inf_mrp_concreto_fac_situacion_concreto" Association="dd_liecModel.FK_inf_mrp_concreto_fac_situacion_concreto">
             <End Role="fac_sit_concreto" EntitySet="fac_sit_concreto" />
             <End Role="inf_mrp_concreto" EntitySet="inf_mrp_concreto" />
@@ -1182,6 +1233,10 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
           <AssociationSet Name="FK_inf_email_recepcion_fact_est_e_recep" Association="dd_liecModel.FK_inf_email_recepcion_fact_est_e_recep">
             <End Role="fact_est_e_recep" EntitySet="fact_est_e_recep" />
             <End Role="inf_email_recepcion" EntitySet="inf_email_recepcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_conc_ec_fact_est_ensaye" Association="dd_liecModel.FK_inf_conc_ec_fact_est_ensaye">
+            <End Role="fact_est_ensaye" EntitySet="fact_est_ensaye" />
+            <End Role="inf_conc_ec" EntitySet="inf_conc_ec" />
           </AssociationSet>
           <AssociationSet Name="FK_inf_gastos_fact_est_gast" Association="dd_liecModel.FK_inf_gastos_fact_est_gast">
             <End Role="fact_est_gast" EntitySet="fact_est_gast" />
@@ -1275,6 +1330,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
             <End Role="inf_rubro" EntitySet="inf_rubro" />
             <End Role="inf_rubro_mes" EntitySet="inf_rubro_mes" />
           </AssociationSet>
+          <FunctionImport Name="tbl_pfe" IsComposable="true" ReturnType="Collection(dd_liecModel.tbl_pfe_Result)" />
         </EntityContainer>
         <EntityType Name="fac_sit_concreto">
           <Key>
@@ -1369,6 +1425,14 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
           <Property Name="id_est_e_recep" Type="Int32" Nullable="false" />
           <Property Name="desc_est_e_recep" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="inf_email_recepcion" Relationship="dd_liecModel.FK_inf_email_recepcion_fact_est_e_recep" FromRole="fact_est_e_recep" ToRole="inf_email_recepcion" />
+        </EntityType>
+        <EntityType Name="fact_est_ensaye">
+          <Key>
+            <PropertyRef Name="id_est_ensaye" />
+          </Key>
+          <Property Name="id_est_ensaye" Type="Int32" Nullable="false" />
+          <Property Name="desc_est_ensaye" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="inf_conc_ec" Relationship="dd_liecModel.FK_inf_conc_ec_fact_est_ensaye" FromRole="fact_est_ensaye" ToRole="inf_conc_ec" />
         </EntityType>
         <EntityType Name="fact_est_gast">
           <Key>
@@ -1517,6 +1581,10 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
             <PropertyRef Name="id_conc_ec" />
           </Key>
           <Property Name="id_conc_ec" Type="Guid" Nullable="false" />
+          <Property Name="dia_ensaye" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="num_muesra" Type="Int32" />
+          <Property Name="fecha_ensaye" Type="DateTime" Precision="0" />
+          <Property Name="id_est_ensaye" Type="Int32" Nullable="false" />
           <Property Name="cde" Type="Int32" />
           <Property Name="cdem" Type="Int32" />
           <Property Name="clave_ensa_a" Type="Int32" />
@@ -1531,6 +1599,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
           <Property Name="tipofalla_a" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="fecha_registro" Type="DateTime" Precision="3" />
           <Property Name="id_mrp_concreto" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="fact_est_ensaye" Relationship="dd_liecModel.FK_inf_conc_ec_fact_est_ensaye" FromRole="inf_conc_ec" ToRole="fact_est_ensaye" />
           <NavigationProperty Name="inf_mrp_concreto" Relationship="dd_liecModel.FK_inf_conc_ec_inf_mrp_concreto" FromRole="inf_conc_ec" ToRole="inf_mrp_concreto" />
         </EntityType>
         <EntityType Name="inf_cont_usr">
@@ -1654,24 +1723,22 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
           <Property Name="id_tipo_especimen" Type="Int32" Nullable="false" />
           <Property Name="id_tipo_concreto" Type="Int32" Nullable="false" />
           <Property Name="id_sit_concreto" Type="Int32" Nullable="false" />
-          <Property Name="c1_dias" Type="Boolean" />
-          <Property Name="num_1dias" Type="Int32" />
-          <Property Name="e_1dias" Type="Boolean" />
-          <Property Name="c3_dias" Type="Boolean" />
-          <Property Name="num_3dias" Type="Int32" />
-          <Property Name="e_3dias" Type="Boolean" />
-          <Property Name="c7_dias" Type="Boolean" />
-          <Property Name="num_7dias" Type="Int32" />
-          <Property Name="e_7dias" Type="Boolean" />
-          <Property Name="c14_dias" Type="Boolean" />
-          <Property Name="num_14dias" Type="Int32" />
-          <Property Name="e_14dias" Type="Boolean" />
-          <Property Name="c28_dias" Type="Boolean" />
-          <Property Name="num_28dias" Type="Int32" />
-          <Property Name="e_28dias" Type="Boolean" />
-          <Property Name="cotro_dias" Type="Boolean" />
-          <Property Name="num_otro_dias" Type="Int32" />
-          <Property Name="e_otro_dias" Type="Boolean" />
+          <Property Name="procedecia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="elemento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dosificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="resistencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clase" Type="Int32" />
+          <Property Name="reva" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="tma" Type="Int32" />
+          <Property Name="olla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="remision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sali_planta" Type="Time" Precision="7" />
+          <Property Name="llega_obra" Type="Time" Precision="7" />
+          <Property Name="desca_ini" Type="Time" Precision="7" />
+          <Property Name="desca_term" Type="Time" Precision="7" />
+          <Property Name="vol" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="revb" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="localiza" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="id_usuario" Type="Guid" Nullable="false" />
           <Property Name="fecha_registro" Type="DateTime" Precision="3" />
           <Property Name="id_emp" Type="Guid" Nullable="false" />
@@ -1767,40 +1834,44 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
           <NavigationProperty Name="fact_perfil" Relationship="dd_liecModel.FK_general_usuarios_fact_perfil" FromRole="inf_usuarios" ToRole="fact_perfil" />
           <NavigationProperty Name="inf_cont_usr" Relationship="dd_liecModel.FK_contacto_usuarios_general_usuarios" FromRole="inf_usuarios" ToRole="inf_cont_usr" />
         </EntityType>
-        <EntityType Name="v_ensa_comp">
+        <EntityType Name="v_pfe">
           <Key>
+            <PropertyRef Name="id_mrp_concreto" />
+            <PropertyRef Name="id_est_concreto" />
             <PropertyRef Name="id_tipo_especimen" />
             <PropertyRef Name="id_tipo_concreto" />
             <PropertyRef Name="id_sit_concreto" />
-            <PropertyRef Name="fa1" />
-            <PropertyRef Name="fa3" />
-            <PropertyRef Name="fa7" />
-            <PropertyRef Name="fa14" />
-            <PropertyRef Name="fa28" />
-            <PropertyRef Name="fao" />
-            <PropertyRef Name="fpfe" />
           </Key>
+          <Property Name="id_mrp_concreto" Type="Guid" Nullable="false" />
+          <Property Name="id_est_concreto" Type="Int32" Nullable="false" />
           <Property Name="no_muesra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="fecha_colado" Type="DateTime" Precision="3" />
+          <Property Name="fecha_recibe" Type="DateTime" Precision="3" />
+          <Property Name="entrega" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="recibe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="presion" Type="Int32" />
           <Property Name="id_tipo_especimen" Type="Int32" Nullable="false" />
           <Property Name="id_tipo_concreto" Type="Int32" Nullable="false" />
           <Property Name="id_sit_concreto" Type="Int32" Nullable="false" />
-          <Property Name="fa1" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="fa3" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="fa7" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="fa14" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="fa28" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="fao" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="ne1" Type="Int32" />
-          <Property Name="ne3" Type="Int32" />
-          <Property Name="ne7" Type="Int32" />
-          <Property Name="ne14" Type="Int32" />
-          <Property Name="ne28" Type="Int32" />
-          <Property Name="neo" Type="Int32" />
-          <Property Name="f_ensa_comp" Type="DateTime" Precision="3" />
-          <Property Name="fpfe" Type="Int32" Nullable="false" />
-          <Property Name="fne" Type="Int32" />
+          <Property Name="dia_ensaye" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="n_m" Type="Int32" />
+          <Property Name="fecha_ensaye" Type="DateTime" Precision="0" />
+          <Property Name="procedecia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="elemento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dosificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="resistencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clase" Type="Int32" />
+          <Property Name="reva" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="tma" Type="Int32" />
+          <Property Name="olla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="remision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sali_planta" Type="Time" Precision="7" />
+          <Property Name="llega_obra" Type="Time" Precision="7" />
+          <Property Name="desca_ini" Type="Time" Precision="7" />
+          <Property Name="vol" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="desca_term" Type="Time" Precision="7" />
+          <Property Name="revb" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="localiza" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_inf_mrp_concreto_fac_situacion_concreto">
           <End Type="dd_liecModel.fac_sit_concreto" Role="fac_sit_concreto" Multiplicity="1" />
@@ -1943,6 +2014,18 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
             </Principal>
             <Dependent Role="inf_email_recepcion">
               <PropertyRef Name="id_est_e_recep" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_conc_ec_fact_est_ensaye">
+          <End Type="dd_liecModel.fact_est_ensaye" Role="fact_est_ensaye" Multiplicity="1" />
+          <End Type="dd_liecModel.inf_conc_ec" Role="inf_conc_ec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fact_est_ensaye">
+              <PropertyRef Name="id_est_ensaye" />
+            </Principal>
+            <Dependent Role="inf_conc_ec">
+              <PropertyRef Name="id_est_ensaye" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2222,6 +2305,16 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="tbl_pfe_Result">
+          <Property Type="String" Name="no_muesra" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fecha_colado" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="uno" Nullable="true" />
+          <Property Type="Int32" Name="tres" Nullable="true" />
+          <Property Type="Int32" Name="siete" Nullable="true" />
+          <Property Type="Int32" Name="catorce" Nullable="true" />
+          <Property Type="Int32" Name="vienteocho" Nullable="true" />
+          <Property Type="Int32" Name="cero" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2317,6 +2410,14 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
               <MappingFragment StoreEntitySet="fact_est_e_recep">
                 <ScalarProperty Name="desc_est_e_recep" ColumnName="desc_est_e_recep" />
                 <ScalarProperty Name="id_est_e_recep" ColumnName="id_est_e_recep" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fact_est_ensaye">
+            <EntityTypeMapping TypeName="dd_liecModel.fact_est_ensaye">
+              <MappingFragment StoreEntitySet="fact_est_ensaye">
+                <ScalarProperty Name="desc_est_ensaye" ColumnName="desc_est_ensaye" />
+                <ScalarProperty Name="id_est_ensaye" ColumnName="id_est_ensaye" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2473,6 +2574,10 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
                 <ScalarProperty Name="clave_ensa_a" ColumnName="clave_ensa_a" />
                 <ScalarProperty Name="cdem" ColumnName="cdem" />
                 <ScalarProperty Name="cde" ColumnName="cde" />
+                <ScalarProperty Name="id_est_ensaye" ColumnName="id_est_ensaye" />
+                <ScalarProperty Name="fecha_ensaye" ColumnName="fecha_ensaye" />
+                <ScalarProperty Name="num_muesra" ColumnName="num_muesra" />
+                <ScalarProperty Name="dia_ensaye" ColumnName="dia_ensaye" />
                 <ScalarProperty Name="id_conc_ec" ColumnName="id_conc_ec" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2579,24 +2684,22 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
                 <ScalarProperty Name="id_emp" ColumnName="id_emp" />
                 <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-                <ScalarProperty Name="e_otro_dias" ColumnName="e_otro_dias" />
-                <ScalarProperty Name="num_otro_dias" ColumnName="num_otro_dias" />
-                <ScalarProperty Name="cotro_dias" ColumnName="cotro_dias" />
-                <ScalarProperty Name="e_28dias" ColumnName="e_28dias" />
-                <ScalarProperty Name="num_28dias" ColumnName="num_28dias" />
-                <ScalarProperty Name="c28_dias" ColumnName="c28_dias" />
-                <ScalarProperty Name="e_14dias" ColumnName="e_14dias" />
-                <ScalarProperty Name="num_14dias" ColumnName="num_14dias" />
-                <ScalarProperty Name="c14_dias" ColumnName="c14_dias" />
-                <ScalarProperty Name="e_7dias" ColumnName="e_7dias" />
-                <ScalarProperty Name="num_7dias" ColumnName="num_7dias" />
-                <ScalarProperty Name="c7_dias" ColumnName="c7_dias" />
-                <ScalarProperty Name="e_3dias" ColumnName="e_3dias" />
-                <ScalarProperty Name="num_3dias" ColumnName="num_3dias" />
-                <ScalarProperty Name="c3_dias" ColumnName="c3_dias" />
-                <ScalarProperty Name="e_1dias" ColumnName="e_1dias" />
-                <ScalarProperty Name="num_1dias" ColumnName="num_1dias" />
-                <ScalarProperty Name="c1_dias" ColumnName="c1_dias" />
+                <ScalarProperty Name="localiza" ColumnName="localiza" />
+                <ScalarProperty Name="revb" ColumnName="revb" />
+                <ScalarProperty Name="vol" ColumnName="vol" />
+                <ScalarProperty Name="desca_term" ColumnName="desca_term" />
+                <ScalarProperty Name="desca_ini" ColumnName="desca_ini" />
+                <ScalarProperty Name="llega_obra" ColumnName="llega_obra" />
+                <ScalarProperty Name="sali_planta" ColumnName="sali_planta" />
+                <ScalarProperty Name="remision" ColumnName="remision" />
+                <ScalarProperty Name="olla" ColumnName="olla" />
+                <ScalarProperty Name="tma" ColumnName="tma" />
+                <ScalarProperty Name="reva" ColumnName="reva" />
+                <ScalarProperty Name="clase" ColumnName="clase" />
+                <ScalarProperty Name="resistencia" ColumnName="resistencia" />
+                <ScalarProperty Name="dosificacion" ColumnName="dosificacion" />
+                <ScalarProperty Name="elemento" ColumnName="elemento" />
+                <ScalarProperty Name="procedecia" ColumnName="procedecia" />
                 <ScalarProperty Name="id_sit_concreto" ColumnName="id_sit_concreto" />
                 <ScalarProperty Name="id_tipo_concreto" ColumnName="id_tipo_concreto" />
                 <ScalarProperty Name="id_tipo_especimen" ColumnName="id_tipo_especimen" />
@@ -2685,33 +2788,56 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_ensa_comp' no tiene definida n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="v_ensa_comp">
-            <EntityTypeMapping TypeName="dd_liecModel.v_ensa_comp">
-              <MappingFragment StoreEntitySet="v_ensa_comp">
-                <ScalarProperty Name="fne" ColumnName="fne" />
-                <ScalarProperty Name="fpfe" ColumnName="fpfe" />
-                <ScalarProperty Name="f_ensa_comp" ColumnName="f_ensa_comp" />
-                <ScalarProperty Name="neo" ColumnName="neo" />
-                <ScalarProperty Name="ne28" ColumnName="ne28" />
-                <ScalarProperty Name="ne14" ColumnName="ne14" />
-                <ScalarProperty Name="ne7" ColumnName="ne7" />
-                <ScalarProperty Name="ne3" ColumnName="ne3" />
-                <ScalarProperty Name="ne1" ColumnName="ne1" />
-                <ScalarProperty Name="fao" ColumnName="fao" />
-                <ScalarProperty Name="fa28" ColumnName="fa28" />
-                <ScalarProperty Name="fa14" ColumnName="fa14" />
-                <ScalarProperty Name="fa7" ColumnName="fa7" />
-                <ScalarProperty Name="fa3" ColumnName="fa3" />
-                <ScalarProperty Name="fa1" ColumnName="fa1" />
+          <EntitySetMapping Name="v_pfe">
+            <EntityTypeMapping TypeName="dd_liecModel.v_pfe">
+              <MappingFragment StoreEntitySet="v_pfe">
+                <ScalarProperty Name="localiza" ColumnName="localiza" />
+                <ScalarProperty Name="revb" ColumnName="revb" />
+                <ScalarProperty Name="desca_term" ColumnName="desca_term" />
+                <ScalarProperty Name="vol" ColumnName="vol" />
+                <ScalarProperty Name="desca_ini" ColumnName="desca_ini" />
+                <ScalarProperty Name="llega_obra" ColumnName="llega_obra" />
+                <ScalarProperty Name="sali_planta" ColumnName="sali_planta" />
+                <ScalarProperty Name="remision" ColumnName="remision" />
+                <ScalarProperty Name="olla" ColumnName="olla" />
+                <ScalarProperty Name="tma" ColumnName="tma" />
+                <ScalarProperty Name="reva" ColumnName="reva" />
+                <ScalarProperty Name="clase" ColumnName="clase" />
+                <ScalarProperty Name="resistencia" ColumnName="resistencia" />
+                <ScalarProperty Name="dosificacion" ColumnName="dosificacion" />
+                <ScalarProperty Name="elemento" ColumnName="elemento" />
+                <ScalarProperty Name="procedecia" ColumnName="procedecia" />
+                <ScalarProperty Name="fecha_ensaye" ColumnName="fecha_ensaye" />
+                <ScalarProperty Name="n_m" ColumnName="n_m" />
+                <ScalarProperty Name="dia_ensaye" ColumnName="dia_ensaye" />
                 <ScalarProperty Name="id_sit_concreto" ColumnName="id_sit_concreto" />
                 <ScalarProperty Name="id_tipo_concreto" ColumnName="id_tipo_concreto" />
                 <ScalarProperty Name="id_tipo_especimen" ColumnName="id_tipo_especimen" />
                 <ScalarProperty Name="presion" ColumnName="presion" />
+                <ScalarProperty Name="recibe" ColumnName="recibe" />
+                <ScalarProperty Name="entrega" ColumnName="entrega" />
+                <ScalarProperty Name="fecha_recibe" ColumnName="fecha_recibe" />
                 <ScalarProperty Name="fecha_colado" ColumnName="fecha_colado" />
                 <ScalarProperty Name="no_muesra" ColumnName="no_muesra" />
+                <ScalarProperty Name="id_est_concreto" ColumnName="id_est_concreto" />
+                <ScalarProperty Name="id_mrp_concreto" ColumnName="id_mrp_concreto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tbl_pfe" FunctionName="dd_liecModel.Store.tbl_pfe">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dd_liecModel.tbl_pfe_Result">
+                <ScalarProperty Name="no_muesra" ColumnName="no_muesra" />
+                <ScalarProperty Name="fecha_colado" ColumnName="fecha_colado" />
+                <ScalarProperty Name="uno" ColumnName="uno" />
+                <ScalarProperty Name="tres" ColumnName="tres" />
+                <ScalarProperty Name="siete" ColumnName="siete" />
+                <ScalarProperty Name="catorce" ColumnName="catorce" />
+                <ScalarProperty Name="vienteocho" ColumnName="vienteocho" />
+                <ScalarProperty Name="cero" ColumnName="cero" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

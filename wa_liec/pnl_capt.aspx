@@ -88,7 +88,7 @@
                                 <div class="navbar-default" role="navigation">
                                     <div class="navbar-header">
                                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                                        <span class="visible-xs navbar-brand">Menú</span>
+                                        <span class="visible-xs navbar-brand"><i class="fas fa-file-signature"></i>Menú Captura</span>
                                     </div>
                                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                                         <br />
@@ -362,10 +362,10 @@
                                             <p class="text-right">
                                                 REGISTRO DE OBRAS
                                         <span>
-                                            <asp:LinkButton CssClass="btn btn02" ID="btn_agregar_clte_obras" runat="server" ToolTip="AGREGAR CLIENTE" OnClick="btn_agregar_clte_obras_Click" TabIndex="2">
+                                            <asp:LinkButton CssClass="btn btn02" ID="btn_agregar_clte_obras" runat="server" ToolTip="AGREGAR OBRA" OnClick="btn_agregar_clte_obras_Click" TabIndex="2">
                                                 <i class="fas fa-plus" id="i_agregar_clte_obras" runat="server"></i>
                                             </asp:LinkButton>
-                                            <asp:LinkButton CssClass="btn btn02" ID="btn_editar_clte_obras" runat="server" ToolTip="EDITAR CLIENTE" OnClick="btn_editar_clte_obras_Click" TabIndex="3">
+                                            <asp:LinkButton CssClass="btn btn02" ID="btn_editar_clte_obras" runat="server" ToolTip="EDITAR OBRA" OnClick="btn_editar_clte_obras_Click" TabIndex="3">
                                                 <i class="far fa-edit" id="i_editar_clte_obras" runat="server"></i>
                                             </asp:LinkButton>
                                         </span>
@@ -504,16 +504,16 @@
                                                     <ajaxToolkit:AutoCompleteExtender ID="ace_buscar_rppc" runat="server" ServiceMethod="SearchCustomers" MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="true" CompletionSetCount="10" TargetControlID="txt_buscar_rppc" FirstRowSelected="false"></ajaxToolkit:AutoCompleteExtender>
                                                 </div>
                                                 <div class="text-right">
-                                                    <asp:RequiredFieldValidator ID="rfv_buscar_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_buscar_rppc" ForeColor="white" Enabled="false"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="rfv_buscar_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_buscar_rppc" ForeColor="white" Enabled="true"></asp:RequiredFieldValidator>
                                                 </div>
                                             </p>
                                             <p class="text-right">
                                                 RECEPCIÓN Y PROGRAMACIÓN DE CONCRETO
                                         <span>
-                                            <asp:LinkButton CssClass="btn btn02" ID="btn_agregar_rppc" runat="server" ToolTip="AGREGAR CLIENTE" OnClick="btn_agregar_rppc_Click" TabIndex="1">
+                                            <asp:LinkButton CssClass="btn btn02" ID="btn_agregar_rppc" runat="server" ToolTip="AGREGAR MUESTRA" OnClick="btn_agregar_rppc_Click" TabIndex="1">
                                                 <i class="fas fa-plus" id="i_agregar_rppc" runat="server"></i>
                                             </asp:LinkButton>
-                                            <asp:LinkButton CssClass="btn btn02" ID="btn_editar_rppc" runat="server" ToolTip="EDITAR CLIENTE" OnClick="btn_editar_rppc_Click" TabIndex="2">
+                                            <asp:LinkButton CssClass="btn btn02" ID="btn_editar_rppc" runat="server" ToolTip="EDITAR MUESTRA" OnClick="btn_editar_rppc_Click" TabIndex="2">
                                                 <i class="far fa-edit" id="i_editar_rppc" runat="server"></i>
                                             </asp:LinkButton>
                                         </span>
@@ -573,6 +573,7 @@
                                                     </asp:GridView>
                                                 </div>
                                             </div>
+
                                             <div class="row">
                                                 <div class="col-lg-2">
                                                     <div class="form-group text-left">
@@ -671,9 +672,193 @@
 
                                                         <asp:Label CssClass="control-label fuente_css02" ID="lbl_sit_rppc" runat="server" Text="Situación (Documento)"></asp:Label>
 
-                                                        <asp:DropDownList CssClass="form-control input-box" ID="ddl_sit_rppc" runat="server" AutoPostBack="true" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
+                                                        <asp:DropDownList CssClass="form-control input-box" ID="ddl_sit_rppc" runat="server" AutoPostBack="true" BackColor="LightGray" ForeColor="#104D8D" OnSelectedIndexChanged="ddl_sit_rppc_SelectedIndexChanged"></asp:DropDownList>
                                                         <div class="text-right">
                                                             <asp:RequiredFieldValidator ID="rfv_sit_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="ddl_sit_rppc" InitialValue="0" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div runat="server" id="div_doc" visible="false">
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_proce_rppc" runat="server" Text="*Procedencia:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_proce_rppc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_proce_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_proce_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_elem_rppc" runat="server" Text="*Elemento:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_elem_rppc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_elem_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_elem_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_dosi_rppc" runat="server" Text="*Dosificación:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_dosi_rppc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_dosi_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_dosi_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_resis_rppc" runat="server" Text="*Resistencia:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_resis_rppc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_resis_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_resis_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_clase_rppc" runat="server" Text="*Clase:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_clase_rppc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_clase_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_clase_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_rev_rrpc" runat="server" Text="*REV. cm:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_rev_rrpc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_rev_rrpc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_rev_rrpc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_tma_rrpc" runat="server" Text="*T.M.A. mm:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_tma_rrpc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_tma_rrpc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_tma_rrpc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_olla_rrpc" runat="server" Text="*OLLA:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_olla_rrpc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_olla_rrpc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_olla_rrpc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_remi_rppc" runat="server" Text="*Remisión:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_remi_rppc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_remi_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_remi_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_splata_rrpc" runat="server" Text="*Salida planta:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_splata_rrpc" runat="server" placeholder="letras/números" TextMode="Time"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_splata_rrpc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_splata_rrpc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_llobra_rrpc" runat="server" Text="*Llegada a obra:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_llobra_rrpc" runat="server" placeholder="letras/números" TextMode="Time"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_llobra_rrpc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_llobra_rrpc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_inic_rrpc" runat="server" Text="*Descarga Inicia:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_inic_rrpc" runat="server" placeholder="letras/números" TextMode="Time"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfvl_inic_rrpc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_inic_rrpc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_term_rrpc" runat="server" Text="*Descarga Termina:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_term_rrpc" runat="server" placeholder="letras/números" TextMode="Time"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_term_rrpc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_term_rrpc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_vol_rppc" runat="server" Text="*VOL m3:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_vol_rppc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_vol_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_vol_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_revb_rppc" runat="server" Text="*REV. cm:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_revb_rppc" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_revb_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_revb_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group text-left">
+
+                                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_loca_rppc" runat="server" Text="*Localización:"></asp:Label>
+
+                                                            <asp:TextBox CssClass="form-control input-box" ID="txt_loca_rppc" runat="server" placeholder="letras/números" TextMode="MultiLine"></asp:TextBox>
+                                                            <div class="text-right">
+                                                                <asp:RequiredFieldValidator ID="rfv_loca_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_loca_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -837,20 +1022,15 @@
                                                                 <asp:CheckBox ID="chk_ensa_comp" runat="server" onclick="CheckOne(this)" AutoPostBack="true" OnCheckedChanged="chk_ensa_comp_CheckedChanged" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
+                                                 
                                                         <asp:BoundField DataField="no_muesra" HeaderText="# MUESTRA" SortExpression="no_muesra" Visible="true" />
-                                                        <asp:BoundField DataField="fa1" HeaderText="1D" SortExpression="fa1" Visible="true" />
-                                                        <asp:BoundField DataField="ne1" HeaderText="# M" SortExpression="ne1" Visible="true" />
-                                                        <asp:BoundField DataField="fa3" HeaderText="3D" SortExpression="fa3" Visible="true" />
-                                                        <asp:BoundField DataField="ne3" HeaderText="# M" SortExpression="ne3" Visible="true" />
-                                                        <asp:BoundField DataField="fa7" HeaderText="7D" SortExpression="fa7" Visible="true" />
-                                                        <asp:BoundField DataField="ne7" HeaderText="# M" SortExpression="ne7" Visible="true" />
-                                                        <asp:BoundField DataField="fa14" HeaderText="14D" SortExpression="fa14" Visible="true" />
-                                                        <asp:BoundField DataField="ne14" HeaderText="# M" SortExpression="ne14" Visible="true" />
-                                                        <asp:BoundField DataField="fa28" HeaderText="28D" SortExpression="fa28" Visible="true" />
-                                                        <asp:BoundField DataField="ne28" HeaderText="# M" SortExpression="ne28" Visible="true" />
-                                                        <asp:BoundField DataField="fao" HeaderText="OD" SortExpression="fao" Visible="true" />
-                                                        <asp:BoundField DataField="neo" HeaderText="# M" SortExpression="neo" Visible="true" />
                                                         <asp:BoundField DataField="fecha_colado" HeaderText="COLADO" SortExpression="fecha_colado" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
+                                                        <asp:BoundField DataField="uno" HeaderText="1D" SortExpression="uno" Visible="true" />
+                                                        <asp:BoundField DataField="tres" HeaderText="3D" SortExpression="tres" Visible="true" />
+                                                        <asp:BoundField DataField="siete" HeaderText="7D" SortExpression="siete" Visible="true" />
+                                                        <asp:BoundField DataField="catorce" HeaderText="14D" SortExpression="catorce" Visible="true" />
+                                                        <asp:BoundField DataField="vienteocho" HeaderText="28D" SortExpression="vienteocho" Visible="true" />
+                                                        <asp:BoundField DataField="cero" HeaderText="OD" SortExpression="cero" Visible="true" />
                                                         <asp:TemplateField HeaderText="ESTATUS">
                                                             <ItemTemplate>
                                                                 <asp:DropDownList ID="ddl_ensa_comp_est" runat="server" AutoPostBack="true" TabIndex="9">
@@ -928,7 +1108,6 @@
                                                                     <asp:RequiredFieldValidator ID="rfv_altu_aa" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_altu_aa" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                                                 </div>
                                                             </div>
-
                                                         </div>
                                                         <div class="col-md-2">
 
@@ -939,16 +1118,13 @@
                                                                     <asp:RequiredFieldValidator ID="rfv_altu_ab" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_altu_ab" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                                                 </div>
                                                             </div>
-
                                                         </div>
                                                         <div class="col-md-2">
 
                                                             <div class="form-group">
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_altu_ap" runat="server" Text="Promedio"></asp:Label>
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_altu_ap" runat="server" TabIndex="16" placeholder="[0-9]" Enabled="false"></asp:TextBox>
-
                                                             </div>
-
                                                         </div>
 
                                                         <div class="col-md-2">
@@ -975,15 +1151,12 @@
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_lad_ap" runat="server" TabIndex="190" placeholder="[0-9]" Enabled="false"></asp:TextBox>
                                                             </div>
                                                         </div>
-
-
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_area_a" runat="server" Text="Área (mm2)"></asp:Label>
-                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_area_a" runat="server" placeholder="[0-9]" TabIndex="20" Enabled="false" ></asp:TextBox>
-
+                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_area_a" runat="server" placeholder="[0-9]" TabIndex="20" Enabled="false"></asp:TextBox>
                                                             </div>
                                                             <br />
                                                             <div class="form-group">
@@ -1006,7 +1179,6 @@
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_dif_ab_a" runat="server" Text="Diferencia"></asp:Label>
 
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_dif_ab_a" runat="server" placeholder="[0-9]" TabIndex="27" Enabled="false"></asp:TextBox>
-
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
@@ -1014,14 +1186,12 @@
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_esfu_a" runat="server" Text="Esfuerzo (kgf/cm2)"></asp:Label>
 
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_esfu_a" runat="server" placeholder="[0-9]" TabIndex="22" Enabled="false"></asp:TextBox>
-
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_esfuprom_a" runat="server" Text="Promedio (Kg/cm2)"></asp:Label>
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_esfuprom_a" runat="server" placeholder="[0-9]" TabIndex="23" Enabled="false"></asp:TextBox>
-
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
@@ -1029,17 +1199,13 @@
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_masavol_a" runat="server" Text="Masa Vol. (kg/m³)"></asp:Label>
 
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_masavol_a" runat="server" placeholder="[0-9]" TabIndex="24" Enabled="false"></asp:TextBox>
-
                                                             </div>
-
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_masavolprom_a" runat="server" Text="Promedio (kg/m3)"></asp:Label>
 
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_masavolprom_a" runat="server" placeholder="[0-9]" TabIndex="25" Enabled="false"></asp:TextBox>
-
-
                                                             </div>
                                                             <br />
                                                             <br />
@@ -1052,7 +1218,6 @@
                                                     </div>
                                                 </div>
                                                 <hr />
-
                                             </h6>
                                         </div>
                                     </div>

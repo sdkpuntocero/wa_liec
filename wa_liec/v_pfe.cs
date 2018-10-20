@@ -12,14 +12,8 @@ namespace wa_liec
     using System;
     using System.Collections.Generic;
     
-    public partial class inf_mrp_concreto
+    public partial class v_pfe
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public inf_mrp_concreto()
-        {
-            this.inf_conc_ec = new HashSet<inf_conc_ec>();
-        }
-    
         public System.Guid id_mrp_concreto { get; set; }
         public int id_est_concreto { get; set; }
         public string no_muesra { get; set; }
@@ -31,6 +25,9 @@ namespace wa_liec
         public int id_tipo_especimen { get; set; }
         public int id_tipo_concreto { get; set; }
         public int id_sit_concreto { get; set; }
+        public string dia_ensaye { get; set; }
+        public Nullable<int> n_m { get; set; }
+        public Nullable<System.DateTime> fecha_ensaye { get; set; }
         public string procedecia { get; set; }
         public string elemento { get; set; }
         public string dosificacion { get; set; }
@@ -43,21 +40,9 @@ namespace wa_liec
         public Nullable<System.TimeSpan> sali_planta { get; set; }
         public Nullable<System.TimeSpan> llega_obra { get; set; }
         public Nullable<System.TimeSpan> desca_ini { get; set; }
-        public Nullable<System.TimeSpan> desca_term { get; set; }
         public Nullable<decimal> vol { get; set; }
+        public Nullable<System.TimeSpan> desca_term { get; set; }
         public Nullable<decimal> revb { get; set; }
         public string localiza { get; set; }
-        public System.Guid id_usuario { get; set; }
-        public Nullable<System.DateTime> fecha_registro { get; set; }
-        public System.Guid id_emp { get; set; }
-        public Nullable<int> id_clte_obras { get; set; }
-    
-        public virtual fac_sit_concreto fac_sit_concreto { get; set; }
-        public virtual fac_tipo_concreto fac_tipo_concreto { get; set; }
-        public virtual fact_especimen fact_especimen { get; set; }
-        public virtual fact_est_concreto fact_est_concreto { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inf_conc_ec> inf_conc_ec { get; set; }
-        public virtual inf_emp inf_emp { get; set; }
     }
 }

@@ -15,6 +15,10 @@ namespace wa_liec
     public partial class inf_conc_ec
     {
         public System.Guid id_conc_ec { get; set; }
+        public string dia_ensaye { get; set; }
+        public Nullable<int> num_muesra { get; set; }
+        public Nullable<System.DateTime> fecha_ensaye { get; set; }
+        public int id_est_ensaye { get; set; }
         public Nullable<int> cde { get; set; }
         public Nullable<int> cdem { get; set; }
         public Nullable<int> clave_ensa_a { get; set; }
@@ -30,6 +34,7 @@ namespace wa_liec
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public System.Guid id_mrp_concreto { get; set; }
     
+        public virtual fact_est_ensaye fact_est_ensaye { get; set; }
         public virtual inf_mrp_concreto inf_mrp_concreto { get; set; }
     }
 }

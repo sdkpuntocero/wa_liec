@@ -88,7 +88,7 @@
                                 <div class="navbar-default" role="navigation">
                                     <div class="navbar-header">
                                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                                        <span class="visible-xs navbar-brand">Menú</span>
+                                        <span class="visible-xs navbar-brand">   <i class="fas fa-dollar-sign"></i> Menú Contabilidad</span>
                                     </div>
                                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                                         <br />

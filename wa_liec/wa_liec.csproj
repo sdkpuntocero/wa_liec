@@ -77,6 +77,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="acceso.aspx" />
+    <Content Include="acceso\acceso.html" />
+    <Content Include="acceso\assets\css\nucleo-icons.css" />
+    <Content Include="acceso\assets\img\ico_liec.png" />
+    <Content Include="acceso\assets\js\navbar-ontop.js" />
+    <Content Include="acceso\assets\js\parallax.js" />
     <Content Include="acceso\css\main.css" />
     <Content Include="acceso\css\util.css" />
     <Content Include="acceso\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -93,6 +98,7 @@
     <Content Include="acceso\images\icons\map-marker.png" />
     <Content Include="acceso\images\icons\symbol-01.png" />
     <Content Include="acceso\js\main.js" />
+    <Content Include="acceso\now-ui-kit.css" />
     <Content Include="acceso\vendor\animate\animate.css" />
     <Content Include="acceso\vendor\animsition\css\animsition.css" />
     <Content Include="acceso\vendor\animsition\css\animsition.min.css" />
@@ -289,7 +295,14 @@
     <Content Include="acceso\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="acceso\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="acceso\vendor\bootstrap\css\bootstrap.min.css.map" />
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="acceso\assets\fonts\nucleo-outline.eot" />
+    <Content Include="acceso\assets\fonts\nucleo-outline.ttf" />
+    <Content Include="acceso\assets\fonts\nucleo-outline.woff" />
+    <Content Include="acceso\assets\fonts\nucleo-outline.woff2" />
+    <Content Include="acceso\now-ui-kit.scss" />
+    <None Include="Properties\PublishProfiles\externo.pubxml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Properties\PublishProfiles\server_uno.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -353,6 +366,9 @@
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
     <Compile Include="fact_est_concreto.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_est_ensaye.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
     <Compile Include="fact_est_e_env.cs">
@@ -489,7 +505,10 @@
       <DependentUpon>pnl_rh.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="v_ensa_comp.cs">
+    <Compile Include="tbl_pfe_Result.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="v_pfe.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
   </ItemGroup>

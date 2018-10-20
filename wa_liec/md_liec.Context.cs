@@ -12,6 +12,8 @@ namespace wa_liec
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class dd_liecEntities : DbContext
     {
@@ -36,6 +38,7 @@ namespace wa_liec
         public virtual DbSet<fact_est_concreto> fact_est_concreto { get; set; }
         public virtual DbSet<fact_est_e_env> fact_est_e_env { get; set; }
         public virtual DbSet<fact_est_e_recep> fact_est_e_recep { get; set; }
+        public virtual DbSet<fact_est_ensaye> fact_est_ensaye { get; set; }
         public virtual DbSet<fact_est_gast> fact_est_gast { get; set; }
         public virtual DbSet<fact_est_obra> fact_est_obra { get; set; }
         public virtual DbSet<fact_est_rub> fact_est_rub { get; set; }
@@ -62,6 +65,12 @@ namespace wa_liec
         public virtual DbSet<inf_rubro_mes> inf_rubro_mes { get; set; }
         public virtual DbSet<inf_sepomex> inf_sepomex { get; set; }
         public virtual DbSet<inf_usuarios> inf_usuarios { get; set; }
-        public virtual DbSet<v_ensa_comp> v_ensa_comp { get; set; }
+        public virtual DbSet<v_pfe> v_pfe { get; set; }
+    
+        [DbFunction("dd_liecEntities", "tbl_pfe")]
+        public virtual IQueryable<tbl_pfe_Result> tbl_pfe()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<tbl_pfe_Result>("[dd_liecEntities].[tbl_pfe]()");
+        }
     }
 }

@@ -67,13 +67,15 @@ namespace wa_liec
                 switch (int_idperf)
                 {
                     case 1:
-                    
+
                         break;
+
                     case 2:
-             
+
                         break;
+
                     default:
-              
+
                         break;
                 }
             }
@@ -95,41 +97,73 @@ namespace wa_liec
 
             if (int_pnlID == 1)
             {
-                using (SqlConnection connection = new SqlConnection(cn.cn_SQL))
+                //using (SqlConnection connection = new SqlConnection(cn.cn_SQL))
+                //{
+                //    connection.Open();
+                //    string query = "SELECT etiqueta_rubro,rubro,codigo_rubro FROM [dd_liec].[dbo].[inf_rubro]  WHERE etiqueta_rubro LIKE '" + d_rub + "%' ";
+                //    using (SqlCommand command = new SqlCommand(query, connection))
+                //    {
+                //        using (SqlDataReader reader = command.ExecuteReader())
+                //        {
+                //            while (reader.Read())
+                //            {
+                //                columnData.Add(reader.GetString(0));
+                //            }
+                //        }
+                //    }
+                //}
+
+                using (dd_liecEntities m_rub = new dd_liecEntities())
                 {
-                    connection.Open();
-                    string query = "SELECT etiqueta_rubro,rubro,codigo_rubro FROM [dd_liec].[dbo].[inf_rubro]  WHERE etiqueta_rubro LIKE '" + d_rub + "%' ";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    var i_rub = (from i_u in m_rub.inf_rubro
+                                 where d_rub.Contains(i_u.etiqueta_rubro)
+                                 select new
+                                 {
+                                     i_u.etiqueta_rubro,
+                                     i_u.rubro,
+                                     i_u.codigo_rubro,
+                                 }).ToList();
+
+                    foreach (var f_rub in i_rub)
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                columnData.Add(reader.GetString(0));
-                            }
-                        }
+                        columnData.Add(f_rub.ToString());
                     }
                 }
             }
             else if (int_pnlID == 3)
             {
                 string f_rub = prefixText.ToUpper();
-
-                using (SqlConnection connection = new SqlConnection(cn.cn_SQL))
+                using (dd_liecEntities m_rub = new dd_liecEntities())
                 {
-                    connection.Open();
-                    string query = "SELECT etiqueta_rubro,rubro,codigo_rubro FROM [dd_liec].[dbo].[inf_rubro]  WHERE etiqueta_rubro LIKE '" + f_rub + "%' ";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    var i_rub = (from i_u in m_rub.inf_rubro
+                                 where i_u.etiqueta_rubro.Contains(d_rub)  
+                                 select new
+                                 {
+                                     i_u.etiqueta_rubro,
+                                     i_u.rubro,
+                                     i_u.codigo_rubro,
+                                 }).ToList();
+
+                    foreach (var ff_rub in i_rub)
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                columnData.Add(reader.GetString(0) + " | " + reader.GetString(1).ToUpper() + " | " + reader.GetString(2).ToUpper());
-                            }
-                        }
+                        columnData.Add(ff_rub.etiqueta_rubro + " | " + ff_rub.rubro + " | " + ff_rub.codigo_rubro);
                     }
                 }
+                //using (SqlConnection connection = new SqlConnection(cn.cn_SQL))
+                //{
+                //    connection.Open();
+                //    string query = "SELECT etiqueta_rubro,rubro,codigo_rubro FROM [dd_liec].[dbo].[inf_rubro]  WHERE etiqueta_rubro LIKE '" + f_rub + "%' ";
+                //    using (SqlCommand command = new SqlCommand(query, connection))
+                //    {
+                //        using (SqlDataReader reader = command.ExecuteReader())
+                //        {
+                //            while (reader.Read())
+                //            {
+                //                columnData.Add(reader.GetString(0) + " | " + reader.GetString(1).ToUpper() + " | " + reader.GetString(2).ToUpper());
+                //            }
+                //        }
+                //    }
+                //}
             }
             else if (int_pnlID == 4)
             {
@@ -1237,6 +1271,7 @@ namespace wa_liec
         protected void ddl_gasto_est_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
         protected void ddl_eti_gasto_SelectedIndexChanged(object sender, EventArgs e)
         {
             Guid guid_r = Guid.Parse(ddl_eti_gasto.SelectedValue);
@@ -1245,9 +1280,9 @@ namespace wa_liec
             using (dd_liecEntities m_r = new dd_liecEntities())
             {
                 var i_rr = (from i_g in m_r.inf_rubro_mes
-                           where i_g.id_rubro == guid_r
-                           where i_g.id_est_rubm == 1
-                           select i_g).FirstOrDefault();
+                            where i_g.id_rubro == guid_r
+                            where i_g.id_est_rubm == 1
+                            select i_g).FirstOrDefault();
                 monto_rr = double.Parse(i_rr.monto_fijo.ToString());
                 monto_r = string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(monto_rr) * 100.0) / 100.0)); ;
 
@@ -1259,9 +1294,7 @@ namespace wa_liec
                            where i_gm.fecha_registro.Value.Month == DateTime.Now.Month
                            select new
                            {
-                            
                                i_gm.monto
-
                            }).ToList();
 
                 if (i_r.Count == 0)
@@ -1270,14 +1303,14 @@ namespace wa_liec
                 }
                 else
                 {
-
                     monto_gg = double.Parse(i_r.Sum(x => x.monto).ToString());
                 }
             }
             monto_g = string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(monto_gg) * 100.0) / 100.0)); ;
-            
+
             lbl_tgast.Text = "Monto Rubro: " + monto_r + " - Monto Gastado: " + monto_g;
         }
+
         protected void ddl_tipo_gasto_SelectedIndexChanged(object sender, EventArgs e)
         {
             int int_tg = int.Parse(ddl_tipo_gasto.SelectedValue);
@@ -1667,8 +1700,6 @@ namespace wa_liec
             pnl_gasto.Visible = false;
             up_gasto.Update();
 
-
-
             pnl_caja.Visible = true;
             div_busc_rub.Visible = false;
             i_agr_caja.Attributes["style"] = "color:white";
@@ -1932,8 +1963,6 @@ namespace wa_liec
             }
         }
 
-
-
         protected void ddl_caja_est_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
@@ -2110,8 +2139,6 @@ namespace wa_liec
                             edm_caja.inf_caja.Add(i_nrub);
                             edm_caja.SaveChanges();
 
-
-
                             limpia_txt_caja();
                             Mensaje("Datos agregados con éxito.");
                         }
@@ -2135,7 +2162,6 @@ namespace wa_liec
 
                             edm_caja.inf_caja.Add(i_nrub);
                             edm_caja.SaveChanges();
-
 
                             limpia_txt_caja();
                             Mensaje("Datos agregados con éxito.");

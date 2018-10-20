@@ -22,7 +22,7 @@
     <script src="Scripts/bootstrap.min.js"></script>
 
     <link rel="shortcut icon" href="img/ico_liec.png" type="image/png" />
-    <title>/ ÁREAS </title>
+    <title>/ PANEL DE CONTROL </title>
 </head>
 <body>
     <script>
@@ -88,7 +88,7 @@
                                 <div class="navbar-default" role="navigation">
                                     <div class="navbar-header">
                                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                                        <span class="visible-xs navbar-brand">Menú</span>
+                                        <span class="visible-xs navbar-brand">Menú Panel</span>
                                     </div>
                                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                                         <br />
