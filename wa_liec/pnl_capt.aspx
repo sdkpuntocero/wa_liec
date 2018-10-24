@@ -882,6 +882,7 @@
                                                     </div>
                                                     <div class="text-right">
                                                         <asp:RequiredFieldValidator ID="rfv_f1_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_cant1_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                        <asp:RangeValidator ID="rvf1_rppc" ErrorMessage="Solo se permite dos valores 1/2." ForeColor="DarkRed" ControlToValidate="txt_cant1_rppc" MinimumValue="1" MaximumValue="2" runat="server" Type="Integer" Enabled="false"></asp:RangeValidator>
                                                     </div>
                                                     <div class="input-group">
                                                         <span class="input-group-addon">
@@ -897,6 +898,7 @@
                                                     </div>
                                                     <div class="text-right">
                                                         <asp:RequiredFieldValidator ID="rfv_f3_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_cant3_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                        <asp:RangeValidator ID="rvf3_rppc" ErrorMessage="Solo se permite dos valores 1/2." ForeColor="DarkRed" ControlToValidate="txt_cant3_rppc" MinimumValue="1" MaximumValue="2" runat="server" Type="Integer" Enabled="false"></asp:RangeValidator>
                                                     </div>
                                                     <div class="input-group">
                                                         <span class="input-group-addon">
@@ -912,6 +914,7 @@
                                                     </div>
                                                     <div class="text-right">
                                                         <asp:RequiredFieldValidator ID="rfv_f7_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_cant7_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                        <asp:RangeValidator ID="rvf7_rppc" ErrorMessage="Solo se permite dos valores 1/2." ForeColor="DarkRed" ControlToValidate="txt_cant7_rppc" MinimumValue="1" MaximumValue="2" runat="server" Type="Integer" Enabled="false"></asp:RangeValidator>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -929,6 +932,7 @@
                                                     </div>
                                                     <div class="text-right">
                                                         <asp:RequiredFieldValidator ID="rfv_f14_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_cant14_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                        <asp:RangeValidator ID="rvf14_rppc" ErrorMessage="Solo se permite dos valores 1/2." ForeColor="DarkRed" ControlToValidate="txt_cant14_rppc" MinimumValue="1" MaximumValue="2" runat="server" Type="Integer" Enabled="false"></asp:RangeValidator>
                                                     </div>
                                                     <div class="input-group">
                                                         <span class="input-group-addon">
@@ -944,6 +948,7 @@
                                                     </div>
                                                     <div class="text-right">
                                                         <asp:RequiredFieldValidator ID="rfv_f28_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_cant28_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                        <asp:RangeValidator ID="rvf28_rppc" ErrorMessage="Solo se permite dos valores 1/2." ForeColor="DarkRed" ControlToValidate="txt_cant28_rppc" MinimumValue="1" MaximumValue="2" runat="server" Type="Integer" Enabled="false"></asp:RangeValidator>
                                                     </div>
                                                     <div class="input-group">
                                                         <span class="input-group-addon">
@@ -959,6 +964,7 @@
                                                     </div>
                                                     <div class="text-right">
                                                         <asp:RequiredFieldValidator ID="rfv_ftro_rppc" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_cantotro_rppc" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                        <asp:RangeValidator ID="rvfotro_rppc" ErrorMessage="Solo se permite dos valores 1/2." ForeColor="DarkRed" ControlToValidate="txt_cantotro_rppc" MinimumValue="1" MaximumValue="2" runat="server" Type="Integer" Enabled="false"></asp:RangeValidator>
                                                     </div>
                                                     <br />
                                                     <div class="text-right">
@@ -1001,9 +1007,7 @@
                                                 ENSAYE A COMPRESIÓN
 
                                         <span>
-                                            <asp:LinkButton CssClass="btn btn02" ID="btn_agregar_ensa_comp" runat="server" ToolTip="AGREGAR ÁREA" TabIndex="5" OnClick="btn_agregar_ensa_comp_Click">
-                                                <i class="fas fa-plus" id="i_agregar_ensa_comp" runat="server"></i>
-                                            </asp:LinkButton>
+                            
                                             <asp:LinkButton CssClass="btn btn02" ID="btn_editar_ensa_comp" runat="server" ToolTip="EDITAR ÁREA" TabIndex="6" OnClick="btn_editar_ensa_comp_Click">
                                                 <i class="far fa-edit" id="i_editar_ensa_comp" runat="server"></i>
                                             </asp:LinkButton>
@@ -1022,7 +1026,7 @@
                                                                 <asp:CheckBox ID="chk_ensa_comp" runat="server" onclick="CheckOne(this)" AutoPostBack="true" OnCheckedChanged="chk_ensa_comp_CheckedChanged" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                 
+
                                                         <asp:BoundField DataField="no_muesra" HeaderText="# MUESTRA" SortExpression="no_muesra" Visible="true" />
                                                         <asp:BoundField DataField="fecha_colado" HeaderText="COLADO" SortExpression="fecha_colado" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
                                                         <asp:BoundField DataField="uno" HeaderText="1D" SortExpression="uno" Visible="true" />
@@ -1052,7 +1056,7 @@
                                                 </asp:GridView>
                                             </div>
                                             <h6>
-                                                <div id="div_eca" runat="server" visible="true">
+                                                <div id="div_eca" runat="server" visible="false">
                                                     <div class="row">
 
                                                         <div class="col-md-2">

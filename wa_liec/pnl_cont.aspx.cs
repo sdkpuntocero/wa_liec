@@ -690,7 +690,7 @@ namespace wa_liec
             limpia_txt_rubro();
             string str_rub = txt_buscar_rub.Text.ToUpper().Trim();
 
-            if (str_rub == "TODOS")
+            if (str_rub == "TODO")
             {
                 using (dd_liecEntities data_user = new dd_liecEntities())
                 {
@@ -884,7 +884,7 @@ namespace wa_liec
 
             string str_rub = txt_buscar_rub.Text.ToUpper().Trim();
 
-            if (str_rub == "TODOS")
+            if (str_rub == "TODO")
             {
                 using (dd_liecEntities data_user = new dd_liecEntities())
                 {
@@ -1040,7 +1040,7 @@ namespace wa_liec
         {
             string str_rub = txt_buscar_rub.Text.ToUpper().Trim();
 
-            if (str_rub == "TODOS")
+            if (str_rub == "TODO")
             {
                 using (dd_liecEntities data_user = new dd_liecEntities())
                 {
@@ -1735,7 +1735,7 @@ namespace wa_liec
         {
             string str_rub = txt_buscar_rub.Text.ToUpper().Trim();
 
-            if (str_rub == "TODOS")
+            if (str_rub == "TODO")
             {
                 using (dd_liecEntities data_user = new dd_liecEntities())
                 {

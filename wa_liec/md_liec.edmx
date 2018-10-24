@@ -221,6 +221,7 @@
             <PropertyRef Name="id_conc_ec" />
           </Key>
           <Property Name="id_conc_ec" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="cod_esp" Type="varchar" MaxLength="50" />
           <Property Name="dia_ensaye" Type="varchar" MaxLength="50" />
           <Property Name="num_muesra" Type="int" />
           <Property Name="fecha_ensaye" Type="date" />
@@ -248,8 +249,8 @@
           <Property Name="callenum" Type="varchar" MaxLength="300" />
           <Property Name="d_codigo" Type="varchar" MaxLength="6" />
           <Property Name="id_asenta_cpcons" Type="int" />
-          <Property Name="telefono" Type="varchar" MaxLength="15" />
-          <Property Name="movil" Type="varchar" MaxLength="15" />
+          <Property Name="telefono" Type="varchar" MaxLength="16" />
+          <Property Name="movil" Type="varchar" MaxLength="16" />
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="id_usuario" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -1147,6 +1148,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
     <edmx:ConceptualModels>
       <Schema Namespace="dd_liecModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="dd_liecEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="tbl_pfe" IsComposable="true" ReturnType="Collection(dd_liecModel.tbl_pfe_Result)" />
           <EntitySet Name="fac_sit_concreto" EntityType="dd_liecModel.fac_sit_concreto" />
           <EntitySet Name="fac_tipo_concreto" EntityType="dd_liecModel.fac_tipo_concreto" />
           <EntitySet Name="fact_areas" EntityType="dd_liecModel.fact_areas" />
@@ -1185,7 +1187,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
           <EntitySet Name="inf_rubro_mes" EntityType="dd_liecModel.inf_rubro_mes" />
           <EntitySet Name="inf_sepomex" EntityType="dd_liecModel.inf_sepomex" />
           <EntitySet Name="inf_usuarios" EntityType="dd_liecModel.inf_usuarios" />
-          <EntitySet Name="v_pfe" EntityType="dd_liecModel.v_pfe" />
           <AssociationSet Name="FK_inf_mrp_concreto_fac_situacion_concreto" Association="dd_liecModel.FK_inf_mrp_concreto_fac_situacion_concreto">
             <End Role="fac_sit_concreto" EntitySet="fac_sit_concreto" />
             <End Role="inf_mrp_concreto" EntitySet="inf_mrp_concreto" />
@@ -1330,8 +1331,18 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
             <End Role="inf_rubro" EntitySet="inf_rubro" />
             <End Role="inf_rubro_mes" EntitySet="inf_rubro_mes" />
           </AssociationSet>
-          <FunctionImport Name="tbl_pfe" IsComposable="true" ReturnType="Collection(dd_liecModel.tbl_pfe_Result)" />
-        </EntityContainer>
+          <EntitySet Name="v_pfe" EntityType="dd_liecModel.v_pfe" />
+          </EntityContainer>
+        <ComplexType Name="tbl_pfe_Result">
+          <Property Type="String" Name="no_muesra" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fecha_colado" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="uno" Nullable="true" />
+          <Property Type="Int32" Name="tres" Nullable="true" />
+          <Property Type="Int32" Name="siete" Nullable="true" />
+          <Property Type="Int32" Name="catorce" Nullable="true" />
+          <Property Type="Int32" Name="vienteocho" Nullable="true" />
+          <Property Type="Int32" Name="cero" Nullable="true" />
+        </ComplexType>
         <EntityType Name="fac_sit_concreto">
           <Key>
             <PropertyRef Name="id_sit_concreto" />
@@ -1581,6 +1592,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
             <PropertyRef Name="id_conc_ec" />
           </Key>
           <Property Name="id_conc_ec" Type="Guid" Nullable="false" />
+          <Property Name="cod_esp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="dia_ensaye" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="num_muesra" Type="Int32" />
           <Property Name="fecha_ensaye" Type="DateTime" Precision="0" />
@@ -1610,8 +1622,8 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
           <Property Name="callenum" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="d_codigo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="id_asenta_cpcons" Type="Int32" />
-          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="movil" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="movil" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="id_usuario" Type="Guid" Nullable="false" />
           <NavigationProperty Name="inf_usuarios" Relationship="dd_liecModel.FK_contacto_usuarios_general_usuarios" FromRole="inf_cont_usr" ToRole="inf_usuarios" />
@@ -1833,45 +1845,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
           <NavigationProperty Name="fact_generos" Relationship="dd_liecModel.FK_general_usuarios_fact_generos" FromRole="inf_usuarios" ToRole="fact_generos" />
           <NavigationProperty Name="fact_perfil" Relationship="dd_liecModel.FK_general_usuarios_fact_perfil" FromRole="inf_usuarios" ToRole="fact_perfil" />
           <NavigationProperty Name="inf_cont_usr" Relationship="dd_liecModel.FK_contacto_usuarios_general_usuarios" FromRole="inf_usuarios" ToRole="inf_cont_usr" />
-        </EntityType>
-        <EntityType Name="v_pfe">
-          <Key>
-            <PropertyRef Name="id_mrp_concreto" />
-            <PropertyRef Name="id_est_concreto" />
-            <PropertyRef Name="id_tipo_especimen" />
-            <PropertyRef Name="id_tipo_concreto" />
-            <PropertyRef Name="id_sit_concreto" />
-          </Key>
-          <Property Name="id_mrp_concreto" Type="Guid" Nullable="false" />
-          <Property Name="id_est_concreto" Type="Int32" Nullable="false" />
-          <Property Name="no_muesra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_colado" Type="DateTime" Precision="3" />
-          <Property Name="fecha_recibe" Type="DateTime" Precision="3" />
-          <Property Name="entrega" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="recibe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="presion" Type="Int32" />
-          <Property Name="id_tipo_especimen" Type="Int32" Nullable="false" />
-          <Property Name="id_tipo_concreto" Type="Int32" Nullable="false" />
-          <Property Name="id_sit_concreto" Type="Int32" Nullable="false" />
-          <Property Name="dia_ensaye" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="n_m" Type="Int32" />
-          <Property Name="fecha_ensaye" Type="DateTime" Precision="0" />
-          <Property Name="procedecia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="elemento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dosificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="resistencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="clase" Type="Int32" />
-          <Property Name="reva" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="tma" Type="Int32" />
-          <Property Name="olla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="remision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="sali_planta" Type="Time" Precision="7" />
-          <Property Name="llega_obra" Type="Time" Precision="7" />
-          <Property Name="desca_ini" Type="Time" Precision="7" />
-          <Property Name="vol" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="desca_term" Type="Time" Precision="7" />
-          <Property Name="revb" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="localiza" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_inf_mrp_concreto_fac_situacion_concreto">
           <End Type="dd_liecModel.fac_sit_concreto" Role="fac_sit_concreto" Multiplicity="1" />
@@ -2305,22 +2278,65 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="tbl_pfe_Result">
-          <Property Type="String" Name="no_muesra" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="fecha_colado" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="uno" Nullable="true" />
-          <Property Type="Int32" Name="tres" Nullable="true" />
-          <Property Type="Int32" Name="siete" Nullable="true" />
-          <Property Type="Int32" Name="catorce" Nullable="true" />
-          <Property Type="Int32" Name="vienteocho" Nullable="true" />
-          <Property Type="Int32" Name="cero" Nullable="true" />
-        </ComplexType>
+        <EntityType Name="v_pfe">
+          <Key>
+            <PropertyRef Name="id_mrp_concreto" />
+            <PropertyRef Name="id_est_concreto" />
+            <PropertyRef Name="id_tipo_especimen" />
+            <PropertyRef Name="id_tipo_concreto" />
+            <PropertyRef Name="id_sit_concreto" />
+          </Key>
+          <Property Name="id_mrp_concreto" Type="Guid" Nullable="false" />
+          <Property Name="id_est_concreto" Type="Int32" Nullable="false" />
+          <Property Name="no_muesra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_colado" Type="DateTime" Precision="3" />
+          <Property Name="fecha_recibe" Type="DateTime" Precision="3" />
+          <Property Name="entrega" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="recibe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="presion" Type="Int32" />
+          <Property Name="id_tipo_especimen" Type="Int32" Nullable="false" />
+          <Property Name="id_tipo_concreto" Type="Int32" Nullable="false" />
+          <Property Name="id_sit_concreto" Type="Int32" Nullable="false" />
+          <Property Name="dia_ensaye" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="n_m" Type="Int32" />
+          <Property Name="fecha_ensaye" Type="DateTime" Precision="0" />
+          <Property Name="procedecia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="elemento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dosificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="resistencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clase" Type="Int32" />
+          <Property Name="reva" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="tma" Type="Int32" />
+          <Property Name="olla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="remision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sali_planta" Type="Time" Precision="7" />
+          <Property Name="llega_obra" Type="Time" Precision="7" />
+          <Property Name="desca_ini" Type="Time" Precision="7" />
+          <Property Name="vol" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="desca_term" Type="Time" Precision="7" />
+          <Property Name="revb" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="localiza" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dd_liecModelStoreContainer" CdmEntityContainer="dd_liecEntities">
+          <FunctionImportMapping FunctionImportName="tbl_pfe" FunctionName="dd_liecModel.Store.tbl_pfe">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dd_liecModel.tbl_pfe_Result">
+                <ScalarProperty Name="no_muesra" ColumnName="no_muesra" />
+                <ScalarProperty Name="fecha_colado" ColumnName="fecha_colado" />
+                <ScalarProperty Name="uno" ColumnName="uno" />
+                <ScalarProperty Name="tres" ColumnName="tres" />
+                <ScalarProperty Name="siete" ColumnName="siete" />
+                <ScalarProperty Name="catorce" ColumnName="catorce" />
+                <ScalarProperty Name="vienteocho" ColumnName="vienteocho" />
+                <ScalarProperty Name="cero" ColumnName="cero" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="fac_sit_concreto">
             <EntityTypeMapping TypeName="dd_liecModel.fac_sit_concreto">
               <MappingFragment StoreEntitySet="fac_sit_concreto">
@@ -2578,6 +2594,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
                 <ScalarProperty Name="fecha_ensaye" ColumnName="fecha_ensaye" />
                 <ScalarProperty Name="num_muesra" ColumnName="num_muesra" />
                 <ScalarProperty Name="dia_ensaye" ColumnName="dia_ensaye" />
+                <ScalarProperty Name="cod_esp" ColumnName="cod_esp" />
                 <ScalarProperty Name="id_conc_ec" ColumnName="id_conc_ec" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2824,21 +2841,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="tbl_pfe" FunctionName="dd_liecModel.Store.tbl_pfe">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dd_liecModel.tbl_pfe_Result">
-                <ScalarProperty Name="no_muesra" ColumnName="no_muesra" />
-                <ScalarProperty Name="fecha_colado" ColumnName="fecha_colado" />
-                <ScalarProperty Name="uno" ColumnName="uno" />
-                <ScalarProperty Name="tres" ColumnName="tres" />
-                <ScalarProperty Name="siete" ColumnName="siete" />
-                <ScalarProperty Name="catorce" ColumnName="catorce" />
-                <ScalarProperty Name="vienteocho" ColumnName="vienteocho" />
-                <ScalarProperty Name="cero" ColumnName="cero" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pnl_rh.aspx.cs" Inherits="wa_liec.pnl_rh" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pnl_desa_tec.aspx.cs" Inherits="wa_liec.pnl_desa_tec" %>
 
 <!DOCTYPE html>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -22,7 +23,7 @@
     <script src="Scripts/bootstrap.min.js"></script>
 
     <link rel="shortcut icon" href="img/ico_liec.png" type="image/png" />
-    <title>/ RH </title>
+    <title>/ DESARROLLO DE TECNOLOGÍA</title>
 </head>
 <body>
     <script>
@@ -51,24 +52,24 @@
                         </div>
 
                         <div class="col-lg-6">
-                           <div>
-                               <p class="text-right">
+                            <div>
+                                <p class="text-right">
 
-                                    <label class="control-label fuente_css02">BIENVENID@:</label>
-                                    <asp:LinkButton CssClass="buttonClass" ID="lkb_usr_oper" runat="server">
-                                        <asp:Label CssClass="buttonClass" ID="lbl_usr_oper" runat="server" Text=""></asp:Label>&nbsp;<i class="fas fa-user-cog" id="i_usr_oper" runat="server"></i>
+                                    <label class="control-label fuente_css02 fuente_css02">BIENVENID@:</label>
+                                    <asp:LinkButton CssClass="buttonClass" ID="lkb_edita_usuariof" runat="server">
+                                        <asp:Label CssClass="buttonClass" ID="lbl_edita_usuariof" runat="server" Text=""></asp:Label>&nbsp;<i class="fa fa-male" id="i_edita_usuariof" runat="server"></i>
                                     </asp:LinkButton>
 
                                     <br />
 
-                                    <label class="control-label fuente_css02">PERFIL:</label>
-                                    <asp:Label CssClass="fuente_css02" ID="lbl_tusr" runat="server" Text=""></asp:Label>&nbsp;<i class="fas fa-user-shield fuente_css02" id="i1" runat="server"></i> 
+                                    <label class="control-label fuente_css02 fuente_css02">PERFIL:</label>
+                                    <asp:Label CssClass="buttonClass" ID="lbl_ftipousuario" runat="server" Text=""></asp:Label>
 
                                     <br />
 
-                                    <label class="control-label fuente_css02">EMPRESA:</label>
-                                    <asp:LinkButton CssClass="buttonClass" ID="lkb_emp_oper" runat="server">
-                                        <asp:Label CssClass="buttonClass" ID="lbl_emp_oper" runat="server" Text=""></asp:Label>&nbsp;<i class="fas fa-building" id="i_emp_oper" runat="server"></i>
+                                    <label class="control-label fuente_css02 fuente_css02">EMPRESA:</label>
+                                    <asp:LinkButton CssClass="buttonClass" ID="lkb_fnegocio" runat="server">
+                                        <asp:Label CssClass="buttonClass" ID="lbl_ffnegocio" runat="server" Text=""></asp:Label>&nbsp;<i class="fa fa-puzzle-piece" id="i_editafnegocio" runat="server"></i>
                                     </asp:LinkButton>
                                 </p>
                             </div>
@@ -94,29 +95,29 @@
                                         <br />
                                         <div class="sidebar" style="display: block;">
                                             <ul class="nav">
+                                                <li>
+                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_areas" runat="server" OnClick="lkb_areas_Click">
+                                                        <i class="fas fa-braille" id="i_areas" runat="server"></i>
+                                                        <asp:Label CssClass="buttonClass" ID="lbl_areas" runat="server" Text="ÁREAS"> </asp:Label>
+                                                    </asp:LinkButton>
+                                                </li>
+                                                <li>
+                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_e_env" runat="server" OnClick="lkb_e_env_Click">
+                                                        <i class="far fa-envelope" id="i_e_envio" runat="server"></i>
+                                                        <asp:Label CssClass="buttonClass" ID="lbl_e_envio" runat="server" Text="CORREO ENVÍO"></asp:Label>
+                                                    </asp:LinkButton>
+                                                </li>
+                                                <li>
+                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_e_rec" runat="server" OnClick="lkb_e_rec_Click">
 
+                                                        <i class="fas fa-mail-bulk" id="i_e_rec" runat="server"></i>
+                                                        <asp:Label CssClass="buttonClass" ID="lbl_e_rec" runat="server" Text="CORREO RECEPCIÓN"></asp:Label>
+                                                    </asp:LinkButton>
+                                                </li>
                                                 <li>
                                                     <asp:LinkButton CssClass="fuente_css02" ID="lkb_usr" runat="server" OnClick="lkb_usr_Click">
                                                         <i class="fas fa-user-cog" id="i_usr" runat="server"></i>
                                                         <asp:Label CssClass="buttonClass" ID="lbl_usr" runat="server" Text="USUARIOS"></asp:Label>
-                                                    </asp:LinkButton>
-                                                </li>
-                                                <li>
-                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_med" runat="server">
-                                                        <i class="fas fa-user-md" id="i_med" runat="server"></i>
-                                                        <asp:Label CssClass="buttonClass" ID="lbl_med" runat="server" Text="MÉDICOS"></asp:Label>
-                                                    </asp:LinkButton>
-                                                </li>
-                                                <li>
-                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_fin" runat="server">
-                                                        <i class="fas fa-money-check-alt" id="i_fin" runat="server"></i>
-                                                        <asp:Label CssClass="buttonClass" ID="lbl_fin" runat="server" Text="BANCARIOS"></asp:Label>
-                                                    </asp:LinkButton>
-                                                </li>
-                                                <li>
-                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_cap" runat="server">
-                                                        <i class="fas fa-user-graduate" id="i_cap" runat="server"></i>
-                                                        <asp:Label CssClass="buttonClass" ID="lbl_cap" runat="server" Text="CAPACITACIÓN"></asp:Label>
                                                     </asp:LinkButton>
                                                 </li>
                                                 <br />
@@ -135,7 +136,255 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+                <asp:UpdatePanel ID="up_areas" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="col-lg-9">
+                            <div class="col-lg-12 ">
+                                <div class="panel panel-default" id="pnl_areas" runat="server" visible="false">
+                                    <div class="panel-heading">
+                                        <p class="text-left">
+                                            <div class="input-group" id="div_busc_clt" runat="server" visible="false">
+                                                <span class="input-group-addon">
+                                                    <asp:Label CssClass="control-label fuente_css02" ID="lbl_buscar_areas" runat="server" Text="*BUSCAR ÁREA:"></asp:Label>
+                                                </span>
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_buscar_areas" runat="server" placeholder="letras/números" TextMode="Search" TabIndex="3"></asp:TextBox>
+                                                <span class="input-group-btn">
+                                                    <asp:Button CssClass="btn btn01" ID="btn_buscar_areas" runat="server" Text="ACEPTAR" TabIndex="4" OnClick="btn_buscar_areas_Click" />
+                                                </span>
+                                            </div>
+                                            <div class="text-right">
+                                                <ajaxToolkit:AutoCompleteExtender ID="ace_buscar_areas" runat="server" ServiceMethod="SearchCustomers" MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="true" CompletionSetCount="10" TargetControlID="txt_buscar_areas" FirstRowSelected="false"></ajaxToolkit:AutoCompleteExtender>
+                                                <asp:RequiredFieldValidator ID="rfv_buscar_areas" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_buscar_areas" ForeColor="white" Enabled="false"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </p>
+                                        <p class="text-right">
+                                            REGISTRO DE ÁREAS
 
+                                        <span>
+                                            <asp:LinkButton CssClass="btn btn02" ID="btn_agregar_areas" runat="server" ToolTip="AGREGAR ÁREA" TabIndex="1" OnClick="btn_agregar_areas_Click">
+                                                <i class="fas fa-plus" id="i_agregar_areas" runat="server"></i>
+                                            </asp:LinkButton>
+                                            <asp:LinkButton CssClass="btn btn02" ID="btn_editar_areas" runat="server" ToolTip="EDITAR ÁREA" TabIndex="2" OnClick="btn_editar_areas_Click">
+                                                <i class="far fa-edit" id="i_editar_areas" runat="server"></i>
+                                            </asp:LinkButton>
+                                        </span>
+                                            <br />
+                                            <asp:CheckBox ID="chkb_desactivar_areas" runat="server" AutoPostBack="true" Text="Desactivar validaciones" OnCheckedChanged="chkb_desactivar_areas_CheckedChanged" />
+                                        </p>
+                                    </div>
+                                    <div class="panel-body">
+
+                                        <div class="col-lg-12">
+                                            <asp:GridView CssClass="table" ID="gv_areas" runat="server" AutoGenerateColumns="False" AllowPaging="true" PageSize="5" OnRowDataBound="gv_areas_RowDataBound" OnPageIndexChanging="gv_areas_PageIndexChanging">
+                                                <Columns>
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:CheckBox ID="chk_areas" runat="server" onclick="CheckOne(this)" AutoPostBack="true" OnCheckedChanged="chk_areas_CheckedChanged" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="cod_area" HeaderText="ID" SortExpression="cod_area" Visible="true" />
+                                                    <asp:BoundField DataField="desc_areas" HeaderText="ÁREA" SortExpression="desc_areas" />
+                                                    <asp:BoundField DataField="fecha_registro" HeaderText="REGISTRO" SortExpression="fecha_registro" DataFormatString="{0:dd-MM-yyyy}" />
+                                                    <asp:TemplateField HeaderText="ESTATUS">
+                                                        <ItemTemplate>
+                                                            <asp:DropDownList ID="ddl_area_estatus" runat="server" AutoPostBack="true">
+                                                            </asp:DropDownList>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <EditRowStyle BackColor="#999999" />
+                                                <FooterStyle BackColor="#5D7B9D" ForeColor="White" />
+                                                <HeaderStyle BackColor="#104D8d" ForeColor="White" />
+                                                <PagerSettings Mode="NumericFirstLast" FirstPageText="Inicio" LastPageText="Final" />
+                                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                            </asp:GridView>
+                                            <br />
+                                        </div>
+                                        <div class="col-lg-10">
+
+                                            <asp:Label CssClass="control-label fuente_css02" ID="lbl_areas_coment" runat="server" Text="Área"></asp:Label>
+
+                                            <asp:TextBox CssClass="form-control input-box" ID="txt_areas_coment" runat="server" placeholder="letras/números" TextMode="MultiLine" BackColor="LightGray" ForeColor="#104D8D"></asp:TextBox>
+                                            <div class="text-right">
+                                                <asp:RequiredFieldValidator ID="rfv_areas_coment" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_areas_coment" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <br />
+                                            <br />
+                                            <div class="text-right">
+                                                <asp:Button CssClass="btn btn02" ID="btn_guardar_areas" runat="server" Text="GUARDAR" TabIndex="13" OnClick="btn_guardar_areas_Click" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                    </Triggers>
+                </asp:UpdatePanel>
+
+                <asp:UpdatePanel ID="up_e_env" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="col-lg-9">
+                            <div class="col-lg-12 ">
+                                <div class="panel panel-default" id="pnl_e_env" runat="server" visible="false">
+                                    <div class="panel-heading">
+                                        <p class="text-left">
+                                            <div class="input-group" id="div_busc_e_env" runat="server" visible="false">
+                                                <span class="input-group-addon">
+                                                    <asp:Label CssClass="control-label fuente_css02" ID="lbl_buscar_e_env" runat="server" Text="*BUSCAR CORREO:"></asp:Label>
+                                                </span>
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_buscar_e_env" runat="server" placeholder="letras/números" TextMode="Search" TabIndex="3"></asp:TextBox>
+                                                <span class="input-group-btn">
+                                                    <asp:Button CssClass="btn btn01" ID="btn_buscar_e_env" runat="server" Text="ACEPTAR" TabIndex="4" OnClick="btn_buscar_e_env_Click" />
+                                                </span>
+                                            </div>
+                                            <div class="text-right">
+                                                <ajaxToolkit:AutoCompleteExtender ID="ace_buscar_e_env" runat="server" ServiceMethod="SearchCustomers" MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="true" CompletionSetCount="10" TargetControlID="txt_buscar_e_env" FirstRowSelected="false"></ajaxToolkit:AutoCompleteExtender>
+                                                <asp:RequiredFieldValidator ID="rfv_buscar_e_env" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_buscar_e_env" ForeColor="white" Enabled="false"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </p>
+                                        <p class="text-right">
+                                            REGISTRO DE CORREO PARA ENVÍO
+
+                                        <span>
+                                            <asp:LinkButton CssClass="btn btn02" ID="btn_agregar_e_env" runat="server" ToolTip="AGREGAR CORREO ENVÍO" TabIndex="1" OnClick="btn_agregar_e_env_Click">
+                                                <i class="fas fa-plus" id="i_agregar_e_env" runat="server"></i>
+                                            </asp:LinkButton>
+                                            <asp:LinkButton CssClass="btn btn02" ID="btn_editar_e_env" runat="server" ToolTip="EDITAR CORREO ENVÍO" TabIndex="2" OnClick="btn_editar_e_env_Click">
+                                                <i class="far fa-edit" id="i_editar_e_env" runat="server"></i>
+                                            </asp:LinkButton>
+                                        </span>
+                                            <br />
+                                            <asp:CheckBox ID="chkb_des_e_env" runat="server" AutoPostBack="true" Text="Desactivar validaciones" OnCheckedChanged="chkb_des_e_env_CheckedChanged" />
+                                        </p>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-lg-12">
+                                            <asp:GridView CssClass="table" ID="gv_e_env" runat="server" AutoGenerateColumns="False" AllowPaging="true" PageSize="5" OnRowDataBound="gv_e_env_RowDataBound" OnPageIndexChanging="gv_e_env_PageIndexChanging">
+                                                <Columns>
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:CheckBox ID="chk_e_env" runat="server" onclick="CheckOne(this)" AutoPostBack="true" OnCheckedChanged="chk_e_env_CheckedChanged" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="email" HeaderText="ID" SortExpression="cod_area" Visible="true" />
+                                                    <asp:BoundField DataField="fecha_registro" HeaderText="REGISTRO" SortExpression="fecha_registro" DataFormatString="{0:dd-MM-yyyy}" />
+                                                    <asp:TemplateField HeaderText="ESTATUS">
+                                                        <ItemTemplate>
+                                                            <asp:DropDownList ID="ddl_est_e_env" runat="server" AutoPostBack="true">
+                                                            </asp:DropDownList>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <EditRowStyle BackColor="#999999" />
+                                                <FooterStyle BackColor="#5D7B9D" ForeColor="White" />
+                                                <HeaderStyle BackColor="#104D8d" ForeColor="White" />
+                                                <PagerSettings Mode="NumericFirstLast" FirstPageText="Inicio" LastPageText="Final" />
+                                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                            </asp:GridView>
+                                            <br />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group text-left">
+
+                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_correo_envio" runat="server" Text="*Correo"></asp:Label>
+
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_correo_envio" runat="server" TextMode="Email" placeholder="xxxx@xxxx.xxx"></asp:TextBox>
+                                                <div class="text-right">
+                                                    <asp:RequiredFieldValidator ID="rfv_correo_envio" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_correo_envio" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                            <div class="form-group text-left">
+
+                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_asunto_envio" runat="server" Text="*Asunto"></asp:Label>
+
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_asunto_envio" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                <div class="text-right">
+                                                    <asp:RequiredFieldValidator ID="rfv_asunto_envio" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_asunto_envio" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group text-left">
+
+                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_usuario_envio" runat="server" Text="*Usuario"></asp:Label>
+
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_usuario_envio" runat="server" placeholder="letras/números"></asp:TextBox>
+                                                <div class="text-right">
+                                                    <asp:RequiredFieldValidator ID="rfv_usuario_envio" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_usuario_envio" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                            <div class="form-group text-left">
+
+                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_servidor_smtp" runat="server" Text="*SMTP"></asp:Label>
+
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_servidor_smtp" runat="server" placeholder="smtp.xxxx.xxx"></asp:TextBox>
+                                                <div class="text-right">
+                                                    <asp:RequiredFieldValidator ID="rfv_servidor_smtp" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_servidor_smtp" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group text-left">
+
+                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_clave_envio" runat="server" Text="*Contraseña"></asp:Label>
+
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_clave_envio" runat="server" placeholder="letras/números" TextMode="Password"></asp:TextBox>
+                                                <div class="text-right">
+                                                    <asp:RequiredFieldValidator ID="rfv_clave_envio" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_clave_envio" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                            <div class="form-group text-left">
+
+                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_puerto_envio" runat="server" Text="*Puerto"></asp:Label>
+
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_puerto_envio" runat="server" placeholder="[0/9]"></asp:TextBox>
+                                                <div class="text-right">
+                                                    <asp:RequiredFieldValidator ID="rfv_puerto_envio" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_puerto_envio" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                    <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender1" runat="server" TargetControlID="txt_puerto_envio" Mask="99999" />
+                                                </div>
+                                                <div class="text-right">
+                                                    <br />
+
+                                                    <asp:Button CssClass="btn btn02" ID="btn_guardar_envio" runat="server" Text="GUARDAR" OnClick="btn_guardar_envio_Click" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                    </Triggers>
+                </asp:UpdatePanel>
+                <asp:UpdatePanel ID="up_correo" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="col-lg-9">
+                            <div class="col-lg-12 ">
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                    </Triggers>
+                </asp:UpdatePanel>
                 <asp:UpdatePanel ID="up_usrs" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div class="col-lg-9">
@@ -235,6 +484,15 @@
                                                     <asp:RequiredFieldValidator ID="rfv_fnac_usr" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_fnac_usr" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
+                                            <div class="form-group text-left">
+
+                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_usr_i" runat="server" Text="*Usuario"></asp:Label>
+
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_usr_i" runat="server" placeholder="letras/números" ToolTip="letras/números" TabIndex="9"></asp:TextBox>
+                                                <div class="text-right">
+                                                    <asp:RequiredFieldValidator ID="rfv_usr_i" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_usr_i" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-lg-4">
 
@@ -266,6 +524,16 @@
                                                     <asp:RequiredFieldValidator ID="rfv_amaterno_usr" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_amaterno_usr" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group text-left">
+
+                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_clave_i" runat="server" Text="*Clave"></asp:Label>
+
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_clave_i" runat="server" placeholder="letras/números" ToolTip="letras/números" TabIndex="9" TextMode="Password"></asp:TextBox>
+                                                <div class="text-right">
+                                                    <asp:RequiredFieldValidator ID="rfv_clave_i" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_clave_i" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group text-left">
@@ -287,6 +555,14 @@
                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_email_usr" runat="server" placeholder="xxxx@xxxx.xxx" TextMode="Email" ToolTip="xxxx@xxxx.xxx" TabIndex="13"></asp:TextBox>
                                                 <br />
                                             </div>
+                                            <div class="form-group text-left">
+
+                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_correo_i" runat="server" Text="Correo electrónico LIEC"></asp:Label>
+
+                                                <asp:TextBox CssClass="form-control input-box" ID="txt_correo_i" runat="server" placeholder="xxxx@xxxx.xxx" TextMode="Email" ToolTip="xxxx@xxxx.xxx" TabIndex="13"></asp:TextBox>
+                                                <br />
+                                            </div>
+
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group text-left">
@@ -366,26 +642,16 @@
                     <Triggers>
                     </Triggers>
                 </asp:UpdatePanel>
-                <asp:UpdatePanel ID="up_caja" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                    </ContentTemplate>
-                    <Triggers>
-                    </Triggers>
-                </asp:UpdatePanel>
-                <asp:UpdatePanel ID="up_correo" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <div class="col-lg-10">
-                            <div class="col-lg-12 ">
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                    <Triggers>
-                    </Triggers>
-                </asp:UpdatePanel>
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <div class="col-lg-12 ">
+                                <div class="panel panel-default" id="Div1" runat="server" visible="false">
+                                    <div class="panel-heading">
+                                    </div>
+                                    <div class="panel-body">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </ContentTemplate>

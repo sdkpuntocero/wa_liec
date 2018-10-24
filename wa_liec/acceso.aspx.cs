@@ -18,55 +18,62 @@ namespace wa_liec
             user = txt_usuario.Text;
             pass = txt_clave.Text;
 
-            using (var m_usr = new dd_liecEntities())
+            try
             {
-                var i_usr = (from c in m_usr.inf_usuarios
-                             join f_a in m_usr.fact_areas on c.id_area equals f_a.id_area
-                             where c.usr == user
-                             select new
-                             {
-                                 c.id_usuario,
-                                 f_a.cod_area
-                             }).FirstOrDefault();
-                cod_area = i_usr.cod_area;
-                guid_idusr = i_usr.id_usuario;
+                using (var m_usr = new dd_liecEntities())
+                {
+                    var i_usr = (from c in m_usr.inf_usuarios
+                                 join f_a in m_usr.fact_areas on c.id_area equals f_a.id_area
+                                 where c.usr == user
+                                 select new
+                                 {
+                                     c.id_usuario,
+                                     f_a.cod_area
+                                 }).FirstOrDefault();
+                    cod_area = i_usr.cod_area;
+                    guid_idusr = i_usr.id_usuario;
+                }
+
+                switch (cod_area)
+                {
+                    case "LIEC-AREA017":
+
+                        Session["ss_idusr"] = guid_idusr;
+
+                        Response.Redirect("pnl_capt.aspx");
+                        break;
+
+                    case "LIEC-AREA019":
+                        Session["ss_idusr"] = guid_idusr;
+
+                        Response.Redirect("pnl_ctrl.aspx");
+                        break;
+
+                    case "LIEC-AREA001":
+                        Session["ss_idusr"] = guid_idusr;
+
+                        Response.Redirect("pnl_ctrl.aspx");
+                        break;
+
+                    case "LIEC-AREA013":
+                        Session["ss_idusr"] = guid_idusr;
+
+                        Response.Redirect("pnl_cont.aspx");
+                        break;
+                    case "LIEC-AREA009":
+
+                        Session["ss_idusr"] = guid_idusr;
+
+                        Response.Redirect("pnl_capt.aspx");
+                        break;
+                    default:
+
+                        break;
+                }
             }
-
-            switch (cod_area)
+            catch
             {
-                case "LIEC-AREA017":
-
-                    Session["ss_idusr"] = guid_idusr;
-
-                    Response.Redirect("pnl_capt.aspx");
-                    break;
-
-                case "LIEC-AREA019":
-                    Session["ss_idusr"] = guid_idusr;
-
-                    Response.Redirect("pnl_ctrl.aspx");
-                    break;
-
-                case "LIEC-AREA001":
-                    Session["ss_idusr"] = guid_idusr;
-
-                    Response.Redirect("pnl_ctrl.aspx");
-                    break;
-
-                case "LIEC-AREA013":
-                    Session["ss_idusr"] = guid_idusr;
-
-                    Response.Redirect("pnl_cont.aspx");
-                    break;
-                case "LIEC-AREA009":
-
-                    Session["ss_idusr"] = guid_idusr;
-
-                    Response.Redirect("pnl_capt.aspx");
-                    break;
-                default:
-            
-                    break;
+                Mensaje("Datos incorrectos, favor de reintetar");
             }
         }
 

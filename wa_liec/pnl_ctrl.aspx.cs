@@ -135,13 +135,13 @@ namespace wa_liec
             pnl_cont.Focus();
             up_cont.Update();
 
-            pnl_desa_tec.Visible = true;
-            pnl_desa_tec.Focus();
-            up_desa_tec.Update();
-
             pnl_capt.Visible = false;
             pnl_capt.Focus();
             up_capt.Update();
+
+            pnl_desa_tec.Visible = true;
+            pnl_desa_tec.Focus();
+            up_desa_tec.Update();
         }
 
         protected void lkb_desa_neg_Click(object sender, EventArgs e)
@@ -204,13 +204,14 @@ namespace wa_liec
             pnl_cont.Focus();
             up_cont.Update();
 
-            pnl_recu_hum.Visible = true;
-            pnl_recu_hum.Focus();
-            up_recu_hum.Update();
+   
 
             pnl_capt.Visible = false;
             pnl_capt.Focus();
             up_capt.Update();
+            pnl_recu_hum.Visible = true;
+            pnl_recu_hum.Focus();
+            up_recu_hum.Update();
 
         }
 

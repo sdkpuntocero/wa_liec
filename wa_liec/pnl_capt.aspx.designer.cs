@@ -1885,6 +1885,15 @@ namespace wa_liec {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_f1_rppc;
         
         /// <summary>
+        /// Control rvf1_rppc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvf1_rppc;
+        
+        /// <summary>
         /// Control chkb_3_rppc.
         /// </summary>
         /// <remarks>
@@ -1919,6 +1928,15 @@ namespace wa_liec {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_f3_rppc;
+        
+        /// <summary>
+        /// Control rvf3_rppc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvf3_rppc;
         
         /// <summary>
         /// Control chkb_7_rppc.
@@ -1957,6 +1975,15 @@ namespace wa_liec {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_f7_rppc;
         
         /// <summary>
+        /// Control rvf7_rppc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvf7_rppc;
+        
+        /// <summary>
         /// Control chkb_14_rppc.
         /// </summary>
         /// <remarks>
@@ -1991,6 +2018,15 @@ namespace wa_liec {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_f14_rppc;
+        
+        /// <summary>
+        /// Control rvf14_rppc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvf14_rppc;
         
         /// <summary>
         /// Control chkb_28_rppc.
@@ -2029,6 +2065,15 @@ namespace wa_liec {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_f28_rppc;
         
         /// <summary>
+        /// Control rvf28_rppc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvf28_rppc;
+        
+        /// <summary>
         /// Control chkb_otro_rppc.
         /// </summary>
         /// <remarks>
@@ -2063,6 +2108,15 @@ namespace wa_liec {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ftro_rppc;
+        
+        /// <summary>
+        /// Control rvfotro_rppc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvfotro_rppc;
         
         /// <summary>
         /// Control btn_guardar_rppc.
@@ -2144,24 +2198,6 @@ namespace wa_liec {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_buscar_ensa_comp;
-        
-        /// <summary>
-        /// Control btn_agregar_ensa_comp.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_agregar_ensa_comp;
-        
-        /// <summary>
-        /// Control i_agregar_ensa_comp.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl i_agregar_ensa_comp;
         
         /// <summary>
         /// Control btn_editar_ensa_comp.

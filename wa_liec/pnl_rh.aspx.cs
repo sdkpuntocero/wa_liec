@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
@@ -13,10 +12,57 @@ namespace wa_liec
 {
     public partial class pnl_rh : System.Web.UI.Page
     {
-        private static int int_areas, int_pnlID, int_usr;
+        private static int int_areas, int_pnlID, int_usr, int_idperf;
+
+        public static Guid guid_emp;
+        public static Guid guid_idusr;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (!IsPostBack)
+                {
+                    inf_usr_oper();
+                }
+                else
+                {
+                }
+            }
+            catch
+            {
+                Response.Redirect("acceso.aspx");
+            }
+        }
+
+        private void inf_usr_oper()
+        {
+            guid_idusr = (Guid)(Session["ss_idusr"]);
+
+            using (dd_liecEntities m_usuario = new dd_liecEntities())
+            {
+                var i_usuario = (from i_u in m_usuario.inf_usuarios
+                                 join i_tu in m_usuario.fact_perfil on i_u.id_perfil equals i_tu.id_perfil
+                                 join i_c in m_usuario.inf_emp on i_u.id_emp equals i_c.id_emp
+
+                                 where i_u.id_usuario == guid_idusr
+                                 select new
+                                 {
+                                     i_u.nombres,
+                                     i_u.a_paterno,
+                                     i_u.a_materno,
+                                     i_tu.desc_perfil,
+                                     i_tu.id_perfil,
+                                     i_c.razon_social,
+                                     i_c.id_emp
+                                 }).FirstOrDefault();
+
+                lbl_usr_oper.Text = i_usuario.nombres + " " + i_usuario.a_paterno + " " + i_usuario.a_materno;
+                lbl_tusr.Text = i_usuario.desc_perfil;
+                int_idperf = i_usuario.id_perfil;
+                lbl_emp_oper.Text = i_usuario.razon_social;
+                guid_emp = i_usuario.id_emp;
+            }
         }
 
         #region funciones
@@ -98,9 +144,8 @@ namespace wa_liec
 
         #endregion funciones
 
-
-
         #region usuarios
+
         protected void lkb_usr_Click(object sender, EventArgs e)
         {
             int_usr = 0;
@@ -171,14 +216,12 @@ namespace wa_liec
             {
                 //try
                 //{
-                Guid guid_area, guid_emp, guid_usrs;
+                Guid guid_area, guid_usrs, guid_fusrs;
                 int idper_usr, idcol_usr;
                 string cod_usr, nom_usr, apater_usr, amater_usr, e_user, tel_usr, movil_usr, callenum_usr, cp_usr;
                 DateTime fnac_user;
 
-
                 guid_usrs = Guid.NewGuid();
-                guid_emp = Guid.Parse("d8a03556-6791-45f3-babe-ecf267b865f1");
                 guid_area = Guid.Parse(ddl_area_usr.SelectedValue);
                 idper_usr = int.Parse(ddl_perfil_usr.SelectedValue);
                 e_user = txt_email_usr.Text.Trim();
@@ -190,9 +233,85 @@ namespace wa_liec
                 callenum_usr = txt_callenum_usr.Text.Trim().ToUpper();
                 cp_usr = txt_cp_usr.Text.Trim();
                 idcol_usr = int.Parse(ddl_col_usr.SelectedValue);
-                movil_usr = "";
 
-                if (int_usr == 1)
+                if (int_usr == 2)
+                {
+                    int int_ddl, int_f_clte = 0;
+                    int int_estatusID = 0;
+                    string str_fclte = null;
+                    string v_usrs = null;
+                    foreach (GridViewRow row in gv_usrs.Rows)
+                    {
+                        // int key = (int)GridView1.DataKeys[row.RowIndex].Value;
+                        if (row.RowType == DataControlRowType.DataRow)
+                        {
+                            CheckBox chkRow = (row.Cells[0].FindControl("chk_usrs") as CheckBox);
+                            if (chkRow.Checked)
+                            {
+                                int_f_clte = int_f_clte + 1;
+                                str_fclte = row.Cells[1].Text;
+                                v_usrs = row.Cells[2].Text;
+                                DropDownList dl = (DropDownList)row.FindControl("ddl_usrs_estatus");
+
+                                int_ddl = int.Parse(dl.SelectedValue);
+                                if (int_ddl == 1)
+                                {
+                                    int_estatusID = 1;
+                                    break;
+                                }
+                                else if (int_ddl == 2)
+                                {
+                                    int_estatusID = 2;
+                                    break;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    if (int_f_clte == 0)
+                    {
+                        Mensaje("Favor de seleccionar una área.");
+                    }
+                    else
+                    {
+                        using (var m_usrs = new dd_liecEntities())
+                        {
+                            var i_usrs = (from c in m_usrs.inf_usuarios
+                                          where c.cod_usr == str_fclte
+
+                                          select c).FirstOrDefault();
+
+                            i_usrs.id_area = guid_area;
+                            i_usrs.id_est_usr = int_estatusID;
+                            i_usrs.id_perfil = idper_usr;
+                            i_usrs.nombres = nom_usr;
+                            i_usrs.a_paterno = apater_usr;
+                            i_usrs.a_materno = amater_usr;
+                            m_usrs.SaveChanges();
+
+                            guid_fusrs = i_usrs.id_usuario;
+
+                            var i_usr_cont = (from c in m_usrs.inf_cont_usr
+                                              where c.id_usuario == guid_fusrs
+                                              select c).FirstOrDefault();
+
+                            i_usr_cont.telefono = tel_usr;
+                            i_usr_cont.email = e_user;
+                            i_usr_cont.callenum = callenum_usr;
+                            i_usr_cont.d_codigo = cp_usr;
+                            i_usr_cont.id_asenta_cpcons = idcol_usr;
+
+                            m_usrs.SaveChanges();
+                        }
+                        gv_usrs.Visible = false;
+                        rfv_buscar_usrs.Enabled = false;
+                        rfv_usr_coment.Enabled = false;
+                        limp_txt_usr();
+                        Mensaje("Datos de usuario actualizados con éxito.");
+                    }
+                }
+                else if (int_usr == 1)
                 {
                     using (dd_liecEntities edm_fusr = new dd_liecEntities())
                     {
@@ -234,13 +353,13 @@ namespace wa_liec
                                     d_codigo = cp_usr,
                                     id_asenta_cpcons = idcol_usr,
                                     telefono = tel_usr,
-                                    movil = movil_usr,
                                     email = e_user,
                                     id_usuario = guid_usrs
                                 };
 
                                 edm_fusr.inf_usuarios.Add(a_usr);
                                 edm_fusr.inf_cont_usr.Add(a_usr_cot);
+
                                 edm_fusr.SaveChanges();
 
                                 limp_txt_usr();
@@ -273,7 +392,6 @@ namespace wa_liec
                                     d_codigo = cp_usr,
                                     id_asenta_cpcons = idcol_usr,
                                     telefono = tel_usr,
-                                    movil = movil_usr,
                                     email = e_user,
                                     id_usuario = guid_usrs
                                 };
@@ -284,8 +402,6 @@ namespace wa_liec
 
                                 limp_txt_usr();
                                 Mensaje("Datos de usuario agregados con éxito.");
-
-
                             }
                         }
                         else
@@ -296,122 +412,12 @@ namespace wa_liec
                         }
                     }
                 }
-                else if (int_usr == 2)
-                {
-                    int int_ddl, int_f_clte = 0;
-                    int int_estatusID = 0;
-                    string str_fclte = null;
-                    string v_usrs = null;
-                    foreach (GridViewRow row in gv_usrs.Rows)
-                    {
-                        // int key = (int)GridView1.DataKeys[row.RowIndex].Value;
-                        if (row.RowType == DataControlRowType.DataRow)
-                        {
-                            CheckBox chkRow = (row.Cells[0].FindControl("chk_usrs") as CheckBox);
-                            if (chkRow.Checked)
-                            {
-                                int_f_clte = int_f_clte + 1;
-                                str_fclte = row.Cells[1].Text;
-                                v_usrs = row.Cells[2].Text;
-                                DropDownList dl = (DropDownList)row.FindControl("ddl_usrs_estatus");
 
-                                int_ddl = int.Parse(dl.SelectedValue);
-                                if (int_ddl == 1)
-                                {
-                                    int_estatusID = 1;
-                                    break;
-                                }
-                                else if (int_ddl == 2)
-                                {
-                                    int_estatusID = 2;
-                                    break;
-                                }
-                                break;
-                            }
-                        }
-                    }
-
-                    if (int_estatusID == 0)
-                    {
-                        Mensaje("Favor de seleccionar una área.");
-                    }
-                    else
-                    {
-                        //using (var m_clte = new dd_liecEntities())
-                        //{
-                        //    var i_clte = (from c in m_clte.inf_usuarios
-                        //                  where c.cod_usr == str_fclte
-                        //                  select c).FirstOrDefault();
-
-                        //    if (cod_user == i_clte.usr)
-                        //    {
-                        //        var i_usrs = (from c in m_clte.inf_usuarios
-                        //                      where c.cod_usr == str_fclte
-                        //                      select c).FirstOrDefault();
-
-                        //        i_usrs.id_area = guid_area;
-                        //        i_usrs.id_estatus = int_estatusID;
-                        //        i_usrs.id_perfil = id_perfil;
-                        //        i_usrs.email = e_user;
-                        //        i_usrs.nombres = nom_usr;
-                        //        i_usrs.a_paterno = apater_usr;
-                        //        i_usrs.a_materno = amater_usr;
-                        //        i_usrs.usr = cod_user;
-                        //        i_usrs.clave = clave_usr;
-
-                        //        m_clte.SaveChanges();
-
-                        //        rfv_buscar_usrs.Enabled = false;
-                        //        rfv_usr_coment.Enabled = false;
-                        //        limp_txt_usr();
-                        //        Mensaje("Datos de usuario actualizados con éxito.");
-                        //    }
-                        //    else
-                        //    {
-                        //        var i_nclte = (from c in m_clte.inf_usuarios
-                        //                       where c.cod_usr == cod_user
-                        //                       select c).ToList();
-
-                        //        if (i_nclte.Count == 0)
-                        //        {
-                        //            var i_usrs = (from c in m_clte.inf_usuarios
-                        //                          where c.cod_usr == str_fclte
-                        //                          select c).FirstOrDefault();
-
-                        //            i_usrs.id_estatus = int_estatusID;
-                        //            i_usrs.id_area = guid_area;
-                        //            i_usrs.id_perfil = id_perfil;
-                        //            i_usrs.email = e_user;
-                        //            i_usrs.nombres = nom_usr;
-                        //            i_usrs.a_paterno = apater_usr;
-                        //            i_usrs.a_materno = amater_usr;
-                        //            i_usrs.usr = cod_user;
-                        //            i_usrs.clave = clave_usr;
-
-                        //            m_clte.SaveChanges();
-
-                        //            m_clte.SaveChanges();
-
-                        //            rfv_buscar_usrs.Enabled = false;
-                        //            rfv_usr_coment.Enabled = false;
-                        //            limp_txt_usr();
-                        //            Mensaje("Datos de usuario actualizados con éxito.");
-                        //        }
-                        //        else
-                        //        {
-                        //            limp_txt_usr();
-                        //            Mensaje("Usuario ya existe en la base de datos, favor de revisar.");
-                        //        }
-                        //    }
-                        //}
-                    }
-                }
                 //}
                 //catch
                 //{ }
             }
         }
-
 
         protected void gv_usrs_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -419,7 +425,7 @@ namespace wa_liec
             string str_clte = txt_buscar_usrs.Text.ToUpper().Trim();
             try
             {
-                if (str_clte == "TODOS")
+                if (str_clte == "TODO")
                 {
                     using (dd_liecEntities data_areas = new dd_liecEntities())
                     {
@@ -512,7 +518,7 @@ namespace wa_liec
         {
             string str_rub;
             Guid guid_rub;
-
+    
             foreach (GridViewRow row in gv_usrs.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
@@ -525,39 +531,69 @@ namespace wa_liec
 
                         using (dd_liecEntities edm_rub = new dd_liecEntities())
                         {
-                            var i_rub = (from c in edm_rub.inf_usuarios
-                                         where c.cod_usr == str_rub
-                                         select c).FirstOrDefault();
+                            var i_rub = (from i_u in edm_rub.inf_usuarios
+
+                                         where i_u.cod_usr == str_rub
+                                         select i_u).FirstOrDefault();
 
                             guid_rub = i_rub.id_usuario;
 
-                            var f_rub = (from r in edm_rub.inf_usuarios
-                                         where r.id_usuario == guid_rub
+                            var f_rub = (from i_u in edm_rub.inf_usuarios
+                                         join i_tu in edm_rub.inf_cont_usr on i_u.id_usuario equals i_tu.id_usuario
+                                         where i_u.id_usuario == guid_rub
                                          select new
                                          {
-                                             r.id_area,
-                                             r.id_perfil,
-                                             r.email,
-                                             r.nombres,
-                                             r.a_paterno,
-                                             r.a_materno,
-                                             r.fecha_nacimiento,
-                                             r.usr
-
-
+                                             i_u.id_area,
+                                             i_u.id_perfil,
+                                             i_u.nombres,
+                                             i_u.a_paterno,
+                                             i_u.a_materno,
+                                             i_u.fecha_nacimiento,
+                                             i_tu.telefono,
+                                             i_tu.email,
+                                             i_tu.callenum,
+                                             i_tu.d_codigo,
+                                             i_tu.id_asenta_cpcons
                                          }).FirstOrDefault();
+
                             DateTime f_nac = Convert.ToDateTime(f_rub.fecha_nacimiento);
 
                             ddl_area_usr.SelectedValue = f_rub.id_area.ToString();
                             ddl_perfil_usr.SelectedValue = f_rub.id_perfil.ToString();
-                            txt_email_usr.Text = f_rub.email;
                             txt_nombre_usr.Text = f_rub.nombres;
                             txt_apaterno_usr.Text = f_rub.a_paterno;
                             txt_amaterno_usr.Text = f_rub.a_materno;
                             txt_fnac_usr.Text = f_nac.ToString("yyyy-MM-dd");
+                            txt_tel_usr.Text = f_rub.telefono;
+                            txt_email_usr.Text = f_rub.email;
+                            txt_callenum_usr.Text = f_rub.callenum;
+                            txt_cp_usr.Text = f_rub.d_codigo;
+                            try
+                            {
+                                using (dd_liecEntities db_sepomex = new dd_liecEntities())
+                                {
+                                    var tbl_sepomex = (from c in db_sepomex.inf_sepomex
+                                                       where c.d_codigo == f_rub.d_codigo
+                                                       select c).ToList();
+
+                                    ddl_col_usr.DataSource = tbl_sepomex;
+                                    ddl_col_usr.DataTextField = "d_asenta";
+                                    ddl_col_usr.DataValueField = "id_asenta_cpcons";
+                                    ddl_col_usr.DataBind();
+
+                                    ddl_col_usr.SelectedValue = f_rub.id_asenta_cpcons.ToString();
+                                    txt_municipio_usr.Text = tbl_sepomex[0].d_mnpio;
+                                    txt_estado_usr.Text = tbl_sepomex[0].d_estado;
+                                }
+                            }
+                            catch
+                            {
+                                ddl_col_usr.Items.Clear();
+                                ddl_col_usr.Items.Insert(0, new ListItem("SELECCIONAR", "0"));
+                            }
+
                             txt_usr_coment.Text = null;
                         }
-
                     }
                     else
                     {
@@ -577,7 +613,7 @@ namespace wa_liec
             string str_clte = txt_buscar_usrs.Text.ToUpper().Trim();
             try
             {
-                if (str_clte == "TODOS")
+                if (str_clte == "TODO")
                 {
                     limp_txt_usr();
                     using (dd_liecEntities data_areas = new dd_liecEntities())
@@ -604,7 +640,6 @@ namespace wa_liec
                             gv_usrs.Visible = true;
                         }
                     }
-
                 }
                 else
                 {
@@ -642,7 +677,6 @@ namespace wa_liec
 
         protected void btn_cp_usr_Click(object sender, EventArgs e)
         {
-
             string str_codcp = txt_cp_usr.Text.Trim();
 
             using (dd_liecEntities db_sepomex = new dd_liecEntities())
@@ -661,8 +695,7 @@ namespace wa_liec
                     txt_municipio_usr.Text = tbl_sepomex[0].d_mnpio;
                     txt_estado_usr.Text = tbl_sepomex[0].d_estado;
 
-                    rfv_callenum_usr.Enabled = true;
-                    rfv_col_usr.Enabled = true;
+           
                 }
                 if (tbl_sepomex.Count > 1)
                 {
@@ -671,8 +704,7 @@ namespace wa_liec
                     txt_municipio_usr.Text = tbl_sepomex[0].d_mnpio;
                     txt_estado_usr.Text = tbl_sepomex[0].d_estado;
 
-                    rfv_callenum_usr.Enabled = true;
-                    rfv_col_usr.Enabled = true;
+     
                 }
                 else if (tbl_sepomex.Count == 0)
                 {
@@ -684,7 +716,6 @@ namespace wa_liec
                 }
             }
             up_usrs.Update();
-
         }
 
         protected void chkb_desactivar_usrs_CheckedChanged(object sender, EventArgs e)
@@ -733,17 +764,17 @@ namespace wa_liec
             ddl_col_usr.Items.Clear();
             ddl_col_usr.Items.Insert(0, new ListItem("SELECCIONAR", "0"));
 
-            txt_email_usr.Text = null;
+            
             txt_nombre_usr.Text = null;
             txt_apaterno_usr.Text = null;
             txt_amaterno_usr.Text = null;
+            txt_tel_usr.Text = null;
+            txt_email_usr.Text = null;
             txt_fnac_usr.Text = null;
             txt_callenum_usr.Text = null;
             txt_cp_usr.Text = null;
             txt_municipio_usr.Text = null;
             txt_estado_usr.Text = null;
-
-
         }
 
         #endregion usuarios

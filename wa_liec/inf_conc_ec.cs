@@ -15,6 +15,7 @@ namespace wa_liec
     public partial class inf_conc_ec
     {
         public System.Guid id_conc_ec { get; set; }
+        public string cod_esp { get; set; }
         public string dia_ensaye { get; set; }
         public Nullable<int> num_muesra { get; set; }
         public Nullable<System.DateTime> fecha_ensaye { get; set; }

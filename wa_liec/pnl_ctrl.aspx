@@ -234,8 +234,8 @@
                                     <div class="panel-heading">
                                         <p class="text-right">
                                             <asp:LinkButton   ID="lkb_recu_hum_i" runat="server" OnClick="lkb_recu_hum_i_Click" ForeColor="white">
-                                                <i class="fas fa-users" id="i_recu_hum_i" runat="server"></i>
-                                                <asp:Label ID="lbl_recu_hum_i" runat="server" Text="RECURSOS HUMANOS"></asp:Label>
+                                                <i class="fas fa-2x fa-users" id="i_recu_hum_i" runat="server"></i>
+                                     
                                             </asp:LinkButton>
                                         </p>
                                     </div>
@@ -257,7 +257,7 @@
                                         <p class="text-right">
                                             <asp:LinkButton   ID="lkb_capt_i" runat="server" OnClick="lkb_capt_i_Click" ForeColor="white">
                                                 <i class="fas fa-2x fa-file-signature" id="i_capt_i" runat="server"></i>
-                                                <%--<asp:Label  ID="lbl_capt_i" runat="server" Text="CAPTURA"></asp:Label>--%>
+                                             
                                             </asp:LinkButton>
                                         </p>
                                     </div>
@@ -279,7 +279,7 @@
                                         <p class="text-right">
                                             <asp:LinkButton   ID="lkb_cont_i" runat="server" OnClick="lkb_cont_i_Click" ForeColor="white">
                                                 <i class="fas fa-2x fa-dollar-sign" id="i_cont_i" runat="server"></i>
-                                                <%--<asp:Label  ID="lbl_cont_i" runat="server" Text="CONTABILIDAD"></asp:Label>--%>
+                                    
                                             </asp:LinkButton>
                                         </p>
                                     </div>
@@ -300,8 +300,8 @@
                                     <div class="panel-heading">
                                         <p class="text-right">
                                             <asp:LinkButton   ID="lkb_desa_tec_i" runat="server" OnClick="lkb_desa_tec_i_Click" ForeColor="white">
-                                                <i class="fas fa-qrcode" id="i_desa_tec_i" runat="server"></i>
-                                                <asp:Label  ID="lbl_desa_tec_i" runat="server" Text="DESARROLLO DE TECNOLOGÍA"></asp:Label>
+                                                <i class="fas  fa-2x  fa-qrcode" id="i_desa_tec_i" runat="server"></i>
+                                    
                                             </asp:LinkButton>
                                         </p>
                                     </div>

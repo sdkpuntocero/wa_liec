@@ -706,15 +706,6 @@ namespace wa_liec {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl i_recu_hum_i;
         
         /// <summary>
-        /// Control lbl_recu_hum_i.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_recu_hum_i;
-        
-        /// <summary>
         /// Control up_capt.
         /// </summary>
         /// <remarks>
@@ -821,15 +812,6 @@ namespace wa_liec {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl i_desa_tec_i;
-        
-        /// <summary>
-        /// Control lbl_desa_tec_i.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_desa_tec_i;
         
         /// <summary>
         /// Control UpdatePanel4.

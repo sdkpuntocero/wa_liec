@@ -13,11 +13,12 @@ namespace wa_liec
 {
     public partial class pnl_capt : System.Web.UI.Page
     {
-        public static int int_clte, int_clte_obras, int_pnlID, int_rppc, int_ensa_comp, int_idperf;
-        public static string str_clte, str_usr_oper;
+        public static int int_clte, int_clte_obras, int_pnlID, int_rppc, int_ensa_comp, int_idperf, int_dem = 0;
+        public static string str_clte, str_usr_oper, nc = null;
         public static Guid guid_emp;
         public static Guid guid_idusr;
-
+        
+            
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -265,7 +266,7 @@ namespace wa_liec
             i_conc_ensaye.Attributes["style"] = "color:#104D8d";
             lbl_conc_ensaye.Attributes["style"] = "color:#104D8d";
 
-            i_agregar_ensa_comp.Attributes["style"] = "color:white";
+           
             i_editar_ensa_comp.Attributes["style"] = "color:white";
 
             limp_txt_ensa_comp();
@@ -1372,6 +1373,7 @@ namespace wa_liec
                 else
                 {
                     rfv_f1_rppc.Enabled = true;
+                    rvf1_rppc.Enabled = true;
                     dt_fcol = DateTime.Parse(fcol_rppc.Text);
                     txt_f1_rppc.Text = dt_fcol.AddDays(1).ToString("yyyy-MM-dd");
                     up_rppc.Update();
@@ -1380,6 +1382,7 @@ namespace wa_liec
             else
             {
                 rfv_f1_rppc.Enabled = false;
+                rvf1_rppc.Enabled = false;
                 chkb_1_rppc.Checked = false;
                 txt_f1_rppc.Text = null;
             }
@@ -1399,6 +1402,7 @@ namespace wa_liec
                 else
                 {
                     rfv_f3_rppc.Enabled = true;
+                    rvf3_rppc.Enabled = true;
                     dt_fcol = DateTime.Parse(fcol_rppc.Text);
                     txt_f3_rppc.Text = dt_fcol.AddDays(3).ToString("yyyy-MM-dd");
                 }
@@ -1406,6 +1410,7 @@ namespace wa_liec
             else
             {
                 rfv_f3_rppc.Enabled = false;
+                rvf3_rppc.Enabled = false;
                 chkb_3_rppc.Checked = false;
                 txt_f3_rppc.Text = null;
             }
@@ -1425,6 +1430,7 @@ namespace wa_liec
                 else
                 {
                     rfv_f7_rppc.Enabled = true;
+                    rvf7_rppc.Enabled = true;
                     dt_fcol = DateTime.Parse(fcol_rppc.Text);
                     txt_f7_rppc.Text = dt_fcol.AddDays(7).ToString("yyyy-MM-dd");
                 }
@@ -1432,6 +1438,7 @@ namespace wa_liec
             else
             {
                 rfv_f7_rppc.Enabled = false;
+                rvf7_rppc.Enabled = false;
                 chkb_7_rppc.Checked = false;
                 txt_f7_rppc.Text = null;
             }
@@ -1451,6 +1458,7 @@ namespace wa_liec
                 else
                 {
                     rfv_f14_rppc.Enabled = true;
+                    rvf14_rppc.Enabled = true;
                     dt_fcol = DateTime.Parse(fcol_rppc.Text);
                     txt_f14_rppc.Text = dt_fcol.AddDays(14).ToString("yyyy-MM-dd");
                 }
@@ -1458,6 +1466,7 @@ namespace wa_liec
             else
             {
                 rfv_f14_rppc.Enabled = false;
+                rvf14_rppc.Enabled = false;
                 chkb_14_rppc.Checked = false;
                 txt_f14_rppc.Text = null;
             }
@@ -1477,6 +1486,7 @@ namespace wa_liec
                 else
                 {
                     rfv_f28_rppc.Enabled = true;
+                    rvf28_rppc.Enabled = true;
                     dt_fcol = DateTime.Parse(fcol_rppc.Text);
                     txt_f28_rppc.Text = dt_fcol.AddDays(28).ToString("yyyy-MM-dd");
                 }
@@ -1484,6 +1494,7 @@ namespace wa_liec
             else
             {
                 rfv_f28_rppc.Enabled = false;
+                rvf28_rppc.Enabled = false;
                 chkb_28_rppc.Checked = false;
                 txt_f28_rppc.Text = null;
             }
@@ -1508,6 +1519,7 @@ namespace wa_liec
                     else
                     {
                         rfv_ftro_rppc.Enabled = true;
+                        rvfotro_rppc.Enabled = true;
                         dt_fcol = DateTime.Parse(fcol_rppc.Text);
                         int int_fotro_rppc = int.Parse(txt_cantotro_rppc.Text);
                         txt_fotro_rppc.Text = dt_fcol.AddDays(int_fotro_rppc).ToString("yyyy-MM-dd");
@@ -1517,6 +1529,7 @@ namespace wa_liec
             else
             {
                 rfv_ftro_rppc.Enabled = false;
+                rvfotro_rppc.Enabled = false;
                 chkb_otro_rppc.Checked = false;
                 txt_cantotro_rppc.Text = null;
                 txt_fotro_rppc.Text = null;
@@ -1700,42 +1713,42 @@ namespace wa_liec
                         int int_nm = Convert.ToInt32(i_clte[0].n_m);
                         foreach (var nn in i_clte)
                         {
-                            if (nn.dia_ensaye == "1D")
+                            if (nn.dia_ensaye == "uno")
                             {
                                 chkb_1_rppc.Checked = true;
                                 txt_cant1_rppc.Text = nn.n_m.ToString();
                                 f_colad = DateTime.Parse(fcol_rppc.Text);
                                 txt_f1_rppc.Text = f_colad.AddDays(1).ToString("yyyy-MM-dd");
                             }
-                            else if (nn.dia_ensaye == "3D")
+                            else if (nn.dia_ensaye == "tres")
                             {
                                 chkb_3_rppc.Checked = true;
                                 txt_cant3_rppc.Text = nn.n_m.ToString();
                                 f_colad = DateTime.Parse(fcol_rppc.Text);
                                 txt_f3_rppc.Text = f_colad.AddDays(3).ToString("yyyy-MM-dd");
                             }
-                            else if (nn.dia_ensaye == "7D")
+                            else if (nn.dia_ensaye == "siete")
                             {
                                 chkb_7_rppc.Checked = true;
                                 txt_cant7_rppc.Text = nn.n_m.ToString();
                                 f_colad = DateTime.Parse(fcol_rppc.Text);
                                 txt_f7_rppc.Text = f_colad.AddDays(7).ToString("yyyy-MM-dd");
                             }
-                            else if (nn.dia_ensaye == "14D")
+                            else if (nn.dia_ensaye == "catorce")
                             {
                                 chkb_14_rppc.Checked = true;
                                 txt_cant14_rppc.Text = nn.n_m.ToString();
                                 f_colad = DateTime.Parse(fcol_rppc.Text);
                                 txt_f14_rppc.Text = f_colad.AddDays(14).ToString("yyyy-MM-dd");
                             }
-                            else if (nn.dia_ensaye == "28D")
+                            else if (nn.dia_ensaye == "vienteocho")
                             {
                                 chkb_28_rppc.Checked = true;
                                 txt_cant28_rppc.Text = nn.n_m.ToString();
                                 f_colad = DateTime.Parse(fcol_rppc.Text);
                                 txt_f28_rppc.Text = f_colad.AddDays(28).ToString("yyyy-MM-dd");
                             }
-                            else if (nn.dia_ensaye == "0D")
+                            else if (nn.dia_ensaye == "cero")
                             {
                                 chkb_otro_rppc.Checked = true;
                                 txt_cantotro_rppc.Text = nn.n_m.ToString();
@@ -1985,271 +1998,283 @@ namespace wa_liec
             }
             else
             {
-                try
+                //try
+                //{
+                Guid guis_usr_capt = Guid.Parse("0298DF9A-4DBF-4EE5-84F7-1E7E519BE4F9");
+                Guid gui_nrppc;
+                string str_nomues_rppc, entr_rppc, recib_rppc, proce_rppc, elem_rppc, dosi_rppc, resi_rppc, olla_rppc, remi_rppc, loca_rppc;
+                DateTime fcolado_rrpc, fente_rrpc;
+                bool bool_1d, bool_3d, bool_7d, bool_14d, bool_28d, bool_otrod;
+                decimal dml_reva_rppc, dml_vol_rppc, dl_revb_rppc;
+                TimeSpan dt_splan_rppc, dt_llobra_rppc, dt_desca_ini_rppc, dt_desca_term_rppc;
+                int int_tesp_rppc, int_tcont_rrp, int_sit_rppc, presi_rppc, int_co, int_1d, int_3d, int_7d, int_14d, int_28d, int_otrod, int_clase, int_tma_rppc;
+
+                gui_nrppc = Guid.NewGuid();
+                str_nomues_rppc = nmue_rppc.Text.Trim().ToUpper();
+                fcolado_rrpc = DateTime.Parse(fcol_rppc.Text);
+                fente_rrpc = DateTime.Parse(frec_rppc.Text);
+                entr_rppc = entrega_rppc.Text.Trim().ToUpper();
+                recib_rppc = recibe_rppc.Text.Trim().ToUpper();
+                presi_rppc = int.Parse(r_rppc.Text);
+
+                int_tesp_rppc = int.Parse(ddl_tesp_rppc.SelectedValue);
+                int_tcont_rrp = int.Parse(ddl_tconc_rppc.SelectedValue);
+                int_sit_rppc = int.Parse(ddl_sit_rppc.SelectedValue);
+
+                int int_sit = int.Parse(ddl_sit_rppc.SelectedValue);
+                proce_rppc = null;
+                elem_rppc = null;
+                dosi_rppc = null;
+                resi_rppc = null;
+                olla_rppc = null;
+                remi_rppc = null;
+                loca_rppc = null;
+                int_clase = 0;
+                dml_reva_rppc = 0;
+                int_tma_rppc = 0;
+                dml_vol_rppc = 0;
+                dl_revb_rppc = 0;
+                dt_splan_rppc = TimeSpan.Zero;
+                dt_llobra_rppc = TimeSpan.Zero;
+                dt_desca_ini_rppc = TimeSpan.Zero;
+                dt_desca_term_rppc = TimeSpan.Zero;
+                if (int_sit == 3)
                 {
-                    Guid guis_usr_capt = Guid.Parse("0298DF9A-4DBF-4EE5-84F7-1E7E519BE4F9");
-                    Guid gui_nrppc;
-                    string str_nomues_rppc, entr_rppc, recib_rppc, proce_rppc, elem_rppc, dosi_rppc, resi_rppc, olla_rppc, remi_rppc, loca_rppc;
-                    DateTime fcolado_rrpc, fente_rrpc;
-                    bool bool_1d, bool_3d, bool_7d, bool_14d, bool_28d, bool_otrod;
-                    decimal dml_reva_rppc, dml_vol_rppc, dl_revb_rppc;
-                    TimeSpan dt_splan_rppc, dt_llobra_rppc, dt_desca_ini_rppc, dt_desca_term_rppc;
-                    int int_tesp_rppc, int_tcont_rrp, int_sit_rppc, presi_rppc, int_co, int_1d, int_3d, int_7d, int_14d, int_28d, int_otrod, int_clase, int_tma_rppc;
+                    proce_rppc = txt_proce_rppc.Text.Trim().ToUpper();
+                    elem_rppc = txt_elem_rppc.Text.Trim().ToUpper();
+                    dosi_rppc = txt_dosi_rppc.Text.Trim().ToUpper();
+                    resi_rppc = txt_resis_rppc.Text.Trim().ToUpper();
+                    olla_rppc = txt_olla_rrpc.Text.Trim().ToUpper();
+                    remi_rppc = txt_remi_rppc.Text.Trim().ToUpper();
+                    loca_rppc = txt_loca_rppc.Text.Trim().ToUpper();
+                    int_clase = int.Parse(txt_clase_rppc.Text.Trim().ToUpper());
+                    dml_reva_rppc = decimal.Parse(txt_rev_rrpc.Text.Trim().ToUpper());
+                    int_tma_rppc = int.Parse(txt_tma_rrpc.Text.Trim().ToUpper());
+                    dml_vol_rppc = decimal.Parse(txt_vol_rppc.Text.Trim().ToUpper());
+                    dl_revb_rppc = decimal.Parse(txt_revb_rppc.Text.Trim().ToUpper());
+                    dt_splan_rppc = TimeSpan.Parse(txt_splata_rrpc.Text);
+                    dt_llobra_rppc = TimeSpan.Parse(txt_llobra_rrpc.Text);
+                    dt_desca_ini_rppc = TimeSpan.Parse(txt_inic_rrpc.Text);
+                    dt_desca_term_rppc = TimeSpan.Parse(txt_term_rrpc.Text);
+                }
+                if (chkb_1_rppc.Checked)
+                {
+                    bool_1d = true;
+                    int_1d = int.Parse(txt_cant1_rppc.Text);
+                }
+                else
+                {
+                    bool_1d = false;
+                    int_1d = 0;
+                }
+                if (chkb_3_rppc.Checked)
+                {
+                    bool_3d = true;
+                    int_3d = int.Parse(txt_cant3_rppc.Text);
+                }
+                else
+                {
+                    bool_3d = false;
+                    int_3d = 0;
+                }
+                if (chkb_7_rppc.Checked)
+                {
+                    bool_7d = true;
+                    int_7d = int.Parse(txt_cant7_rppc.Text);
+                }
+                else
+                {
+                    bool_7d = false;
+                    int_7d = 0;
+                }
+                if (chkb_14_rppc.Checked)
+                {
+                    bool_14d = true;
+                    int_14d = int.Parse(txt_cant14_rppc.Text);
+                }
+                else
+                {
+                    bool_14d = false;
+                    int_14d = 0;
+                }
+                if (chkb_28_rppc.Checked)
+                {
+                    bool_28d = true;
+                    int_28d = int.Parse(txt_cant28_rppc.Text);
+                }
+                else
+                {
+                    bool_28d = false;
+                    int_28d = 0;
+                }
+                if (chkb_otro_rppc.Checked)
+                {
+                    bool_otrod = true;
+                    int_otrod = int.Parse(txt_cantotro_rppc.Text);
+                }
+                else
+                {
+                    bool_otrod = false;
+                    int_otrod = 0;
+                }
+                string n_rub;
+                int int_pfe = 0;
+                int_pfe = int_1d + int_3d + int_7d + int_14d + int_28d + int_otrod;
 
-                    gui_nrppc = Guid.NewGuid();
-                    str_nomues_rppc = nmue_rppc.Text.Trim().ToUpper();
-                    fcolado_rrpc = DateTime.Parse(fcol_rppc.Text);
-                    fente_rrpc = DateTime.Parse(frec_rppc.Text);
-                    entr_rppc = entrega_rppc.Text.Trim().ToUpper();
-                    recib_rppc = recibe_rppc.Text.Trim().ToUpper();
-                    presi_rppc = int.Parse(r_rppc.Text);
+                string[,] pfe_array = new string[1, 6];
+                pfe_array[0, 0] = "uno," + int_1d.ToString();
+                pfe_array[0, 1] = "tres," + int_3d.ToString();
+                pfe_array[0, 2] = "siete," + int_7d.ToString();
+                pfe_array[0, 3] = "catorce," + int_14d.ToString();
+                pfe_array[0, 4] = "vienteocho," + int_28d.ToString();
+                pfe_array[0, 5] = "cero," + int_otrod.ToString();
 
-                    int_tesp_rppc = int.Parse(ddl_tesp_rppc.SelectedValue);
-                    int_tcont_rrp = int.Parse(ddl_tconc_rppc.SelectedValue);
-                    int_sit_rppc = int.Parse(ddl_sit_rppc.SelectedValue);
+                Char char_s = '|';
+                string d_rub = txt_buscar_rppc.Text.Trim();
+                String[] de_rub = d_rub.Trim().Split(char_s);
+                n_rub = de_rub[0].Trim();
 
-                    int int_sit = int.Parse(ddl_sit_rppc.SelectedValue);
-                    proce_rppc = null;
-                    elem_rppc = null;
-                    dosi_rppc = null;
-                    resi_rppc = null;
-                    olla_rppc = null;
-                    remi_rppc = null;
-                    loca_rppc = null;
-                    int_clase = 0;
-                    dml_reva_rppc = 0;
-                    int_tma_rppc = 0;
-                    dml_vol_rppc = 0;
-                    dl_revb_rppc = 0;
-                    dt_splan_rppc = TimeSpan.Zero;
-                    dt_llobra_rppc = TimeSpan.Zero;
-                    dt_desca_ini_rppc = TimeSpan.Zero;
-                    dt_desca_term_rppc = TimeSpan.Zero;
-                    if (int_sit == 3)
+                if (int_rppc == 2)
+                {
+                    int int_ddl;
+                    int int_estatusID = 0;
+                    int int_act = 0;
+                    foreach (GridViewRow row in gv_rppc.Rows)
                     {
-                        proce_rppc = txt_proce_rppc.Text.Trim().ToUpper();
-                        elem_rppc = txt_elem_rppc.Text.Trim().ToUpper();
-                        dosi_rppc = txt_dosi_rppc.Text.Trim().ToUpper();
-                        resi_rppc = txt_resis_rppc.Text.Trim().ToUpper();
-                        olla_rppc = txt_olla_rrpc.Text.Trim().ToUpper();
-                        remi_rppc = txt_remi_rppc.Text.Trim().ToUpper();
-                        loca_rppc = txt_loca_rppc.Text.Trim().ToUpper();
-                        int_clase = int.Parse(txt_clase_rppc.Text.Trim().ToUpper());
-                        dml_reva_rppc = decimal.Parse(txt_rev_rrpc.Text.Trim().ToUpper());
-                        int_tma_rppc = int.Parse(txt_tma_rrpc.Text.Trim().ToUpper());
-                        dml_vol_rppc = decimal.Parse(txt_vol_rppc.Text.Trim().ToUpper());
-                        dl_revb_rppc = decimal.Parse(txt_revb_rppc.Text.Trim().ToUpper());
-                        dt_splan_rppc = TimeSpan.Parse(txt_splata_rrpc.Text);
-                        dt_llobra_rppc = TimeSpan.Parse(txt_llobra_rrpc.Text);
-                        dt_desca_ini_rppc = TimeSpan.Parse(txt_inic_rrpc.Text);
-                        dt_desca_term_rppc = TimeSpan.Parse(txt_term_rrpc.Text);
-                    }
-                    if (chkb_1_rppc.Checked)
-                    {
-                        bool_1d = true;
-                        int_1d = int.Parse(txt_cant1_rppc.Text);
-                    }
-                    else
-                    {
-                        bool_1d = false;
-                        int_1d = 0;
-                    }
-                    if (chkb_3_rppc.Checked)
-                    {
-                        bool_3d = true;
-                        int_3d = int.Parse(txt_cant3_rppc.Text);
-                    }
-                    else
-                    {
-                        bool_3d = false;
-                        int_3d = 0;
-                    }
-                    if (chkb_7_rppc.Checked)
-                    {
-                        bool_7d = true;
-                        int_7d = int.Parse(txt_cant7_rppc.Text);
-                    }
-                    else
-                    {
-                        bool_7d = false;
-                        int_7d = 0;
-                    }
-                    if (chkb_14_rppc.Checked)
-                    {
-                        bool_14d = true;
-                        int_14d = int.Parse(txt_cant14_rppc.Text);
-                    }
-                    else
-                    {
-                        bool_14d = false;
-                        int_14d = 0;
-                    }
-                    if (chkb_28_rppc.Checked)
-                    {
-                        bool_28d = true;
-                        int_28d = int.Parse(txt_cant28_rppc.Text);
-                    }
-                    else
-                    {
-                        bool_28d = false;
-                        int_28d = 0;
-                    }
-                    if (chkb_otro_rppc.Checked)
-                    {
-                        bool_otrod = true;
-                        int_otrod = int.Parse(txt_cantotro_rppc.Text);
-                    }
-                    else
-                    {
-                        bool_otrod = false;
-                        int_otrod = 0;
-                    }
-                    string n_rub;
-                    int int_pfe = 0;
-                    int_pfe = int_1d + int_3d + int_7d + int_14d + int_28d + int_otrod;
-
-                    string[,] pfe_array = new string[1, 6];
-                    pfe_array[0, 0] = "1D," + int_1d.ToString();
-                    pfe_array[0, 1] = "3D," + int_3d.ToString();
-                    pfe_array[0, 2] = "7D," + int_7d.ToString();
-                    pfe_array[0, 3] = "14D," + int_14d.ToString();
-                    pfe_array[0, 4] = "28D," + int_28d.ToString();
-                    pfe_array[0, 5] = "0D," + int_otrod.ToString();
-
-                    Char char_s = '|';
-                    string d_rub = txt_buscar_rppc.Text.Trim();
-                    String[] de_rub = d_rub.Trim().Split(char_s);
-                    n_rub = de_rub[0].Trim();
-
-                    if (int_rppc == 2)
-                    {
-                        int int_ddl;
-                        int int_estatusID = 0;
-                        int int_act = 0;
-                        foreach (GridViewRow row in gv_rppc.Rows)
+                        if (row.RowType == DataControlRowType.DataRow)
                         {
-                            if (row.RowType == DataControlRowType.DataRow)
+                            CheckBox chkRow = (row.Cells[0].FindControl("chk_rppc") as CheckBox);
+                            if (chkRow.Checked)
                             {
-                                CheckBox chkRow = (row.Cells[0].FindControl("chk_rppc") as CheckBox);
-                                if (chkRow.Checked)
-                                {
-                                    int_act = int_act + 1;
-                                }
-                                else
-                                {
-                                    row.BackColor = Color.White;
-                                }
+                                int_act = int_act + 1;
+                            }
+                            else
+                            {
+                                row.BackColor = Color.White;
                             }
                         }
-                        if (int_act == 0)
+                    }
+                    if (int_act == 0)
+                    {
+                        Mensaje("Favor de seleccionar una muestra.");
+                    }
+                    else
+                    {
+                        foreach (GridViewRow row_d in gv_rppc.Rows)
                         {
-                            Mensaje("Favor de seleccionar una muestra.");
-                        }
-                        else
-                        {
-                            foreach (GridViewRow row_d in gv_rppc.Rows)
+                            // int key = (int)GridView1.DataKeys[row.RowIndex].Value;
+                            if (row_d.RowType == DataControlRowType.DataRow)
                             {
-                                // int key = (int)GridView1.DataKeys[row.RowIndex].Value;
-                                if (row_d.RowType == DataControlRowType.DataRow)
-                                {
-                                    DropDownList dl = (DropDownList)row_d.FindControl("ddl_rppc_est");
+                                DropDownList dl = (DropDownList)row_d.FindControl("ddl_rppc_est");
 
-                                    int_ddl = int.Parse(dl.SelectedValue);
-                                    if (int_ddl == 1)
-                                    {
-                                        int_estatusID = 1;
-                                    }
-                                    else if (int_ddl == 2)
-                                    {
-                                        int_estatusID = 2;
-                                    }
+                                int_ddl = int.Parse(dl.SelectedValue);
+                                if (int_ddl == 1)
+                                {
+                                    int_estatusID = 1;
                                 }
-                                if (row_d.RowType == DataControlRowType.DataRow)
+                                else if (int_ddl == 2)
                                 {
-                                    CheckBox chkRow = (row_d.Cells[0].FindControl("chk_rppc") as CheckBox);
-                                    if (chkRow.Checked)
+                                    int_estatusID = 2;
+                                }
+                            }
+                            if (row_d.RowType == DataControlRowType.DataRow)
+                            {
+                                CheckBox chkRow = (row_d.Cells[0].FindControl("chk_rppc") as CheckBox);
+                                if (chkRow.Checked)
+                                {
+                                    string str_nm = row_d.Cells[1].Text;
+                                    Guid guid_frppc;
+                                    using (var m_clte = new dd_liecEntities())
                                     {
-                                        string str_nm = row_d.Cells[1].Text;
-                                        Guid guid_frppc;
-                                        using (var m_clte = new dd_liecEntities())
+                                        var i_clte = (from c in m_clte.inf_mrp_concreto
+                                                      where c.no_muesra == str_nm
+                                                      select c).FirstOrDefault();
+
+                                        guid_frppc = i_clte.id_mrp_concreto;
+
+                                        i_clte.id_est_concreto = int_estatusID;
+                                        i_clte.no_muesra = str_nomues_rppc;
+                                        i_clte.fecha_colado = fcolado_rrpc;
+                                        i_clte.fecha_recibe = fente_rrpc;
+                                        i_clte.entrega = entr_rppc;
+                                        i_clte.recibe = recib_rppc;
+                                        i_clte.presion = presi_rppc;
+                                        i_clte.id_tipo_especimen = int_tesp_rppc;
+                                        i_clte.id_tipo_concreto = int_tcont_rrp;
+                                        i_clte.id_sit_concreto = int_sit_rppc;
+                                        i_clte.procedecia = proce_rppc;
+                                        i_clte.elemento = elem_rppc;
+                                        i_clte.dosificacion = dosi_rppc;
+                                        i_clte.resistencia = resi_rppc;
+                                        i_clte.clase = int_clase;
+                                        i_clte.reva = dml_reva_rppc;
+                                        i_clte.tma = int_tma_rppc;
+                                        i_clte.olla = olla_rppc;
+                                        i_clte.remision = remi_rppc;
+                                        i_clte.sali_planta = dt_splan_rppc;
+                                        i_clte.llega_obra = dt_llobra_rppc;
+                                        i_clte.desca_ini = dt_desca_ini_rppc;
+                                        i_clte.desca_term = dt_desca_term_rppc;
+                                        i_clte.vol = dml_vol_rppc;
+                                        i_clte.revb = dl_revb_rppc;
+                                        i_clte.localiza = loca_rppc;
+
+                                        m_clte.SaveChanges();
+                                    }
+
+                                    //using (var m_conc_ec = new dd_liecEntities())
+                                    //{
+                                    //    var i_s = (from c in m_conc_ec.inf_conc_ec
+                                    //               where c.id_mrp_concreto == guid_frppc
+                                    //               select c).ToList();
+                                    //    if (i_s.Count != 0)
+                                    //    {
+                                    //        i_s.ForEach(c => m_conc_ec.inf_conc_ec.Remove(c));
+                                    //        m_conc_ec.SaveChanges();
+                                    //    }
+
+                                    //}
+
+                                    foreach (string n in pfe_array)
+                                    {
+                                        Char char_f = ',';
+                                        String[] de_pfe = n.ToString().Trim().Split(char_f);
+                                        string n_pfe = de_pfe[0].Trim();
+                                        int f_pfe = int.Parse(de_pfe[1]);
+                                        if (f_pfe == 0)
                                         {
-                                            var i_clte = (from c in m_clte.inf_mrp_concreto
-                                                          where c.no_muesra == str_nm
-                                                          select c).FirstOrDefault();
-
-                                            guid_frppc = i_clte.id_mrp_concreto;
-
-                                            i_clte.id_est_concreto = int_estatusID;
-                                            i_clte.no_muesra = str_nomues_rppc;
-                                            i_clte.fecha_colado = fcolado_rrpc;
-                                            i_clte.fecha_recibe = fente_rrpc;
-                                            i_clte.entrega = entr_rppc;
-                                            i_clte.recibe = recib_rppc;
-                                            i_clte.presion = presi_rppc;
-                                            i_clte.id_tipo_especimen = int_tesp_rppc;
-                                            i_clte.id_tipo_concreto = int_tcont_rrp;
-                                            i_clte.id_sit_concreto = int_sit_rppc;
-                                            i_clte.procedecia = proce_rppc;
-                                            i_clte.elemento = elem_rppc;
-                                            i_clte.dosificacion = dosi_rppc;
-                                            i_clte.resistencia = resi_rppc;
-                                            i_clte.clase = int_clase;
-                                            i_clte.reva = dml_reva_rppc;
-                                            i_clte.tma = int_tma_rppc;
-                                            i_clte.olla = olla_rppc;
-                                            i_clte.remision = remi_rppc;
-                                            i_clte.sali_planta = dt_splan_rppc;
-                                            i_clte.llega_obra = dt_llobra_rppc;
-                                            i_clte.desca_ini = dt_desca_ini_rppc;
-                                            i_clte.desca_term = dt_desca_term_rppc;
-                                            i_clte.vol = dml_vol_rppc;
-                                            i_clte.revb = dl_revb_rppc;
-                                            i_clte.localiza = loca_rppc;
-
-                                            m_clte.SaveChanges();
                                         }
-
-                                        //using (var m_conc_ec = new dd_liecEntities())
-                                        //{
-                                        //    var i_s = (from c in m_conc_ec.inf_conc_ec
-                                        //               where c.id_mrp_concreto == guid_frppc
-                                        //               select c).ToList();
-                                        //    if (i_s.Count != 0)
-                                        //    {
-                                        //        i_s.ForEach(c => m_conc_ec.inf_conc_ec.Remove(c));
-                                        //        m_conc_ec.SaveChanges();
-                                        //    }
-
-                                        //}
-
-                                        foreach (string n in pfe_array)
+                                        else
                                         {
-                                            Char char_f = ',';
-                                            String[] de_pfe = n.ToString().Trim().Split(char_f);
-                                            string n_pfe = de_pfe[0].Trim();
-                                            int f_pfe = int.Parse(de_pfe[1]);
-                                            if (f_pfe == 0)
+                                            int fcolm = 0;
+                                            if (n_pfe == "uno")
                                             {
+                                                fcolm = 1;
                                             }
-                                            else
+                                            else if (n_pfe == "tres")
                                             {
-                                                if (f_pfe == 2)
-                                                {
-                                                    for (int i = 0; i < f_pfe; i++)
-                                                    {
-                                                        using (var m_conc_ec = new dd_liecEntities())
-                                                        {
-                                                            var i_conc_ec = (from c in m_conc_ec.inf_conc_ec
-                                                                             where c.id_mrp_concreto == guid_frppc
-                                                                             select c).FirstOrDefault();
-                                                            i_conc_ec.dia_ensaye = n_pfe;
-                                                            i_conc_ec.num_muesra = 1;
-                                                            i_conc_ec.fecha_ensaye = fcolado_rrpc.AddDays(int.Parse(n_pfe.Replace("D", "")));
-                                                            m_conc_ec.SaveChanges();
-                                                        }
-                                                    }
-                                                }
-                                                else
+                                                fcolm = 3;
+                                            }
+                                            else if (n_pfe == "siete")
+                                            {
+                                                fcolm = 7;
+                                            }
+                                            else if (n_pfe == "catorce")
+                                            {
+                                                fcolm = 14;
+                                            }
+                                            else if (n_pfe == "vienteocho")
+                                            {
+                                                fcolm = 28;
+                                            }
+                                            else if (n_pfe == "cero")
+                                            {
+                                                fcolm = 0;
+                                            }
+
+                                            if (f_pfe == 2)
+                                            {
+                                                for (int i = 0; i < f_pfe; i++)
                                                 {
                                                     using (var m_conc_ec = new dd_liecEntities())
                                                     {
@@ -2258,130 +2283,167 @@ namespace wa_liec
                                                                          select c).FirstOrDefault();
                                                         i_conc_ec.dia_ensaye = n_pfe;
                                                         i_conc_ec.num_muesra = 1;
-                                                        i_conc_ec.fecha_ensaye = fcolado_rrpc.AddDays(int.Parse(n_pfe.Replace("D", "")));
+                                                        i_conc_ec.fecha_ensaye = fcolado_rrpc.AddDays(fcolm);
                                                         m_conc_ec.SaveChanges();
                                                     }
                                                 }
                                             }
-                                        }
-                                    }
-                                }
-                            }
-
-                            foreach (GridViewRow row in gv_rppc.Rows)
-                            {
-                            }
-
-                            limp_txt_rppc();
-                            gv_rppc.Visible = false;
-                            Mensaje("Datos de cliente-obra-muestra actualizados con éxito.");
-                        }
-                    }
-                    else
-                    {
-                        using (dd_liecEntities edm_nclte = new dd_liecEntities())
-                        {
-                            var i_co = (from c in edm_nclte.inf_clte_obras
-                                        where c.clave_obra == n_rub
-                                        select c).FirstOrDefault();
-                            int_co = i_co.id_clte_obras;
-
-                            var i_nclte = (from c in edm_nclte.inf_mrp_concreto
-                                           where c.no_muesra == str_nomues_rppc
-                                           select c).ToList();
-
-                            if (i_nclte.Count == 0)
-                            {
-                                using (var m_clte = new dd_liecEntities())
-                                {
-                                    var i_clte = new inf_mrp_concreto
-
-                                    {
-                                        id_mrp_concreto = gui_nrppc,
-                                        id_est_concreto = 1,
-                                        no_muesra = str_nomues_rppc,
-                                        fecha_colado = fcolado_rrpc,
-                                        fecha_recibe = fente_rrpc,
-                                        entrega = entr_rppc,
-                                        recibe = recib_rppc,
-                                        presion = presi_rppc,
-                                        id_tipo_especimen = int_tesp_rppc,
-                                        id_tipo_concreto = int_tcont_rrp,
-                                        id_sit_concreto = int_sit_rppc,
-                                        procedecia = proce_rppc,
-                                        elemento = elem_rppc,
-                                        dosificacion = dosi_rppc,
-                                        resistencia = resi_rppc,
-                                        clase = int_clase,
-                                        reva = dml_reva_rppc,
-                                        tma = int_tma_rppc,
-                                        olla = olla_rppc,
-                                        remision = remi_rppc,
-                                        sali_planta = dt_splan_rppc,
-                                        llega_obra = dt_llobra_rppc,
-                                        desca_ini = dt_desca_ini_rppc,
-                                        desca_term = dt_desca_term_rppc,
-                                        vol = dml_vol_rppc,
-                                        revb = dl_revb_rppc,
-                                        localiza = loca_rppc,
-                                        id_usuario = guis_usr_capt,
-                                        fecha_registro = DateTime.Now,
-                                        id_emp = guid_emp,
-                                        id_clte_obras = int_co
-                                    };
-
-                                    m_clte.inf_mrp_concreto.Add(i_clte);
-                                    m_clte.SaveChanges();
-                                }
-
-                                foreach (string n in pfe_array)
-                                {
-                                    Char char_f = ',';
-                                    String[] de_pfe = n.ToString().Trim().Split(char_f);
-                                    string n_pfe = de_pfe[0].Trim();
-                                    int f_pfe = int.Parse(de_pfe[1]);
-                                    if (f_pfe == 0)
-                                    {
-                                    }
-                                    else
-                                    {
-                                        if (f_pfe == 2)
-                                        {
-                                            for (int i = 0; i < f_pfe; i++)
+                                            else
                                             {
                                                 using (var m_conc_ec = new dd_liecEntities())
                                                 {
-                                                    var i_conc_ec = new inf_conc_ec
-
-                                                    {
-                                                        id_conc_ec = Guid.NewGuid(),
-                                                        id_mrp_concreto = gui_nrppc,
-                                                        dia_ensaye = n_pfe,
-                                                        num_muesra = 1,
-                                                        id_est_ensaye = 1,
-                                                        fecha_ensaye = fcolado_rrpc.AddDays(int.Parse(n_pfe.Replace("D", ""))),
-
-                                                        fecha_registro = DateTime.Now,
-                                                    };
-
-                                                    m_conc_ec.inf_conc_ec.Add(i_conc_ec);
+                                                    var i_conc_ec = (from c in m_conc_ec.inf_conc_ec
+                                                                     where c.id_mrp_concreto == guid_frppc
+                                                                     select c).FirstOrDefault();
+                                                    i_conc_ec.dia_ensaye = n_pfe;
+                                                    i_conc_ec.num_muesra = 1;
+                                                    i_conc_ec.fecha_ensaye = fcolado_rrpc.AddDays(fcolm);
                                                     m_conc_ec.SaveChanges();
                                                 }
                                             }
                                         }
+                                    }
+                                }
+                            }
+                        }
+
+                        foreach (GridViewRow row in gv_rppc.Rows)
+                        {
+                        }
+
+                        limp_txt_rppc();
+                        gv_rppc.Visible = false;
+                        Mensaje("Datos de cliente-obra-muestra actualizados con éxito.");
+                    }
+                }
+                else
+                {
+                    using (dd_liecEntities edm_nclte = new dd_liecEntities())
+                    {
+                        var i_co = (from c in edm_nclte.inf_clte_obras
+                                    where c.clave_obra == n_rub
+                                    select c).FirstOrDefault();
+                        int_co = i_co.id_clte_obras;
+
+                        var i_nclte = (from c in edm_nclte.inf_mrp_concreto
+                                       where c.no_muesra == str_nomues_rppc
+                                       select c).ToList();
+
+                        if (i_nclte.Count == 0)
+                        {
+                            using (var m_clte = new dd_liecEntities())
+                            {
+                                var i_clte = new inf_mrp_concreto
+
+                                {
+                                    id_mrp_concreto = gui_nrppc,
+                                    id_est_concreto = 1,
+                                    no_muesra = str_nomues_rppc,
+                                    fecha_colado = fcolado_rrpc,
+                                    fecha_recibe = fente_rrpc,
+                                    entrega = entr_rppc,
+                                    recibe = recib_rppc,
+                                    presion = presi_rppc,
+                                    id_tipo_especimen = int_tesp_rppc,
+                                    id_tipo_concreto = int_tcont_rrp,
+                                    id_sit_concreto = int_sit_rppc,
+                                    procedecia = proce_rppc,
+                                    elemento = elem_rppc,
+                                    dosificacion = dosi_rppc,
+                                    resistencia = resi_rppc,
+                                    clase = int_clase,
+                                    reva = dml_reva_rppc,
+                                    tma = int_tma_rppc,
+                                    olla = olla_rppc,
+                                    remision = remi_rppc,
+                                    sali_planta = dt_splan_rppc,
+                                    llega_obra = dt_llobra_rppc,
+                                    desca_ini = dt_desca_ini_rppc,
+                                    desca_term = dt_desca_term_rppc,
+                                    vol = dml_vol_rppc,
+                                    revb = dl_revb_rppc,
+                                    localiza = loca_rppc,
+                                    id_usuario = guis_usr_capt,
+                                    fecha_registro = DateTime.Now,
+                                    id_emp = guid_emp,
+                                    id_clte_obras = int_co
+                                };
+
+                                m_clte.inf_mrp_concreto.Add(i_clte);
+                                m_clte.SaveChanges();
+                            }
+
+                            foreach (string n in pfe_array)
+                            {
+                                Char char_f = ',';
+                                String[] de_pfe = n.ToString().Trim().Split(char_f);
+                                string n_pfe = de_pfe[0].Trim();
+                                int f_pfe = int.Parse(de_pfe[1]);
+                                if (f_pfe == 0)
+                                {
+                                }
+                                else
+                                {
+                                    int fcolm = 0;
+                                    if (n_pfe == "uno")
+                                    {
+                                        fcolm = 1;
+                                    }
+                                    else if (n_pfe == "tres")
+                                    {
+                                        fcolm = 3;
+                                    }
+                                    else if (n_pfe == "siete")
+                                    {
+                                        fcolm = 7;
+                                    }
+                                    else if (n_pfe == "catorce")
+                                    {
+                                        fcolm = 14;
+                                    }
+                                    else if (n_pfe == "vienteocho")
+                                    {
+                                        fcolm = 28;
+                                    }
+                                    else if (n_pfe == "cero")
+                                    {
+                                        fcolm = 0;
+                                    }
+                                    string str_cod_esp;
+                                    int int_c_e;
+                                    using (dd_liecEntities edm_rub = new dd_liecEntities())
+                                    {
+                                        var i_rub = (from c in edm_rub.inf_conc_ec
+                                                     where c.id_mrp_concreto == gui_nrppc
+                                                     select c).ToList();
+                                        int_c_e = i_rub.Count;
+                                        if (int_c_e == 0)
+                                        {
+                                            str_cod_esp = "ESP-" + string.Format("{0:000}", int_c_e + 1);
+                                        }
                                         else
                                         {
+                                            str_cod_esp = "ESP-" + string.Format("{0:000}", int_c_e + 1);
+                                        }
+                                    }
+                                    if (f_pfe == 2)
+                                    {
+
+                                        for (int i = 0; i < f_pfe; i++)
+                                        {
+                                            str_cod_esp = "ESP-" + string.Format("{0:000}", int_c_e + i + 1);
                                             using (var m_conc_ec = new dd_liecEntities())
                                             {
                                                 var i_conc_ec = new inf_conc_ec
 
                                                 {
                                                     id_conc_ec = Guid.NewGuid(),
+                                                    cod_esp = str_cod_esp,
                                                     id_mrp_concreto = gui_nrppc,
                                                     dia_ensaye = n_pfe,
-                                                    num_muesra = f_pfe,
+                                                    num_muesra = 1,
                                                     id_est_ensaye = 1,
-                                                    fecha_ensaye = fcolado_rrpc.AddDays(int.Parse(n_pfe.Replace("D", ""))),
+                                                    fecha_ensaye = fcolado_rrpc.AddDays(fcolm),
 
                                                     fecha_registro = DateTime.Now,
                                                 };
@@ -2391,30 +2453,53 @@ namespace wa_liec
                                             }
                                         }
                                     }
-                                }
+                                    else
+                                    {
+                                        using (var m_conc_ec = new dd_liecEntities())
+                                        {
+                                            var i_conc_ec = new inf_conc_ec
 
-                                limp_txt_rppc();
-                                gv_rppc.Visible = false;
-                                Mensaje("Datos de cliente-obra-muestra agregados con éxito.");
+                                            {
+                                                id_conc_ec = Guid.NewGuid(),
+                                                cod_esp = str_cod_esp,
+                                                id_mrp_concreto = gui_nrppc,
+                                                dia_ensaye = n_pfe,
+                                                num_muesra = f_pfe,
+                                                id_est_ensaye = 1,
+                                                fecha_ensaye = fcolado_rrpc.AddDays(fcolm),
+
+                                                fecha_registro = DateTime.Now,
+                                            };
+
+                                            m_conc_ec.inf_conc_ec.Add(i_conc_ec);
+                                            m_conc_ec.SaveChanges();
+                                        }
+                                    }
+                                }
                             }
-                            else
-                            {
-                                limp_txt_rppc();
-                                gv_rppc.Visible = false;
-                                Mensaje("Obra existe en la base de datos, favor de revisar.");
-                            }
+
+                            limp_txt_rppc();
+                            gv_rppc.Visible = false;
+                            Mensaje("Datos de cliente-obra-muestra agregados con éxito.");
+                        }
+                        else
+                        {
+                            limp_txt_rppc();
+                            gv_rppc.Visible = false;
+                            Mensaje("Obra existe en la base de datos, favor de revisar.");
                         }
                     }
                 }
-                catch
-                {
-                    int_rppc = 0;
-                    limp_txt_rppc();
+                //}
+                //catch
+                //{
+                //    int_rppc = 0;
+                //    limp_txt_rppc();
 
-                    i_agregar_rppc.Attributes["style"] = "color:white";
-                    i_editar_rppc.Attributes["style"] = "color:white";
-                    Mensaje("Favor de seleccionar una muestra");
-                }
+                //    i_agregar_rppc.Attributes["style"] = "color:white";
+                //    i_editar_rppc.Attributes["style"] = "color:white";
+                //    Mensaje("Favor de seleccionar una muestra");
+                //}
             }
         }
 
@@ -2467,7 +2552,7 @@ namespace wa_liec
             int_ensa_comp = 1;
             div_ensa_comp.Visible = true;
             div_rpc.Visible = false;
-            i_agregar_ensa_comp.Attributes["style"] = "color:#E34C0E";
+            
             i_editar_ensa_comp.Attributes["style"] = "color:white";
 
             rfv_buscar_ensa_comp.Enabled = true;
@@ -2684,6 +2769,52 @@ namespace wa_liec
 
         protected void chk_ensa_comp_CheckedChanged(object sender, EventArgs e)
         {
+            Guid guid_ensaye;
+            int int_estatusID = 0;
+            foreach (GridViewRow row in gv_ensa_comp.Rows)
+            {
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+                    CheckBox chkRow = (row.Cells[0].FindControl("chk_ensa_comp") as CheckBox);
+                    if (chkRow.Checked)
+                    {
+                        int_estatusID = int_estatusID + 1;
+                        row.BackColor = Color.FromArgb(227, 76, 14);
+                        str_clte = row.Cells[1].Text;
+
+                        for (int i = 3; i < 8; i++)
+                        {
+                            int_dem = int.Parse(row.Cells[i].Text);
+                            nc = gv_ensa_comp.Columns[i].HeaderText;
+                            if (int_dem != 0)
+                            {
+
+
+                                break;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        row.BackColor = Color.White;
+                    }
+                }
+            }
+            if (int_estatusID == 0)
+            {
+                limp_txt_clte();
+                div_eca.Visible = false;
+            }
+            if (int_dem == 1)
+            {
+                div_eca.Visible = true;
+            }
+            if (int_dem == 2)
+            {
+                div_eca.Visible = false;
+            }
+
         }
 
         protected void btn_guardar_ensa_comp_Click(object sender, EventArgs e)
@@ -2739,6 +2870,9 @@ namespace wa_liec
                             {
                                 int_select = int_select + 1;
                                 num_muestra = row.Cells[1].Text;
+
+                                
+                                
                             }
                         }
                     }
