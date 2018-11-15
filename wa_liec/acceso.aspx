@@ -38,15 +38,14 @@
                                                 <div class="input-group border-0">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1">
-                                                           <i class="fas fa-user-lock"></i>
+                                                            <i class="fas fa-user-lock"></i>
                                                         </span>
                                                     </div>
                                                     <asp:TextBox CssClass="form-control" ID="txt_usuario" runat="server" TabIndex="1" placeholder="Usuario"></asp:TextBox>
-                                                    
                                                 </div>
                                                 <div class="text-right">
-                                                        <asp:RequiredFieldValidator ID="rfv_usuario" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_usuario" ></asp:RequiredFieldValidator>
-                                                    </div>
+                                                    <asp:RequiredFieldValidator ID="rfv_usuario" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_usuario"></asp:RequiredFieldValidator>
+                                                </div>
                                             </div>
                                             <div class="form-group mb-2">
                                                 <div class="input-group border-0">
@@ -56,14 +55,12 @@
                                                         </span>
                                                     </div>
                                                     <asp:TextBox CssClass="form-control" ID="txt_clave" runat="server" TabIndex="2" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
-                                                    
                                                 </div>
                                                 <div class="text-right">
-                                                        <asp:RequiredFieldValidator ID="rfv_clave" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_clave" ></asp:RequiredFieldValidator>
-                                                    </div>
+                                                    <asp:RequiredFieldValidator ID="rfv_clave" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_clave"></asp:RequiredFieldValidator>
+                                                </div>
                                             </div>
                                             <asp:Button CssClass="btn mt-4 mb-3 btn-light rounded btn-lg text-primary" ID="btn_acceso" runat="server" Text="Iniciar sesión" TabIndex="3" OnClick="btn_acceso_Click" />
-
                                         </form>
                                     </div>
                                 </div>
@@ -79,14 +76,14 @@
                     <div class="col-lg-4 col-6 p-3">
                         <h5><b>Dirección</b></h5>
                         <ul class="list-unstyled">
-                            <li><a href="https://www.google.com/maps/place/LIEC,+S.A.+de+C.V./@19.2222902,-98.9933232,18z/data=!4m5!3m4!1s0x0:0x4730600a5d3c95a8!8m2!3d19.2221669!4d-98.9936292?hl=es-ES" class="text-white"><i class="fas fa-map-marker-alt"></i> Cda. Morelos 6, Tecaxtitla, 12100 San Antonio Tecómitl, CDMX</a> </li>
+                            <li><a href="https://www.google.com/maps/place/LIEC,+S.A.+de+C.V./@19.2222902,-98.9933232,18z/data=!4m5!3m4!1s0x0:0x4730600a5d3c95a8!8m2!3d19.2221669!4d-98.9936292?hl=es-ES" class="text-white"><i class="fas fa-map-marker-alt"></i>Cda. Morelos 6, Tecaxtitla, 12100 San Antonio Tecómitl, CDMX</a> </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-6 p-3 text-white">
                         <h5><b>Contacto</b></h5>
                         <ul class="list-unstyled">
-                            <li class="text-white"><a href="mailto:contacto@liec.com.mx" class="text-white"><i class="far fa-envelope"></i> contacto@liec.com.mx</a> </li>
-                            <li class="text-white"><a href="tel:015521614772" class="text-white"><i class="fas fa-phone"></i> 01 (55) 21614772</a> </li>
+                            <li class="text-white"><a href="mailto:contacto@liec.com.mx" class="text-white"><i class="far fa-envelope"></i>contacto@liec.com.mx</a> </li>
+                            <li class="text-white"><a href="tel:015521614772" class="text-white"><i class="fas fa-phone"></i>01 (55) 21614772</a> </li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-4 p-3">
@@ -137,5 +134,4 @@
         </div>
     </form>
 </body>
-
 </html>

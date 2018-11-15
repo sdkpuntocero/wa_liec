@@ -121,6 +121,15 @@ namespace wa_liec {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl i_emp_oper;
         
         /// <summary>
+        /// Control up_body.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel up_body;
+        
+        /// <summary>
         /// Control up_clte_menu.
         /// </summary>
         /// <remarks>
@@ -733,6 +742,15 @@ namespace wa_liec {
         protected global::System.Web.UI.WebControls.TextBox txt_buscar_clte_obras;
         
         /// <summary>
+        /// Control btn_buscar_clte_obras.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_buscar_clte_obras;
+        
+        /// <summary>
         /// Control ace_buscar_clte_obras.
         /// </summary>
         /// <remarks>
@@ -1028,6 +1046,15 @@ namespace wa_liec {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_buscar_rppc;
+        
+        /// <summary>
+        /// Control btn_buscar_rppc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_buscar_rppc;
         
         /// <summary>
         /// Control ace_buscar_rppc.
@@ -2092,6 +2119,15 @@ namespace wa_liec {
         protected global::System.Web.UI.WebControls.TextBox txt_cantotro_rppc;
         
         /// <summary>
+        /// Control txt_cantesp_rppc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_cantesp_rppc;
+        
+        /// <summary>
         /// Control txt_fotro_rppc.
         /// </summary>
         /// <remarks>
@@ -2101,13 +2137,22 @@ namespace wa_liec {
         protected global::System.Web.UI.WebControls.TextBox txt_fotro_rppc;
         
         /// <summary>
-        /// Control rfv_ftro_rppc.
+        /// Control rfv_cantotro_rppc.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ftro_rppc;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_cantotro_rppc;
+        
+        /// <summary>
+        /// Control rfv_cantesp_rppc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_cantesp_rppc;
         
         /// <summary>
         /// Control rvfotro_rppc.
@@ -2234,6 +2279,15 @@ namespace wa_liec {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gv_ensa_comp;
+        
+        /// <summary>
+        /// Control gv_espec.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_espec;
         
         /// <summary>
         /// Control div_eca.
@@ -2684,42 +2738,6 @@ namespace wa_liec {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_guardar_eca;
-        
-        /// <summary>
-        /// Control UpdatePanel1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
-        /// Control UpdatePanel3.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-        
-        /// <summary>
-        /// Control UpdatePanel4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel4;
-        
-        /// <summary>
-        /// Control UpdatePanel5.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel5;
         
         /// <summary>
         /// Control upModal.

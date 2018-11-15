@@ -116,7 +116,7 @@ namespace wa_liec
                 using (dd_liecEntities m_rub = new dd_liecEntities())
                 {
                     var i_rub = (from i_u in m_rub.inf_rubro
-                                 where d_rub.Contains(i_u.etiqueta_rubro)
+                                 where i_u.etiqueta_rubro.Contains(d_rub)
                                  select new
                                  {
                                      i_u.etiqueta_rubro,
@@ -130,13 +130,15 @@ namespace wa_liec
                     }
                 }
             }
-            else if (int_pnlID == 3)
+            else if (int_pnlID == 2)
             {
-                string f_rub = prefixText.ToUpper();
+                string f_desccajaf = prefixText.ToUpper();
+
                 using (dd_liecEntities m_rub = new dd_liecEntities())
                 {
                     var i_rub = (from i_u in m_rub.inf_rubro
-                                 where i_u.etiqueta_rubro.Contains(d_rub)  
+                                 where i_u.etiqueta_rubro.Contains(d_rub)
+
                                  select new
                                  {
                                      i_u.etiqueta_rubro,
@@ -149,21 +151,26 @@ namespace wa_liec
                         columnData.Add(ff_rub.etiqueta_rubro + " | " + ff_rub.rubro + " | " + ff_rub.codigo_rubro);
                     }
                 }
-                //using (SqlConnection connection = new SqlConnection(cn.cn_SQL))
-                //{
-                //    connection.Open();
-                //    string query = "SELECT etiqueta_rubro,rubro,codigo_rubro FROM [dd_liec].[dbo].[inf_rubro]  WHERE etiqueta_rubro LIKE '" + f_rub + "%' ";
-                //    using (SqlCommand command = new SqlCommand(query, connection))
-                //    {
-                //        using (SqlDataReader reader = command.ExecuteReader())
-                //        {
-                //            while (reader.Read())
-                //            {
-                //                columnData.Add(reader.GetString(0) + " | " + reader.GetString(1).ToUpper() + " | " + reader.GetString(2).ToUpper());
-                //            }
-                //        }
-                //    }
-                //}
+            }
+            else if (int_pnlID == 3)
+            {
+                string f_rub = prefixText.ToUpper();
+
+                using (SqlConnection connection = new SqlConnection(cn.cn_SQL))
+                {
+                    connection.Open();
+                    string query = "SELECT  [desc_gasto],[codigo_gasto]  FROM [dd_liec].[dbo].[inf_gastos]  WHERE [desc_gasto] LIKE '" + f_rub + "%' ";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                columnData.Add(reader.GetString(0) + " | " + reader.GetString(1).ToUpper());
+                            }
+                        }
+                    }
+                }
             }
             else if (int_pnlID == 4)
             {
@@ -172,7 +179,7 @@ namespace wa_liec
                 using (SqlConnection connection = new SqlConnection(cn.cn_SQL))
                 {
                     connection.Open();
-                    string query = "SELECT  [desc_gasto],[codigo_gasto]  FROM [dd_liec].[dbo].[inf_gastos]  WHERE [desc_gasto] LIKE '" + f_rub + "%' ";
+                    string query = "SELECT  [desc_caja],[codigo_caja]  FROM [dd_liec].[dbo].[inf_caja]  WHERE [desc_caja] LIKE '" + f_rub + "%' ";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -285,7 +292,7 @@ namespace wa_liec
         protected void lkb_cont_rub_Click(object sender, EventArgs e)
         {
             acc_rubro = 0;
-            int_pnlID = 3;
+            int_pnlID = 2;
 
             pnl_gasto.Visible = false;
             up_gasto.Update();
@@ -516,6 +523,8 @@ namespace wa_liec
                                     i_nrubrom.monto_extra = d_mont_ext;
                                     i_nrubrom.minimo = min_rub;
                                     i_nrubrom.maximo = max_rub;
+                                    i_nrubrom.min = 0;
+                                    i_nrubrom.max = 0;
 
                                     m_nrubro.SaveChanges();
                                 }
@@ -532,6 +541,8 @@ namespace wa_liec
                                         minimo = min_rub,
                                         maximo = max_rub,
                                         monto_extra = 0,
+                                        min = 0,
+                                        max = 0,
                                         fecha_registro = DateTime.Now,
                                         id_rubro = guid_idrubro
                                     };
@@ -625,6 +636,8 @@ namespace wa_liec
                                         monto_fijo = d_mont_fijo,
                                         minimo = min_rub,
                                         maximo = max_rub,
+                                        min = 0,
+                                        max = 0,
                                         monto_extra = 0,
                                         fecha_registro = DateTime.Now,
                                         id_rubro = guid_nrubro
@@ -663,6 +676,8 @@ namespace wa_liec
                                         monto_fijo = d_mont_fijo,
                                         minimo = min_rub,
                                         maximo = max_rub,
+                                        min = 0,
+                                        max = 0,
                                         monto_extra = 0,
                                         fecha_registro = DateTime.Now,
                                         id_rubro = guid_nrubro
@@ -747,6 +762,7 @@ namespace wa_liec
                         var inf_user = (from i_r in data_user.inf_rubro
                                         join t_r in data_user.fact_tipo_rubro on i_r.id_tipo_rubro equals t_r.id_tipo_rubro
                                         where i_r.id_rubro == guid_fclte
+
                                         select new
                                         {
                                             i_r.codigo_rubro,
@@ -849,25 +865,52 @@ namespace wa_liec
                                              r.rubro,
                                          }).FirstOrDefault();
 
-                            var f_rubm = (from r in edm_rub.inf_rubro_mes
-                                          where r.id_rubro == guid_rub
-                                          where r.id_est_rubm == 1
-                                          select new
-                                          {
-                                              r.monto_fijo,
-                                              r.monto_extra,
-                                              r.minimo,
-                                              r.maximo
-                                          }).FirstOrDefault();
+                            try
+                            {
+                                var f_rubm = (from r in edm_rub.inf_rubro_mes
+                                              where r.id_rubro == guid_rub
+                                              where r.id_est_rubm == 1
+                                              where r.fecha_registro.Value.Month == DateTime.Now.Month - 1
+                                              select new
+                                              {
+                                                  r.monto_fijo,
+                                                  r.monto_extra,
+                                                  r.minimo,
+                                                  r.maximo
+                                              }).FirstOrDefault();
 
-                            ddl_tipo_rubro.SelectedValue = f_rub.id_tipo_rubro.ToString();
-                            eti_rub.Text = f_rub.etiqueta_rubro;
-                            desc_rubro.Text = f_rub.rubro;
-                            decimal moneyvalue = decimal.Parse(f_rubm.monto_fijo.ToString());
-                            string monto_rub = String.Format("{0:C}", moneyvalue);
-                            mont_rubro.Text = monto_rub;
-                            minimo_rubro.Text = f_rubm.minimo.ToString();
-                            maximo_rubro.Text = f_rubm.maximo.ToString();
+                                ddl_tipo_rubro.SelectedValue = f_rub.id_tipo_rubro.ToString();
+                                eti_rub.Text = f_rub.etiqueta_rubro;
+                                desc_rubro.Text = f_rub.rubro;
+                                decimal moneyvalue = decimal.Parse(f_rubm.monto_fijo.ToString());
+                                string monto_rub = String.Format("{0:C}", moneyvalue);
+                                mont_rubro.Text = monto_rub;
+                                minimo_rubro.Text = f_rubm.minimo.ToString();
+                                maximo_rubro.Text = f_rubm.maximo.ToString();
+                            }
+                            catch
+                            {
+                                var f_rubm = (from r in edm_rub.inf_rubro_mes
+                                              where r.id_rubro == guid_rub
+                                              where r.id_est_rubm == 1
+                                              where r.fecha_registro.Value.Month == DateTime.Now.Month
+                                              select new
+                                              {
+                                                  r.monto_fijo,
+                                                  r.monto_extra,
+                                                  r.minimo,
+                                                  r.maximo
+                                              }).FirstOrDefault();
+
+                                ddl_tipo_rubro.SelectedValue = f_rub.id_tipo_rubro.ToString();
+                                eti_rub.Text = f_rub.etiqueta_rubro;
+                                desc_rubro.Text = f_rub.rubro;
+                                decimal moneyvalue = decimal.Parse(f_rubm.monto_fijo.ToString());
+                                string monto_rub = String.Format("{0:C}", moneyvalue);
+                                mont_rubro.Text = monto_rub;
+                                minimo_rubro.Text = f_rubm.minimo.ToString();
+                                maximo_rubro.Text = f_rubm.maximo.ToString();
+                            }
                         }
                     }
                     else
@@ -998,7 +1041,7 @@ namespace wa_liec
         protected void lkb_cont_gast_Click(object sender, EventArgs e)
         {
             acc_gasto = 0;
-            int_pnlID = 4;
+            int_pnlID = 3;
 
             pnl_rubro.Visible = false;
             up_rubro.Update();
@@ -1038,7 +1081,7 @@ namespace wa_liec
 
         protected void btn_buscar_gasto_Click(object sender, EventArgs e)
         {
-            string str_rub = txt_buscar_rub.Text.ToUpper().Trim();
+            string str_rub = txt_buscar_gasto.Text.ToUpper().Trim();
 
             if (str_rub == "TODO")
             {
@@ -1180,6 +1223,100 @@ namespace wa_liec
 
         protected void gv_gasto_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            gv_gasto.PageIndex = e.NewPageIndex;
+
+            string str_rub = txt_buscar_gasto.Text.ToUpper().Trim();
+
+            if (str_rub == "TODO")
+            {
+                using (dd_liecEntities data_user = new dd_liecEntities())
+                {
+                    var inf_user = (from i_g in data_user.inf_gastos
+                                    join t_r in data_user.fact_tipo_rubro on i_g.id_tipo_rubro equals t_r.id_tipo_rubro
+                                    join i_r in data_user.inf_rubro on i_g.id_rubro equals i_r.id_rubro
+                                    select new
+                                    {
+                                        i_g.codigo_gasto,
+                                        t_r.tipo_rubro,
+                                        i_r.etiqueta_rubro,
+                                        i_g.desc_gasto,
+                                        i_g.fecha_registro
+                                    }).OrderBy(x => x.codigo_gasto).ToList();
+
+                    if (inf_user.Count == 0)
+                    {
+                        gv_gasto.DataSource = inf_user;
+                        gv_gasto.DataBind();
+                        gv_gasto.Visible = true;
+
+                        Mensaje("Rubro no encontrado.");
+                    }
+                    else
+                    {
+                        gv_gasto.DataSource = inf_user;
+                        gv_gasto.DataBind();
+                        gv_gasto.Visible = true;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    string n_rub;
+                    Guid guid_fclte;
+                    Char char_s = '|';
+                    string d_rub = txt_buscar_gasto.Text.Trim();
+                    String[] de_rub = d_rub.Trim().Split(char_s);
+
+                    n_rub = de_rub[1].Trim();
+
+                    using (dd_liecEntities edm_nclte = new dd_liecEntities())
+                    {
+                        var i_nclte = (from c in edm_nclte.inf_gastos
+                                       where c.codigo_gasto == n_rub
+                                       select c).FirstOrDefault();
+
+                        guid_fclte = i_nclte.id_gasto;
+                    }
+
+                    using (dd_liecEntities data_user = new dd_liecEntities())
+                    {
+                        var inf_user = (from i_g in data_user.inf_gastos
+                                        join t_r in data_user.fact_tipo_rubro on i_g.id_tipo_rubro equals t_r.id_tipo_rubro
+                                        join i_r in data_user.inf_rubro on i_g.id_rubro equals i_r.id_rubro
+                                        where i_g.id_gasto == guid_fclte
+                                        select new
+                                        {
+                                            i_g.codigo_gasto,
+                                            t_r.tipo_rubro,
+                                            i_r.etiqueta_rubro,
+                                            i_g.desc_gasto,
+                                            i_g.fecha_registro
+                                        }).OrderBy(x => x.codigo_gasto).ToList();
+
+                        if (inf_user.Count == 0)
+                        {
+                            gv_gasto.DataSource = inf_user;
+                            gv_gasto.DataBind();
+                            gv_gasto.Visible = true;
+
+                            Mensaje("Rubro no encontrado.");
+                        }
+                        else
+                        {
+                            gv_gasto.DataSource = inf_user;
+                            gv_gasto.DataBind();
+                            gv_gasto.Visible = true;
+                        }
+                    }
+                }
+                catch
+                {
+                    limpia_txt_gasto();
+                    Mensaje("Rubro no encontrado.");
+                }
+            }
         }
 
         protected void gv_gasto_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -1283,6 +1420,7 @@ namespace wa_liec
                             where i_g.id_rubro == guid_r
                             where i_g.id_est_rubm == 1
                             select i_g).FirstOrDefault();
+
                 monto_rr = double.Parse(i_rr.monto_fijo.ToString());
                 monto_r = string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(monto_rr) * 100.0) / 100.0)); ;
 
@@ -1692,7 +1830,7 @@ namespace wa_liec
         protected void lkb_cont_caja_Click(object sender, EventArgs e)
         {
             acc_caja = 0;
-            int_pnlID = 5;
+            int_pnlID = 4;
 
             pnl_rubro.Visible = false;
             up_rubro.Update();
@@ -1733,7 +1871,152 @@ namespace wa_liec
 
         protected void btn_buscar_caja_Click(object sender, EventArgs e)
         {
-            string str_rub = txt_buscar_rub.Text.ToUpper().Trim();
+            string str_rub = txt_buscar_caja.Text.ToUpper().Trim();
+
+            if (str_rub == "TODO")
+            {
+                using (dd_liecEntities data_user = new dd_liecEntities())
+                {
+                    var inf_user = (from i_g in data_user.inf_caja
+                                    join t_r in data_user.fact_tipo_rubro on i_g.id_tipo_rubro equals t_r.id_tipo_rubro
+                                    join i_r in data_user.inf_rubro on i_g.id_rubro equals i_r.id_rubro
+                                    select new
+                                    {
+                                        i_g.codigo_caja,
+                                        t_r.tipo_rubro,
+                                        i_r.etiqueta_rubro,
+                                        i_g.desc_caja,
+                                        i_g.fecha_registro
+                                    }).OrderBy(x => x.codigo_caja).ToList();
+
+                    if (inf_user.Count == 0)
+                    {
+                        gv_caja.DataSource = inf_user;
+                        gv_caja.DataBind();
+                        gv_caja.Visible = true;
+
+                        Mensaje("Rubro no encontrado.");
+                    }
+                    else
+                    {
+                        gv_caja.DataSource = inf_user;
+                        gv_caja.DataBind();
+                        gv_caja.Visible = true;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    string n_rub;
+                    Guid guid_fclte;
+                    Char char_s = '|';
+                    string d_rub = txt_buscar_caja.Text.Trim();
+                    String[] de_rub = d_rub.Trim().Split(char_s);
+
+                    n_rub = de_rub[1].Trim();
+
+                    using (dd_liecEntities edm_nclte = new dd_liecEntities())
+                    {
+                        var i_nclte = (from c in edm_nclte.inf_caja
+                                       where c.codigo_caja == n_rub
+                                       select c).FirstOrDefault();
+
+                        guid_fclte = i_nclte.id_caja;
+                    }
+
+                    using (dd_liecEntities data_user = new dd_liecEntities())
+                    {
+                        var inf_user = (from i_g in data_user.inf_caja
+                                        join t_r in data_user.fact_tipo_rubro on i_g.id_tipo_rubro equals t_r.id_tipo_rubro
+                                        join i_r in data_user.inf_rubro on i_g.id_rubro equals i_r.id_rubro
+                                        where i_g.id_caja == guid_fclte
+
+                                        select new
+                                        {
+                                            i_g.codigo_caja,
+                                            t_r.tipo_rubro,
+                                            i_r.etiqueta_rubro,
+                                            i_g.desc_caja,
+                                            i_g.fecha_registro
+                                        }).OrderBy(x => x.codigo_caja).ToList();
+
+                        if (inf_user.Count == 0)
+                        {
+                            gv_caja.DataSource = inf_user;
+                            gv_caja.DataBind();
+                            gv_caja.Visible = true;
+
+                            Mensaje("Rubro no encontrado.");
+                        }
+                        else
+                        {
+                            gv_caja.DataSource = inf_user;
+                            gv_caja.DataBind();
+                            gv_caja.Visible = true;
+                        }
+                    }
+                }
+                catch
+                {
+                    limpia_txt_caja();
+                    Mensaje("Rubro no encontrado.");
+                }
+            }
+        }
+
+        protected void btn_agr_caja_Click(object sender, EventArgs e)
+        {
+            acc_caja = 1;
+
+            div_busc_rub.Visible = false;
+
+            gv_caja.Visible = false;
+
+            monto_extra.Enabled = false;
+
+            limpia_txt_caja();
+
+            i_agr_caja.Attributes["style"] = "color:#E34C0E";
+            i_edit_caja.Attributes["style"] = "color:white";
+
+            rfv_eti_caja.Enabled = true;
+            rfv_desc_caja.Enabled = true;
+            rfv_tipo_caja.Enabled = true;
+            rfv_mont_caja.Enabled = true;
+        }
+
+        protected void btn_edit_caja_Click(object sender, EventArgs e)
+        {
+            acc_caja = 2;
+
+            div_busc_caja.Visible = true;
+            rfv_buscar_caja.Enabled = true;
+
+            monto_extra.Enabled = false;
+
+            limpia_txt_caja();
+
+            i_agr_caja.Attributes["style"] = "color:white";
+            i_edit_caja.Attributes["style"] = "color:#E34C0E";
+        }
+
+        protected void chkb_des_caja_CheckedChanged(object sender, EventArgs e)
+        {
+            acc_caja = 0;
+            rfv_eti_caja.Enabled = false;
+            rfv_desc_caja.Enabled = false;
+            rfv_tipo_caja.Enabled = false;
+            rfv_mont_caja.Enabled = false;
+
+            rfv_buscar_caja.Enabled = false;
+        }
+
+        protected void gv_caja_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gv_caja.PageIndex = e.NewPageIndex;
+            string str_rub = txt_buscar_caja.Text.ToUpper().Trim();
 
             if (str_rub == "TODO")
             {
@@ -1825,56 +2108,6 @@ namespace wa_liec
                     Mensaje("Rubro no encontrado.");
                 }
             }
-        }
-
-        protected void btn_agr_caja_Click(object sender, EventArgs e)
-        {
-            acc_caja = 1;
-
-            div_busc_rub.Visible = false;
-
-            gv_caja.Visible = false;
-
-            monto_extra.Enabled = false;
-
-            limpia_txt_caja();
-
-            i_agr_caja.Attributes["style"] = "color:#E34C0E";
-            i_edit_caja.Attributes["style"] = "color:white";
-
-            rfv_eti_caja.Enabled = true;
-            rfv_desc_caja.Enabled = true;
-            rfv_tipo_caja.Enabled = true;
-            rfv_mont_caja.Enabled = true;
-        }
-
-        protected void btn_edit_caja_Click(object sender, EventArgs e)
-        {
-            acc_caja = 2;
-
-            div_busc_caja.Visible = true;
-            rfv_buscar_caja.Enabled = true;
-            monto_extra.Enabled = false;
-
-            limpia_txt_caja();
-
-            i_agr_caja.Attributes["style"] = "color:white";
-            i_edit_caja.Attributes["style"] = "color:#E34C0E";
-        }
-
-        protected void chkb_des_caja_CheckedChanged(object sender, EventArgs e)
-        {
-            acc_caja = 0;
-            rfv_eti_caja.Enabled = false;
-            rfv_desc_caja.Enabled = false;
-            rfv_tipo_caja.Enabled = false;
-            rfv_mont_caja.Enabled = false;
-
-            rfv_buscar_caja.Enabled = false;
-        }
-
-        protected void gv_caja_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
         }
 
         protected void gv_caja_RowDataBound(object sender, GridViewRowEventArgs e)

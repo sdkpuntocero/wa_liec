@@ -16,8 +16,9 @@ namespace wa_liec
     {
         public System.Guid id_conc_ec { get; set; }
         public string cod_esp { get; set; }
-        public string dia_ensaye { get; set; }
-        public Nullable<int> num_muesra { get; set; }
+        public Nullable<int> dia_ensaye { get; set; }
+        public Nullable<int> numdia_ensaye { get; set; }
+        public Nullable<int> num_muestra { get; set; }
         public Nullable<System.DateTime> fecha_ensaye { get; set; }
         public int id_est_ensaye { get; set; }
         public Nullable<int> cde { get; set; }
@@ -28,7 +29,7 @@ namespace wa_liec
         public Nullable<decimal> altura_b { get; set; }
         public Nullable<decimal> lados_a { get; set; }
         public Nullable<decimal> lados_b { get; set; }
-        public Nullable<int> directo_a { get; set; }
+        public string directo_a { get; set; }
         public string intensidad_a { get; set; }
         public Nullable<decimal> presion_a { get; set; }
         public string tipofalla_a { get; set; }

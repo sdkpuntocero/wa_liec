@@ -1,11 +1,14 @@
-﻿
+﻿.portada {
+
+    background: url("../img/edificios.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 
 input.input-box, textarea {
     color: #104D8d;
     background-color: lightgray;
 }
-
-
 
 
 .fuente_css01 {
@@ -21,14 +24,18 @@ input.input-box, textarea {
     color: #E34C0E;
 }
 
-
+.div_bottom {
+    border-bottom-color:  #000000;
+}
 
 .fuente03 {
 color:white;
 
 }
 
-
+.hideGridColumn {
+    display: none;
+}
 
 .encabezado001 {
     background-color: #104D8d;

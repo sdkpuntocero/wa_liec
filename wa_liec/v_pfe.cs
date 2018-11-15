@@ -25,7 +25,7 @@ namespace wa_liec
         public int id_tipo_especimen { get; set; }
         public int id_tipo_concreto { get; set; }
         public int id_sit_concreto { get; set; }
-        public string dia_ensaye { get; set; }
+        public Nullable<int> dia_ensaye { get; set; }
         public Nullable<int> n_m { get; set; }
         public Nullable<System.DateTime> fecha_ensaye { get; set; }
         public string procedecia { get; set; }

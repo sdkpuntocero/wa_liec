@@ -65,7 +65,10 @@ namespace wa_liec
         public virtual DbSet<inf_rubro_mes> inf_rubro_mes { get; set; }
         public virtual DbSet<inf_sepomex> inf_sepomex { get; set; }
         public virtual DbSet<inf_usuarios> inf_usuarios { get; set; }
+        public virtual DbSet<dd_gastos> dd_gastos { get; set; }
+        public virtual DbSet<dd_rmeses> dd_rmeses { get; set; }
         public virtual DbSet<v_pfe> v_pfe { get; set; }
+        public virtual DbSet<v_rpt_conc> v_rpt_conc { get; set; }
     
         [DbFunction("dd_liecEntities", "tbl_pfe")]
         public virtual IQueryable<tbl_pfe_Result> tbl_pfe()

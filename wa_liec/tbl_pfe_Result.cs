@@ -13,13 +13,14 @@ namespace wa_liec
     
     public partial class tbl_pfe_Result
     {
+        public System.Guid id_mrp_concreto { get; set; }
         public string no_muesra { get; set; }
         public Nullable<System.DateTime> fecha_colado { get; set; }
-        public Nullable<int> uno { get; set; }
-        public Nullable<int> tres { get; set; }
-        public Nullable<int> siete { get; set; }
-        public Nullable<int> catorce { get; set; }
-        public Nullable<int> vienteocho { get; set; }
-        public Nullable<int> cero { get; set; }
+        public Nullable<int> C1 { get; set; }
+        public Nullable<int> C3 { get; set; }
+        public Nullable<int> C7 { get; set; }
+        public Nullable<int> C14 { get; set; }
+        public Nullable<int> C28 { get; set; }
+        public Nullable<int> C0 { get; set; }
     }
 }

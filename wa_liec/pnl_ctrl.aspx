@@ -2,26 +2,25 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-mx">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-    <!-- Bootstrap -->
 
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/fontawesome/all.css" rel="stylesheet" />
+
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+
     <link href="styles/estilos_liec.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
     <script src="Scripts/jquery-3.3.1.min.js"></script>
-    <script src="Scripts/dist/jquery.maskMoney.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
 
     <link rel="shortcut icon" href="img/ico_liec.png" type="image/png" />
+
     <title>/ PANEL DE CONTROL </title>
 </head>
 <body>
@@ -44,7 +43,7 @@
             <asp:UpdatePanel ID="up_gastos_bienvenida" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <br />
-                    <div class="row">
+                    <div class="col-lg-12 div_bottom">
 
                         <div class="col-lg-6">
                             <asp:Image ID="Image1" runat="server" ImageUrl="~/img/ico_liec.png" Width="64" Height="64" CssClass="img-thumbnail" />
@@ -52,7 +51,7 @@
 
                         <div class="col-lg-6">
                             <div>
-                               <p class="text-right">
+                                <p class="text-right">
 
                                     <label class="control-label fuente_css02">BIENVENID@:</label>
                                     <asp:LinkButton CssClass="buttonClass" ID="lkb_usr_oper" runat="server">
@@ -62,7 +61,7 @@
                                     <br />
 
                                     <label class="control-label fuente_css02">PERFIL:</label>
-                                    <asp:Label CssClass="fuente_css02" ID="lbl_tusr" runat="server" Text=""></asp:Label>&nbsp;<i class="fas fa-user-shield fuente_css02" id="i1" runat="server"></i> 
+                                    <asp:Label CssClass="fuente_css02" ID="lbl_tusr" runat="server" Text=""></asp:Label>&nbsp;<i class="fas fa-user-shield fuente_css02" id="i1" runat="server"></i>
 
                                     <br />
 
@@ -73,8 +72,9 @@
                                 </p>
                             </div>
                         </div>
+                    
                     </div>
-                    <hr />
+
                 </ContentTemplate>
                 <Triggers>
                 </Triggers>
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                                         <br />
-                                        <div class="sidebar" style="display: block;">
+                                        <div class="sidebar" style="overflow-y: auto; height: 450px;">
                                             <ul class="nav">
 
                                                 <li>
@@ -209,15 +209,19 @@
                                                         <asp:Label CssClass="buttonClass" ID="lbl_supe" runat="server" Text="SUPERVISIÓN"></asp:Label>
                                                     </asp:LinkButton>
                                                 </li>
-                                                <br />
-                                                <li>
-                                                    <asp:LinkButton CssClass="fuente_css02" ID="lkb_salir" runat="server" OnClick="lkb_salir_Click">
-                                                        <i class="fas fa-power-off" id="i_salir" runat="server"></i>
-                                                        <asp:Label CssClass="buttonClass" ID="lbl_salir" runat="server" Text="SALIR"></asp:Label>
-                                                    </asp:LinkButton>
-                                                </li>
+
+
                                             </ul>
+
                                         </div>
+
+                                        <br />
+
+                                        <asp:LinkButton CssClass="fuente_css02" ID="lkb_salir" runat="server" OnClick="lkb_salir_Click">
+                                            <i class="fas fa-power-off" id="i_salir" runat="server"></i>
+                                            <asp:Label CssClass="buttonClass" ID="lbl_salir" runat="server" Text=" SALIR"></asp:Label>
+                                        </asp:LinkButton>
+
                                     </div>
                                 </div>
                                 <!--/.nav-collapse -->
@@ -233,9 +237,8 @@
                                 <div class="panel panel-default" id="pnl_recu_hum" runat="server" visible="false">
                                     <div class="panel-heading">
                                         <p class="text-right">
-                                            <asp:LinkButton   ID="lkb_recu_hum_i" runat="server" OnClick="lkb_recu_hum_i_Click" ForeColor="white">
+                                            <asp:LinkButton ID="lkb_recu_hum_i" runat="server" OnClick="lkb_recu_hum_i_Click" ForeColor="white">
                                                 <i class="fas fa-2x fa-users" id="i_recu_hum_i" runat="server"></i>
-                                     
                                             </asp:LinkButton>
                                         </p>
                                     </div>
@@ -255,9 +258,8 @@
                                 <div class="panel panel-default" id="pnl_capt" runat="server" visible="false">
                                     <div class="panel-heading">
                                         <p class="text-right">
-                                            <asp:LinkButton   ID="lkb_capt_i" runat="server" OnClick="lkb_capt_i_Click" ForeColor="white">
+                                            <asp:LinkButton ID="lkb_capt_i" runat="server" OnClick="lkb_capt_i_Click" ForeColor="white">
                                                 <i class="fas fa-2x fa-file-signature" id="i_capt_i" runat="server"></i>
-                                             
                                             </asp:LinkButton>
                                         </p>
                                     </div>
@@ -277,9 +279,8 @@
                                 <div class="panel panel-default" id="pnl_cont" runat="server" visible="false">
                                     <div class="panel-heading">
                                         <p class="text-right">
-                                            <asp:LinkButton   ID="lkb_cont_i" runat="server" OnClick="lkb_cont_i_Click" ForeColor="white">
+                                            <asp:LinkButton ID="lkb_cont_i" runat="server" OnClick="lkb_cont_i_Click" ForeColor="white">
                                                 <i class="fas fa-2x fa-dollar-sign" id="i_cont_i" runat="server"></i>
-                                    
                                             </asp:LinkButton>
                                         </p>
                                     </div>
@@ -294,14 +295,13 @@
                 </asp:UpdatePanel>
                 <asp:UpdatePanel ID="up_desa_tec" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                         <div class="col-lg-8">
+                        <div class="col-lg-8">
                             <div class="col-lg-12 ">
                                 <div class="panel panel-default" id="pnl_desa_tec" runat="server" visible="false">
                                     <div class="panel-heading">
                                         <p class="text-right">
-                                            <asp:LinkButton   ID="lkb_desa_tec_i" runat="server" OnClick="lkb_desa_tec_i_Click" ForeColor="white">
+                                            <asp:LinkButton ID="lkb_desa_tec_i" runat="server" OnClick="lkb_desa_tec_i_Click" ForeColor="white">
                                                 <i class="fas  fa-2x  fa-qrcode" id="i_desa_tec_i" runat="server"></i>
-                                    
                                             </asp:LinkButton>
                                         </p>
                                     </div>
@@ -316,7 +316,6 @@
                 </asp:UpdatePanel>
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                     
                     </ContentTemplate>
                     <Triggers>
                     </Triggers>
