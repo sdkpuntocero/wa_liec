@@ -509,10 +509,16 @@
     <Compile Include="inf_mrp_concreto.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
+    <Compile Include="inf_prospectos.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
     <Compile Include="inf_rubro.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
     <Compile Include="inf_rubro_mes.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_seg_prospecto.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
     <Compile Include="inf_sepomex.cs">

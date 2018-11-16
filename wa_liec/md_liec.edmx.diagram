@@ -83,6 +83,8 @@
         <AssociationConnector Association="dd_liecModel.FK_inf_rubro_inf_emp" />
         <AssociationConnector Association="dd_liecModel.FK_inf_gastos_dep_inf_gastos" />
         <AssociationConnector Association="dd_liecModel.FK_inf_rubro_mes_inf_rubro" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_prospectos" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_seg_prospecto" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

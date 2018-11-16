@@ -69,6 +69,8 @@ namespace wa_liec
         public virtual DbSet<dd_rmeses> dd_rmeses { get; set; }
         public virtual DbSet<v_pfe> v_pfe { get; set; }
         public virtual DbSet<v_rpt_conc> v_rpt_conc { get; set; }
+        public virtual DbSet<inf_prospectos> inf_prospectos { get; set; }
+        public virtual DbSet<inf_seg_prospecto> inf_seg_prospecto { get; set; }
     
         [DbFunction("dd_liecEntities", "tbl_pfe")]
         public virtual IQueryable<tbl_pfe_Result> tbl_pfe()
