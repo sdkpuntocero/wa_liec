@@ -66,6 +66,12 @@ namespace wa_liec
 
                         Response.Redirect("pnl_capt.aspx");
                         break;
+                    case "LIEC-AREA011":
+
+                        Session["ss_idusr"] = guid_idusr;
+
+                        Response.Redirect("pnl_capt.aspx");
+                        break;
                     default:
 
                         break;

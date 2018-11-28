@@ -45,14 +45,19 @@ namespace wa_liec
         public virtual DbSet<fact_est_rubm> fact_est_rubm { get; set; }
         public virtual DbSet<fact_estatus> fact_estatus { get; set; }
         public virtual DbSet<fact_generos> fact_generos { get; set; }
+        public virtual DbSet<fact_giro_prosp> fact_giro_prosp { get; set; }
         public virtual DbSet<fact_perfil> fact_perfil { get; set; }
+        public virtual DbSet<fact_taccion_prosp> fact_taccion_prosp { get; set; }
+        public virtual DbSet<fact_tipo_contprosp> fact_tipo_contprosp { get; set; }
         public virtual DbSet<fact_tipo_rfc> fact_tipo_rfc { get; set; }
         public virtual DbSet<fact_tipo_rubro> fact_tipo_rubro { get; set; }
         public virtual DbSet<fact_tipo_servicio> fact_tipo_servicio { get; set; }
+        public virtual DbSet<fact_tserv_prosp> fact_tserv_prosp { get; set; }
         public virtual DbSet<inf_caja> inf_caja { get; set; }
         public virtual DbSet<inf_clte> inf_clte { get; set; }
         public virtual DbSet<inf_clte_obras> inf_clte_obras { get; set; }
         public virtual DbSet<inf_conc_ec> inf_conc_ec { get; set; }
+        public virtual DbSet<inf_cont_prosp> inf_cont_prosp { get; set; }
         public virtual DbSet<inf_cont_usr> inf_cont_usr { get; set; }
         public virtual DbSet<inf_control_montos> inf_control_montos { get; set; }
         public virtual DbSet<inf_email_envio> inf_email_envio { get; set; }
@@ -61,16 +66,13 @@ namespace wa_liec
         public virtual DbSet<inf_gastos> inf_gastos { get; set; }
         public virtual DbSet<inf_gastos_dep> inf_gastos_dep { get; set; }
         public virtual DbSet<inf_mrp_concreto> inf_mrp_concreto { get; set; }
+        public virtual DbSet<inf_prospectos> inf_prospectos { get; set; }
         public virtual DbSet<inf_rubro> inf_rubro { get; set; }
         public virtual DbSet<inf_rubro_mes> inf_rubro_mes { get; set; }
+        public virtual DbSet<inf_seg_prospecto> inf_seg_prospecto { get; set; }
         public virtual DbSet<inf_sepomex> inf_sepomex { get; set; }
         public virtual DbSet<inf_usuarios> inf_usuarios { get; set; }
-        public virtual DbSet<dd_gastos> dd_gastos { get; set; }
-        public virtual DbSet<dd_rmeses> dd_rmeses { get; set; }
         public virtual DbSet<v_pfe> v_pfe { get; set; }
-        public virtual DbSet<v_rpt_conc> v_rpt_conc { get; set; }
-        public virtual DbSet<inf_prospectos> inf_prospectos { get; set; }
-        public virtual DbSet<inf_seg_prospecto> inf_seg_prospecto { get; set; }
     
         [DbFunction("dd_liecEntities", "tbl_pfe")]
         public virtual IQueryable<tbl_pfe_Result> tbl_pfe()

@@ -95,6 +95,12 @@
                                                 <div class="sidebar" style="display: block;">
                                                     <ul class="nav">
                                                         <li>
+                                                            <asp:LinkButton CssClass="fuente_css02" ID="lkb_prosp" runat="server" OnClick="lkb_prosp_Click">
+                                                                <i class="fas fa-user-tie" id="i_prosp" runat="server"></i>
+                                                                <asp:Label CssClass="buttonClass" ID="lbl_prosp" runat="server" Text="PROSPECTOS"> </asp:Label>
+                                                            </asp:LinkButton>
+                                                        </li>
+                                                        <li>
                                                             <asp:LinkButton CssClass="fuente_css02" ID="lkb_clte" runat="server" OnClick="lkb_clte_Click">
                                                                 <i class="fas fa-user-tie" id="i_clte" runat="server"></i>
                                                                 <asp:Label CssClass="buttonClass" ID="lbl_clte" runat="server" Text="CLIENTES"> </asp:Label>
@@ -1091,7 +1097,7 @@
                                                         
                                                                     <asp:TemplateField HeaderText="REPORTE">
                                                                         <ItemTemplate>
-                                                                            <asp:LinkButton ID="lkbtn_rptm" runat="server" CssClass="" TabIndex="15" Visible="true" CommandName="f_reporte"><i class="fas  fa-clipboard-list"></i></asp:LinkButton>
+                                                                            <asp:LinkButton ID="lkbtn_rptm" runat="server" CssClass="" TabIndex="15" Visible="true" CommandName="f_reporte" OnClick="lkbtn_rptm_Click"><i class="fas  fa-clipboard-list"></i></asp:LinkButton>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                 </Columns>

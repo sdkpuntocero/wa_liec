@@ -52,10 +52,16 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.10.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.10\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.MSXML, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -80,6 +86,7 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -192,6 +199,7 @@
     <Content Include="img\logo_liec256.png" />
     <Content Include="img\nophoto.svg" />
     <Content Include="img\sb-bg-1.jpg" />
+    <Content Include="inf_web.aspx" />
     <Content Include="md_liec.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>md_liec.edmx</DependentUpon>
@@ -206,6 +214,7 @@
     <Content Include="pnl_cont.aspx" />
     <Content Include="pnl_ctrl.aspx" />
     <Content Include="pnl_desa_tec.aspx" />
+    <Content Include="pnl_prospectos.aspx" />
     <Content Include="pnl_rh.aspx" />
     <Content Include="prospectos.aspx" />
     <Content Include="rpt.aspx" />
@@ -321,6 +330,13 @@
     <Content Include="acceso\assets\fonts\nucleo-outline.woff" />
     <Content Include="acceso\assets\fonts\nucleo-outline.woff2" />
     <Content Include="acceso\now-ui-kit.scss" />
+    <EntityDeploy Include="md_liec.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>md_liec.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="md_liec.edmx.diagram">
+      <DependentUpon>md_liec.edmx</DependentUpon>
+    </Content>
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.ttf" />
@@ -333,13 +349,6 @@
     <Content Include="Content\webfonts\fa-brands-400.woff" />
     <Content Include="Content\webfonts\fa-brands-400.ttf" />
     <Content Include="Content\webfonts\fa-brands-400.eot" />
-    <EntityDeploy Include="md_liec.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>md_liec.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="md_liec.edmx.diagram">
-      <DependentUpon>md_liec.edmx</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\externo.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\server_uno.pubxml" />
@@ -390,12 +399,6 @@
       <DependentUpon>acceso.aspx</DependentUpon>
     </Compile>
     <Compile Include="cn.cs" />
-    <Compile Include="dd_gastos.cs">
-      <DependentUpon>md_liec.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dd_rmeses.cs">
-      <DependentUpon>md_liec.tt</DependentUpon>
-    </Compile>
     <Compile Include="demo.aspx.cs">
       <DependentUpon>demo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -452,7 +455,16 @@
     <Compile Include="fact_generos.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
+    <Compile Include="fact_giro_prosp.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
     <Compile Include="fact_perfil.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_taccion_prosp.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_tipo_contprosp.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
     <Compile Include="fact_tipo_rfc.cs">
@@ -462,6 +474,9 @@
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
     <Compile Include="fact_tipo_servicio.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fact_tserv_prosp.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
     <Compile Include="fac_sit_concreto.cs">
@@ -486,6 +501,9 @@
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
     <Compile Include="inf_control_montos.cs">
+      <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_cont_prosp.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
     <Compile Include="inf_cont_usr.cs">
@@ -526,6 +544,13 @@
     </Compile>
     <Compile Include="inf_usuarios.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inf_web.aspx.cs">
+      <DependentUpon>inf_web.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inf_web.aspx.designer.cs">
+      <DependentUpon>inf_web.aspx</DependentUpon>
     </Compile>
     <Compile Include="md_liec.Context.cs">
       <AutoGen>True</AutoGen>
@@ -570,6 +595,13 @@
     <Compile Include="pnl_desa_tec.aspx.designer.cs">
       <DependentUpon>pnl_desa_tec.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pnl_prospectos.aspx.cs">
+      <DependentUpon>pnl_prospectos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pnl_prospectos.aspx.designer.cs">
+      <DependentUpon>pnl_prospectos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pnl_rh.aspx.cs">
       <DependentUpon>pnl_rh.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -597,9 +629,6 @@
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
     <Compile Include="v_pfe.cs">
-      <DependentUpon>md_liec.tt</DependentUpon>
-    </Compile>
-    <Compile Include="v_rpt_conc.cs">
       <DependentUpon>md_liec.tt</DependentUpon>
     </Compile>
   </ItemGroup>

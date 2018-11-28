@@ -2809,7 +2809,7 @@ namespace wa_liec
                 String Acuerdo = e.CommandName;
                 GridViewRow oItem = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
                 int RowIndex = oItem.RowIndex;
-                Guid id_mc = Guid.Parse(oItem.Cells[0].Text.ToString().Trim());
+                Guid id_mc = Guid.Parse(oItem.Cells[1].Text.ToString().Trim());
 
 
 
@@ -2984,7 +2984,15 @@ namespace wa_liec
             }
         }
 
+        protected void lkbtn_rptm_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        protected void lkb_prosp_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("pnl_prospectos.aspx");
+        }
 
         protected void gv_ensa_comp_RowDataBound(object sender, GridViewRowEventArgs e)
         {

@@ -15,10 +15,13 @@ namespace wa_liec
     public partial class inf_seg_prospecto
     {
         public System.Guid id_seg_prospecto { get; set; }
-        public Nullable<int> id_tipo_accion { get; set; }
+        public Nullable<int> id_taccion_prosp { get; set; }
         public string comentarios { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public System.Guid id_usuario { get; set; }
-        public System.Guid id_prospecto { get; set; }
+        public Nullable<System.Guid> id_cont_prosp { get; set; }
+    
+        public virtual fact_taccion_prosp fact_taccion_prosp { get; set; }
+        public virtual inf_cont_prosp inf_cont_prosp { get; set; }
     }
 }

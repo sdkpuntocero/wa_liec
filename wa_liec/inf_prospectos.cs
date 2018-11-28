@@ -14,18 +14,32 @@ namespace wa_liec
     
     public partial class inf_prospectos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public inf_prospectos()
+        {
+            this.inf_cont_prosp = new HashSet<inf_cont_prosp>();
+        }
+    
         public System.Guid id_prospecto { get; set; }
+        public int id_giro_prosp { get; set; }
+        public int id_tserv_prosp { get; set; }
         public Nullable<int> id_est_prospecto { get; set; }
         public string cod_prospecto { get; set; }
+        public int id_tipo_contprosp { get; set; }
         public string empresa { get; set; }
-        public string contacto { get; set; }
-        public string telefono { get; set; }
-        public string email { get; set; }
+        public string web { get; set; }
         public string callenum { get; set; }
         public string d_codigo { get; set; }
         public Nullable<int> id_asenta_cpcons { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public System.Guid id_emp { get; set; }
         public System.Guid id_usuario { get; set; }
+    
+        public virtual fact_giro_prosp fact_giro_prosp { get; set; }
+        public virtual fact_tipo_contprosp fact_tipo_contprosp { get; set; }
+        public virtual fact_tserv_prosp fact_tserv_prosp { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<inf_cont_prosp> inf_cont_prosp { get; set; }
+        public virtual inf_emp inf_emp { get; set; }
     }
 }

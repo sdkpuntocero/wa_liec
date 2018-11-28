@@ -80,40 +80,28 @@
             <div class="row">
                 <asp:UpdatePanel ID="up_body" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <asp:UpdatePanel ID="up_prospecto_menu" runat="server" UpdateMode="Conditional">
-                            <ContentTemplate>
-                                <div class="col-lg-2">
-                                    <div class="sidebar-nav">
-                                        <div class="navbar-default" role="navigation">
-                                            <div class="navbar-header">
-                                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                                                <span class="visible-xs navbar-brand"><i class="fas fa-file-signature"></i>Menú Captura</span>
-                                            </div>
-                                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                                                <br />
-                                                <div class="sidebar" style="display: block;">
-                                                    <ul class="nav">
-                                                        <li>
-                                                            <asp:LinkButton CssClass="fuente_css02" ID="lkb_prospecto" runat="server">
-                                                                <i class="fas fa-user-tie" id="i_prospecto" runat="server"></i>
-                                                                <asp:Label CssClass="buttonClass" ID="lbl_prospecto" runat="server" Text="PROSPECTO"> </asp:Label>
-                                                            </asp:LinkButton>
-                                                        </li>
 
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/.nav-collapse -->
-                                    </div>
-                                </div>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
                         <asp:UpdatePanel ID="up_prospecto" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-                                <div class="col-lg-10">
+
+                                <div class="col-lg-12">
                                     <div class="col-lg-12 ">
                                         <div class="row">
+                                            <ul class="nav nav-tabs">
+
+                                                <li data-toggle="tab">
+                                                    <asp:LinkButton CssClass="buttonClass" ID="lkb_prosp" runat="server">
+                                                        <asp:Label CssClass="buttonClass" ID="lbl_prosp" runat="server" Text="Prospecto"></asp:Label>&nbsp;<i class="fas fa-user-tag" id="i_prosp" runat="server"></i>
+                                                    </asp:LinkButton></li>
+                                                <li data-toggle="tab">
+                                                    <asp:LinkButton CssClass="lkb_react" ID="LinkButton2" runat="server">
+                                                        <asp:Label CssClass="buttonClass" ID="lbl_react" runat="server" Text="Reactivación"></asp:Label>&nbsp;<i class="fas fa-user-tie" id="i_react" runat="server"></i>
+                                                    </asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton CssClass="lkb_react" ID="lkb_salir" runat="server" OnClick="lkb_salir_Click">
+                                                        <asp:Label CssClass="buttonClass" ID="lbl_salir" runat="server" Text="Salir"></asp:Label>&nbsp;<i class="fas fa-power-off" id="i_salir" runat="server"></i>
+                                                    </asp:LinkButton></li>
+                                            </ul>
                                             <div class="panel panel-default" id="pnl_prospecto" runat="server" visible="true">
                                                 <div class="panel-heading">
                                                     <div class="row">
@@ -152,8 +140,8 @@
                                                 <div class="panel-body">
                                                     <div class="row">
 
-                                                        <div class="col-lg-12">
-                                                            <asp:GridView CssClass="table" ID="gv_prospecto" runat="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" TabIndex="6" PageSize="5" OnPageIndexChanging="gv_prospecto_PageIndexChanging">
+                                                        <div class="col-lg-12" runat="server" id="div_prospecto" visible="false">
+                                                            <asp:GridView CssClass="table" ID="gv_prospecto" runat="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" TabIndex="6" PageSize="1000" >
                                                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                                                 <Columns>
                                                                     <asp:TemplateField>
@@ -164,13 +152,13 @@
                                                                     <asp:BoundField DataField="id_prospecto" HeaderText="ID" SortExpression="id_prospecto" Visible="true" HeaderStyle-CssClass="hideGridColumn" ItemStyle-CssClass="hideGridColumn" />
                                                                     <asp:BoundField DataField="cod_prospecto" HeaderText="ID" SortExpression="cod_prospecto" Visible="true" />
                                                                     <asp:BoundField DataField="empresa" HeaderText="Empresa" SortExpression="empresa" />
-                                                                    <asp:BoundField DataField="fecha_registro" HeaderText="REGISTRO" SortExpression="fecha_registro" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
-
+                                                                    <asp:BoundField DataField="nom_usr" HeaderText="Usuario" SortExpression="nom_usr" />
+                                                                    <asp:BoundField DataField="fecha_registro" HeaderText="Fecha" SortExpression="fecha_registro" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
                                                                 </Columns>
                                                                 <EditRowStyle BackColor="#999999" />
                                                                 <FooterStyle BackColor="#5D7B9D" ForeColor="White" />
                                                                 <HeaderStyle BackColor="#104D8d" ForeColor="White" />
-                                                                <PagerSettings Mode="NumericFirstLast" FirstPageText="Inicio" LastPageText="Final" />
+                                                              
                                                                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                                                                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                                                                 <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
@@ -182,19 +170,18 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <div class="form-group text-left">
 
-                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_est_prospecto" runat="server" Text="Estatus"></asp:Label>
-                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_est_prospecto" runat="server" placeholder="letras/números" ToolTip="letras/números" TabIndex="9" Enabled="false"></asp:TextBox>
+                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_tipocont_prospecto" runat="server" Text="*Tipo de Contacto"></asp:Label>
 
+                                                                <asp:DropDownList CssClass="form-control input-box" ID="ddl_tipocont_prospecto" runat="server" TabIndex="15" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
                                                                 <div class="text-right">
-                                                                    <asp:RequiredFieldValidator ID="rfv_est_prospecto" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="txt_est_prospecto" InitialValue="0" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                                    <asp:RequiredFieldValidator ID="rfv_tipocont_prospecto" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="ddl_tipocont_prospecto" InitialValue="0" ForeColor="DarkRed" Enabled="false" TabIndex="14"></asp:RequiredFieldValidator>
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-lg-5">
+                                                        <div class="col-lg-6">
                                                             <div class="form-group text-left">
 
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_emp_prospecto" runat="server" Text="*Empresa"></asp:Label>
@@ -205,86 +192,31 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="form-group text-left">
+
+                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_giro_prospecto" runat="server" Text="Giro"></asp:Label>
+
+                                                                <asp:DropDownList CssClass="form-control input-box" ID="ddl_giro_prospecto" runat="server" TabIndex="15" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
+                                                                <div class="text-right">
+                                                                    <asp:RequiredFieldValidator ID="rfv_giro_prospecto" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="ddl_colonia_prospecto" InitialValue="0" ForeColor="DarkRed" Enabled="false" TabIndex="14"></asp:RequiredFieldValidator>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="form-group text-left">
+
+                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_serv_prospecto" runat="server" Text="Servicio"></asp:Label>
+
+                                                                <asp:DropDownList CssClass="form-control input-box" ID="ddl_serv_prospecto" runat="server" TabIndex="15" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
+                                                                <div class="text-right">
+                                                                    <asp:RequiredFieldValidator ID="rfv_serv_prospecto" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="ddl_colonia_prospecto" InitialValue="0" ForeColor="DarkRed" Enabled="false" TabIndex="14"></asp:RequiredFieldValidator>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
                                                         <div class="col-lg-4">
-                                                            <div class="form-group text-left">
-
-                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_cont_prospecto" runat="server" Text="*Contacto"></asp:Label>
-
-                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_cont_prospecto" runat="server" placeholder="letras/números" ToolTip="letras/números" TabIndex="9"></asp:TextBox>
-                                                                <div class="text-right">
-                                                                    <asp:RequiredFieldValidator ID="rfv_cont_prospecto" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="txt_cont_prospecto" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <div class="form-group text-left">
-                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_telefono_prospecto" runat="server" Text="Teléfono"></asp:Label>
-                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_telefono_prospecto" runat="server" MaxLength="16" placeholder="000-000-00000000" TextMode="Phone" ToolTip="Un número de teléfono válido consiste en un código de lada de 3 dígitos, un guión (-),un código de área de 3 dígitos, un guión (-) y el número telefónico con valores del 0 al 9" TabIndex="10"></asp:TextBox>
-                                                                <div class="text-right">
-                                                                    <asp:RegularExpressionValidator ID="revPhone" runat="server"
-                                                                        ErrorMessage="Formato Invalido" ControlToValidate="txt_telefono_prospecto"
-                                                                        ValidationExpression="[0-9]{3}[-][0-9]{3}[-][0-9]{8}" ForeColor="DarkRed">
-                                                                    </asp:RegularExpressionValidator>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="form-group text-left">
-                                                                <asp:Label CssClass="control-label fuente_css02" ID="Label1" runat="server" Text="Teléfono"></asp:Label>
-                                                                <asp:TextBox CssClass="form-control input-box" ID="TextBox1" runat="server" MaxLength="16" placeholder="000-000-00000000" TextMode="Phone" ToolTip="Un número de teléfono válido consiste en un código de lada de 3 dígitos, un guión (-),un código de área de 3 dígitos, un guión (-) y el número telefónico con valores del 0 al 9" TabIndex="10"></asp:TextBox>
-                                                                <div class="text-right">
-                                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
-                                                                        ErrorMessage="Formato Invalido" ControlToValidate="txt_telefono_prospecto"
-                                                                        ValidationExpression="[0-9]{3}[-][0-9]{3}[-][0-9]{8}" ForeColor="DarkRed">
-                                                                    </asp:RegularExpressionValidator>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="form-group text-left">
-                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_email_prospecto" runat="server" Text="e-mail"></asp:Label>
-                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_email_prospecto" runat="server" placeholder="xxxx@xxxx.xxx" TextMode="Email" ToolTip="xxxx@xxxx.xxx" TabIndex="11"></asp:TextBox>
-                                                                <br />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3">
-                                                            <div class="form-group text-left">
-                                                                <asp:Label CssClass="control-label fuente_css02" ID="Label2" runat="server" Text="e-mail"></asp:Label>
-                                                                <asp:TextBox CssClass="form-control input-box" ID="TextBox2" runat="server" placeholder="xxxx@xxxx.xxx" TextMode="Email" ToolTip="xxxx@xxxx.xxx" TabIndex="11"></asp:TextBox>
-                                                                <br />
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row">
-                                                         <div class="col-lg-3">
-                                                            <div class="form-group text-left">
-
-                                                                <asp:Label CssClass="control-label fuente_css02" ID="Label3" runat="server" Text="Giro"></asp:Label>
-
-                                                                <asp:DropDownList CssClass="form-control input-box" ID="DropDownList1" runat="server" TabIndex="15" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
-                                                                <div class="text-right">
-                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="ddl_colonia_prospecto" InitialValue="0" ForeColor="DarkRed" Enabled="false" TabIndex="14"></asp:RequiredFieldValidator>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                         <div class="col-lg-3">
-                                                            <div class="form-group text-left">
-
-                                                                <asp:Label CssClass="control-label fuente_css02" ID="Label4" runat="server" Text="Servicio"></asp:Label>
-
-                                                                <asp:DropDownList CssClass="form-control input-box" ID="DropDownList2" runat="server" TabIndex="15" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
-                                                                <div class="text-right">
-                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="ddl_colonia_prospecto" InitialValue="0" ForeColor="DarkRed" Enabled="false" TabIndex="14"></asp:RequiredFieldValidator>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
                                                             <div class="form-group text-left">
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_callenum_prospecto" runat="server" Text="Calle ý número"></asp:Label>
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_callenum_prospecto" runat="server" placeholder="letras/números" ToolTip="letras/números" TextMode="MultiLine" BackColor="LightGray" ForeColor="#104D8D" TabIndex="12"></asp:TextBox>
@@ -293,7 +225,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <div class="form-group text-left">
 
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_cp_prospecto" runat="server" Text="Código Postal"></asp:Label>
@@ -310,7 +242,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <div class="form-group text-left">
 
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_colonia_prospecto" runat="server" Text="Colonia"></asp:Label>
@@ -321,17 +253,16 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
 
                                                             <div class="form-group text-left">
 
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_municipio_prospecto" runat="server" Text="Municipio"></asp:Label>
 
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_municipio_prospecto" runat="server" placeholder="letras/números" Enabled="false" BackColor="LightGray" TabIndex="16"></asp:TextBox>
-                                                                <br />
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <div class="form-group text-left">
 
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_estado_prospecto" runat="server" Text="Estado"></asp:Label>
@@ -339,11 +270,114 @@
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_estado_prospecto" runat="server" placeholder="letras/números" Enabled="false" BackColor="LightGray" TabIndex="17"></asp:TextBox>
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-4 col-sm-4" runat="server" id="div_acont" visible="false">
+                                                            <p class="text-right">
+                                                                ANEXO CONTACTO
+                                                        <span>
+                                                            <asp:LinkButton CssClass="btn btn02" ID="btn_agregar_prospcont" runat="server" ToolTip="AGREGAR CONTACTO" TabIndex="3" OnClick="btn_agregar_prospcont_Click">
+                                                                <i class="fas fa-plus" id="i_agregar_prospcont" runat="server"></i>
+                                                            </asp:LinkButton>
+                                           
+                                                        </span>
+
+                                                            </p>
+                                                        </div>
                                                     </div>
 
                                                     <div class="row">
-                                                        <hr />
+
+                                                        <div class="col-lg-12"  runat="server" id="div_cont_prosp" visible="false">
+                                                            <asp:GridView CssClass="table" ID="gv_cont_prosp" runat="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" TabIndex="6" PageSize="5">
+                                                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                                                <Columns>
+                                                                    <asp:TemplateField>
+                                                                        <ItemTemplate>
+                                                                            <asp:CheckBox ID="chk_cont_prosp" runat="server" onclick="CheckOne(this)" AutoPostBack="true" OnCheckedChanged="chk_cont_prosp_CheckedChanged" />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:BoundField DataField="id_cont_prosp" HeaderText="ID" SortExpression="id_cont_prosp" Visible="true" HeaderStyle-CssClass="hideGridColumn" ItemStyle-CssClass="hideGridColumn" />
+                                                                    <asp:BoundField DataField="dpto" HeaderText="Departamento" SortExpression="dpto" />
+                                                                    <asp:BoundField DataField="contacto" HeaderText="Contacto" SortExpression="contacto" />
+                                                                    <asp:BoundField DataField="fecha_registro" HeaderText="REGISTRO" SortExpression="fecha_registro" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
+                                                                </Columns>
+                                                                <EditRowStyle BackColor="#999999" />
+                                                                <FooterStyle BackColor="#5D7B9D" ForeColor="White" />
+                                                                <HeaderStyle BackColor="#104D8d" ForeColor="White" />
+                                                                <PagerSettings Mode="NumericFirstLast" FirstPageText="Inicio" LastPageText="Final" />
+                                                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                                            </asp:GridView>
+                                                        </div>
                                                         <div class="col-lg-3">
+                                                            <div class="form-group text-left">
+
+                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_dpto_prosp" runat="server" Text="Departamento"></asp:Label>
+
+                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_dpto_prosp" runat="server" placeholder="letras/números" ToolTip="letras/números" TabIndex="9"></asp:TextBox>
+                                                                <div class="text-right">
+                                                                    <asp:RequiredFieldValidator ID="rfv_dpto_prosp" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="txt_dpto_prosp" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group text-left">
+
+                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_cont_prospecto" runat="server" Text="Contacto"></asp:Label>
+
+                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_cont_prospecto" runat="server" placeholder="letras/números" ToolTip="letras/números" TabIndex="9"></asp:TextBox>
+                                                                <div class="text-right">
+                                                                    <asp:RequiredFieldValidator ID="rfv_cont_prospecto" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="txt_cont_prospecto" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group text-left">
+                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_tel1_prospecto" runat="server" Text="Teléfono"></asp:Label>
+                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_tel1_prospecto" runat="server" MaxLength="30" placeholder="000-000-00000000x00000/00000" TextMode="Phone" ToolTip="Un número de teléfono válido consiste en un código de lada de 3 dígitos, un guión (-),un código de área de 3 dígitos, un guión (-) y el número telefónico con valores del 0 al 9" TabIndex="10"></asp:TextBox>
+                                                                <div class="text-right">
+                                                                    <asp:RegularExpressionValidator ID="rev_tel1_prospecto" runat="server"
+                                                                        ErrorMessage="Formato Invalido" ControlToValidate="txt_tel1_prospecto"
+                                                                        ValidationExpression="[0-9]{3}[-][0-9]{3}[-][0-9]{8}[x][0-9]{5}[/][0-9]{5}" ForeColor="DarkRed">
+                                                                    </asp:RegularExpressionValidator>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group text-left">
+                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_tel2_prospecto" runat="server" Text="Teléfono"></asp:Label>
+                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_tel2_prospecto" runat="server" MaxLength="30" placeholder="000-000-00000000x00000/00000" TextMode="Phone" ToolTip="Un número de teléfono válido consiste en un código de lada de 3 dígitos, un guión (-),un código de área de 3 dígitos, un guión (-) y el número telefónico con valores del 0 al 9" TabIndex="10"></asp:TextBox>
+                                                                <div class="text-right">
+                                                                    <asp:RegularExpressionValidator ID="rev_tel2_prospecto" runat="server"
+                                                                        ErrorMessage="Formato Invalido" ControlToValidate="txt_tel2_prospecto"
+                                                                        ValidationExpression="[0-9]{3}[-][0-9]{3}[-][0-9]{8}[x][0-9]{5}[/][0-9]{5}" ForeColor="DarkRed">
+                                                                    </asp:RegularExpressionValidator>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group text-left">
+                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_email1_prospecto" runat="server" Text="e-mail"></asp:Label>
+                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_email1_prospecto" runat="server" placeholder="xxxx@xxxx.xxx" TextMode="Email" ToolTip="xxxx@xxxx.xxx" TabIndex="11"></asp:TextBox>
+                                                                <br />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group text-left">
+                                                                <asp:Label CssClass="control-label fuente_css02" ID="lbl_email2_prospecto" runat="server" Text="e-mail"></asp:Label>
+                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_email2_prospecto" runat="server" placeholder="xxxx@xxxx.xxx" TextMode="Email" ToolTip="xxxx@xxxx.xxx" TabIndex="11"></asp:TextBox>
+                                                                <br />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
                                                             <div class="form-group text-left">
 
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_acc_prospecto" runat="server" Text="Acción"></asp:Label>
@@ -354,7 +388,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-6">
+                                                        <div class="col-lg-4">
                                                             <div class="form-group text-left">
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_prospecto_coment" runat="server" Text="Comentarios"></asp:Label>
 
@@ -363,28 +397,25 @@
                                                                     <asp:RequiredFieldValidator ID="rfv_prospecto_coment" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="txt_prospecto_coment" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
                                                             <div class="text-right">
 
-                                                                <br />
                                                                 <asp:Button CssClass="btn btn02" ID="btn_guardar_prospecto" runat="server" Text="GUARDAR" TabIndex="18" OnClick="btn_guardar_prospecto_Click" />
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-12">
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-12" style="overflow-y: auto; height: 150px;">
+                                                            <br />
                                                             <asp:GridView CssClass="table" ID="gv_seg_prosp" runat="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" TabIndex="6" PageSize="5">
                                                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                                                 <Columns>
-                                                                    <asp:TemplateField>
-                                                                        <ItemTemplate>
-                                                                            <asp:CheckBox ID="chk_seg_prosp" runat="server" onclick="CheckOne(this)" AutoPostBack="true" />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
+
                                                                     <asp:BoundField DataField="id_seg_prospecto" HeaderText="ID" SortExpression="id_seg_prospecto" Visible="true" HeaderStyle-CssClass="hideGridColumn" ItemStyle-CssClass="hideGridColumn" />
-
-                                                                    <asp:BoundField DataField="comentarios" HeaderText="Empresa" SortExpression="comentarios" />
+                                                                    <asp:BoundField DataField="desc_taccion_prosp" HeaderText="Acción" SortExpression="desc_taccion_prosp" />
+                                                                    <asp:BoundField DataField="comentarios" HeaderText="Comentarios" SortExpression="comentarios" />
+                                                                    <asp:BoundField DataField="nom_usr" HeaderText="Usuario" SortExpression="nom_usr" />
                                                                     <asp:BoundField DataField="fecha_registro" HeaderText="REGISTRO" SortExpression="fecha_registro" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
-
                                                                 </Columns>
                                                                 <EditRowStyle BackColor="#999999" />
                                                                 <FooterStyle BackColor="#5D7B9D" ForeColor="White" />
@@ -407,10 +438,9 @@
                                 </div>
                             </ContentTemplate>
                             <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="btn_cp_prospecto" EventName="Click" />
+                                <asp:AsyncPostBackTrigger ControlID="lkb_salir" EventName="Click" />
                             </Triggers>
                         </asp:UpdatePanel>
-
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

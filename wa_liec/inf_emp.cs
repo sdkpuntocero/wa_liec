@@ -24,6 +24,7 @@ namespace wa_liec
             this.inf_email_recepcion = new HashSet<inf_email_recepcion>();
             this.inf_gastos = new HashSet<inf_gastos>();
             this.inf_mrp_concreto = new HashSet<inf_mrp_concreto>();
+            this.inf_prospectos = new HashSet<inf_prospectos>();
             this.inf_rubro = new HashSet<inf_rubro>();
         }
     
@@ -52,6 +53,8 @@ namespace wa_liec
         public virtual ICollection<inf_gastos> inf_gastos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inf_mrp_concreto> inf_mrp_concreto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<inf_prospectos> inf_prospectos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inf_rubro> inf_rubro { get; set; }
     }

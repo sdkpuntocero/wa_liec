@@ -135,12 +135,33 @@
           <Property Name="id_genero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="desc_genero" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="fact_giro_prosp">
+          <Key>
+            <PropertyRef Name="id_giro_prosp" />
+          </Key>
+          <Property Name="id_giro_prosp" Type="int" Nullable="false" />
+          <Property Name="desc_giro_prosp" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="fact_perfil">
           <Key>
             <PropertyRef Name="id_perfil" />
           </Key>
           <Property Name="id_perfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="desc_perfil" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="fact_taccion_prosp">
+          <Key>
+            <PropertyRef Name="id_taccion_prosp" />
+          </Key>
+          <Property Name="id_taccion_prosp" Type="int" Nullable="false" />
+          <Property Name="desc_taccion_prosp" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="fact_tipo_contprosp">
+          <Key>
+            <PropertyRef Name="id_tipo_contprosp" />
+          </Key>
+          <Property Name="id_tipo_contprosp" Type="int" Nullable="false" />
+          <Property Name="desc_tipo_contprosp" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="fact_tipo_rfc">
           <Key>
@@ -164,6 +185,18 @@
           <Property Name="id_tipo_servicio" Type="int" Nullable="false" />
           <Property Name="desc_tipo_servicio" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="fact_tserv_prosp">
+          <Key>
+            <PropertyRef Name="id_tserv_prosp" />
+          </Key>
+          <Property Name="id_tserv_prosp" Type="int" Nullable="false" />
+          <Property Name="desc_tserv_prosp" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'dd_liec.dbo.filtro' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="filtro">
+          <Property Name="filtro" Type="varchar" MaxLength="50" />
+        </EntityType>-->
         <EntityType Name="inf_caja">
           <Key>
             <PropertyRef Name="id_caja" />
@@ -189,8 +222,8 @@
           <Property Name="cod_clte" Type="varchar" MaxLength="20" />
           <Property Name="id_tipo_rfc" Type="int" />
           <Property Name="rfc" Type="varchar" MaxLength="50" />
-          <Property Name="razon_social" Type="varchar" MaxLength="50" />
-          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="razon_social" Type="varchar" MaxLength="150" />
+          <Property Name="telefono" Type="varchar" MaxLength="28" />
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="callenum" Type="varchar" MaxLength="300" />
           <Property Name="d_codigo" Type="varchar" MaxLength="6" />
@@ -241,6 +274,21 @@
           <Property Name="tipofalla_a" Type="varchar" MaxLength="50" />
           <Property Name="fecha_registro" Type="datetime" />
           <Property Name="id_mrp_concreto" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inf_cont_prosp">
+          <Key>
+            <PropertyRef Name="id_cont_prosp" />
+          </Key>
+          <Property Name="id_cont_prosp" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="dpto" Type="varchar" MaxLength="50" />
+          <Property Name="contacto" Type="varchar" MaxLength="50" />
+          <Property Name="tel1" Type="varchar" MaxLength="30" />
+          <Property Name="tel2" Type="varchar" MaxLength="30" />
+          <Property Name="email1" Type="varchar" MaxLength="50" />
+          <Property Name="email2" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_registro" Type="datetime" />
+          <Property Name="id_usuario" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_prospecto" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="inf_cont_usr">
           <Key>
@@ -371,12 +419,13 @@
             <PropertyRef Name="id_prospecto" />
           </Key>
           <Property Name="id_prospecto" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_giro_prosp" Type="int" Nullable="false" />
+          <Property Name="id_tserv_prosp" Type="int" Nullable="false" />
           <Property Name="id_est_prospecto" Type="int" />
           <Property Name="cod_prospecto" Type="varchar" MaxLength="20" />
+          <Property Name="id_tipo_contprosp" Type="int" Nullable="false" />
           <Property Name="empresa" Type="varchar" MaxLength="50" />
-          <Property Name="contacto" Type="varchar" MaxLength="50" />
-          <Property Name="telefono" Type="varchar" MaxLength="20" />
-          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="web" Type="varchar" MaxLength="50" />
           <Property Name="callenum" Type="varchar" MaxLength="300" />
           <Property Name="d_codigo" Type="varchar" MaxLength="6" />
           <Property Name="id_asenta_cpcons" Type="int" />
@@ -418,11 +467,11 @@
             <PropertyRef Name="id_seg_prospecto" />
           </Key>
           <Property Name="id_seg_prospecto" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="id_tipo_accion" Type="int" />
+          <Property Name="id_taccion_prosp" Type="int" />
           <Property Name="comentarios" Type="varchar(max)" />
           <Property Name="fecha_registro" Type="datetime" />
           <Property Name="id_usuario" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="id_prospecto" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_cont_prosp" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="inf_sepomex">
           <Key>
@@ -467,37 +516,6 @@
           <Property Name="id_emp" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'dd_liec.dbo.dd_gastos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="dd_gastos">
-          <Key>
-            <PropertyRef Name="filtro" />
-          </Key>
-          <Property Name="codigo_rubro" Type="varchar" MaxLength="20" />
-          <Property Name="tipo_rubro" Type="varchar" MaxLength="50" />
-          <Property Name="etiqueta_rubro" Type="varchar" MaxLength="10" />
-          <Property Name="rubro" Type="varchar" MaxLength="150" />
-          <Property Name="cod" Type="varchar" MaxLength="255" />
-          <Property Name="desc_gast" Type="varchar" MaxLength="255" />
-          <Property Name="monto" Type="decimal" Precision="19" Scale="4" />
-          <Property Name="fecha_registro" Type="datetime" />
-          <Property Name="filtro" Type="varchar" MaxLength="5" Nullable="false" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'dd_liec.dbo.dd_rmeses' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="dd_rmeses">
-          <Key>
-            <PropertyRef Name="id_rubro" />
-          </Key>
-          <Property Name="id_rubro" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="tipo_rubro" Type="varchar" MaxLength="50" />
-          <Property Name="etiqueta_rubro" Type="varchar" MaxLength="10" />
-          <Property Name="rubro" Type="varchar" MaxLength="150" />
-          <Property Name="monto_fijo" Type="decimal" Precision="19" Scale="4" />
-          <Property Name="año" Type="int" />
-          <Property Name="mes" Type="int" />
-          <Property Name="montof" Type="decimal" Precision="38" Scale="4" />
-        </EntityType>
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="v_pfe">
           <Key>
@@ -537,56 +555,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
           <Property Name="desca_term" Type="time" Precision="7" />
           <Property Name="revb" Type="decimal" Precision="18" Scale="4" />
           <Property Name="localiza" Type="varchar" MaxLength="150" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="v_rpt_conc">
-          <Key>
-            <PropertyRef Name="id_est_ensaye" />
-            <PropertyRef Name="id_mrp_concreto" />
-          </Key>
-          <Property Name="id_est_obra" Type="int" />
-          <Property Name="clave_obra" Type="varchar" MaxLength="50" />
-          <Property Name="desc_obra" Type="varchar(max)" />
-          <Property Name="coordinador" Type="varchar" MaxLength="150" />
-          <Property Name="contacto_obra" Type="varchar" MaxLength="150" />
-          <Property Name="no_muesra" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_colado" Type="datetime" />
-          <Property Name="procedecia" Type="varchar" MaxLength="50" />
-          <Property Name="elemento" Type="varchar" MaxLength="50" />
-          <Property Name="dosificacion" Type="varchar" MaxLength="50" />
-          <Property Name="resistencia" Type="varchar" MaxLength="50" />
-          <Property Name="reva" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="tma" Type="int" />
-          <Property Name="olla" Type="varchar" MaxLength="50" />
-          <Property Name="remision" Type="varchar" MaxLength="50" />
-          <Property Name="sali_planta" Type="time" Precision="7" />
-          <Property Name="llega_obra" Type="time" Precision="7" />
-          <Property Name="desca_ini" Type="time" Precision="7" />
-          <Property Name="desca_term" Type="time" Precision="7" />
-          <Property Name="vol" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="revb" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="localiza" Type="varchar" MaxLength="150" />
-          <Property Name="clase" Type="int" />
-          <Property Name="presion" Type="int" />
-          <Property Name="razon_social" Type="varchar" MaxLength="50" />
-          <Property Name="cod_esp" Type="varchar" MaxLength="50" />
-          <Property Name="dia_ensaye" Type="int" />
-          <Property Name="numdia_ensaye" Type="int" />
-          <Property Name="num_muestra" Type="int" />
-          <Property Name="fecha_ensaye" Type="date" />
-          <Property Name="clave_ensa_a" Type="int" />
-          <Property Name="masa_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="altura_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="altura_b" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="lados_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="lados_b" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="directo_a" Type="int" />
-          <Property Name="intensidad_a" Type="varchar" MaxLength="50" />
-          <Property Name="presion_a" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="tipofalla_a" Type="varchar" MaxLength="50" />
-          <Property Name="id_est_ensaye" Type="int" Nullable="false" />
-          <Property Name="id_mrp_concreto" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <Association Name="FK_contacto_usuarios_general_usuarios">
           <End Role="inf_usuarios" Type="Self.inf_usuarios" Multiplicity="1" />
@@ -792,6 +760,18 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_inf_cont_prosp_inf_prospectos">
+          <End Role="inf_prospectos" Type="Self.inf_prospectos" Multiplicity="1" />
+          <End Role="inf_cont_prosp" Type="Self.inf_cont_prosp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inf_prospectos">
+              <PropertyRef Name="id_prospecto" />
+            </Principal>
+            <Dependent Role="inf_cont_prosp">
+              <PropertyRef Name="id_prospecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_inf_control_montos_inf_rubro">
           <End Role="inf_rubro" Type="Self.inf_rubro" Multiplicity="1" />
           <End Role="inf_control_montos" Type="Self.inf_control_montos" Multiplicity="*" />
@@ -948,6 +928,54 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_inf_prospectos_fact_giro_prosp">
+          <End Role="fact_giro_prosp" Type="Self.fact_giro_prosp" Multiplicity="1" />
+          <End Role="inf_prospectos" Type="Self.inf_prospectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fact_giro_prosp">
+              <PropertyRef Name="id_giro_prosp" />
+            </Principal>
+            <Dependent Role="inf_prospectos">
+              <PropertyRef Name="id_giro_prosp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_prospectos_fact_tipo_contprosp">
+          <End Role="fact_tipo_contprosp" Type="Self.fact_tipo_contprosp" Multiplicity="1" />
+          <End Role="inf_prospectos" Type="Self.inf_prospectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fact_tipo_contprosp">
+              <PropertyRef Name="id_tipo_contprosp" />
+            </Principal>
+            <Dependent Role="inf_prospectos">
+              <PropertyRef Name="id_tipo_contprosp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_prospectos_fact_tserv_prosp">
+          <End Role="fact_tserv_prosp" Type="Self.fact_tserv_prosp" Multiplicity="1" />
+          <End Role="inf_prospectos" Type="Self.inf_prospectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fact_tserv_prosp">
+              <PropertyRef Name="id_tserv_prosp" />
+            </Principal>
+            <Dependent Role="inf_prospectos">
+              <PropertyRef Name="id_tserv_prosp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_prospectos_inf_emp">
+          <End Role="inf_emp" Type="Self.inf_emp" Multiplicity="1" />
+          <End Role="inf_prospectos" Type="Self.inf_prospectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inf_emp">
+              <PropertyRef Name="id_emp" />
+            </Principal>
+            <Dependent Role="inf_prospectos">
+              <PropertyRef Name="id_emp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_inf_rubro_fact_est_rub">
           <End Role="fact_est_rub" Type="Self.fact_est_rub" Multiplicity="0..1" />
           <End Role="inf_rubro" Type="Self.inf_rubro" Multiplicity="*" />
@@ -1008,6 +1036,30 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_inf_seg_prospecto_fact_taccion_prosp">
+          <End Role="fact_taccion_prosp" Type="Self.fact_taccion_prosp" Multiplicity="0..1" />
+          <End Role="inf_seg_prospecto" Type="Self.inf_seg_prospecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fact_taccion_prosp">
+              <PropertyRef Name="id_taccion_prosp" />
+            </Principal>
+            <Dependent Role="inf_seg_prospecto">
+              <PropertyRef Name="id_taccion_prosp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_seg_prospecto_inf_cont_prosp">
+          <End Role="inf_cont_prosp" Type="Self.inf_cont_prosp" Multiplicity="0..1" />
+          <End Role="inf_seg_prospecto" Type="Self.inf_seg_prospecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inf_cont_prosp">
+              <PropertyRef Name="id_cont_prosp" />
+            </Principal>
+            <Dependent Role="inf_seg_prospecto">
+              <PropertyRef Name="id_cont_prosp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_inf_usuarios_fact_areas">
           <End Role="fact_areas" Type="Self.fact_areas" Multiplicity="1" />
           <End Role="inf_usuarios" Type="Self.inf_usuarios" Multiplicity="*" />
@@ -1057,14 +1109,19 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <EntitySet Name="fact_est_rubm" EntityType="Self.fact_est_rubm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_estatus" EntityType="Self.fact_estatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_generos" EntityType="Self.fact_generos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fact_giro_prosp" EntityType="Self.fact_giro_prosp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_perfil" EntityType="Self.fact_perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fact_taccion_prosp" EntityType="Self.fact_taccion_prosp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fact_tipo_contprosp" EntityType="Self.fact_tipo_contprosp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_tipo_rfc" EntityType="Self.fact_tipo_rfc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_tipo_rubro" EntityType="Self.fact_tipo_rubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fact_tipo_servicio" EntityType="Self.fact_tipo_servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fact_tserv_prosp" EntityType="Self.fact_tserv_prosp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_caja" EntityType="Self.inf_caja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_clte" EntityType="Self.inf_clte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_clte_obras" EntityType="Self.inf_clte_obras" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_conc_ec" EntityType="Self.inf_conc_ec" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inf_cont_prosp" EntityType="Self.inf_cont_prosp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_cont_usr" EntityType="Self.inf_cont_usr" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_control_montos" EntityType="Self.inf_control_montos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_email_envio" EntityType="Self.inf_email_envio" Schema="dbo" store:Type="Tables" />
@@ -1079,31 +1136,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <EntitySet Name="inf_seg_prospecto" EntityType="Self.inf_seg_prospecto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_sepomex" EntityType="Self.inf_sepomex" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inf_usuarios" EntityType="Self.inf_usuarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="dd_gastos" EntityType="Self.dd_gastos" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [dd_gastos].[codigo_rubro] AS [codigo_rubro], 
-    [dd_gastos].[tipo_rubro] AS [tipo_rubro], 
-    [dd_gastos].[etiqueta_rubro] AS [etiqueta_rubro], 
-    [dd_gastos].[rubro] AS [rubro], 
-    [dd_gastos].[cod] AS [cod], 
-    [dd_gastos].[desc_gast] AS [desc_gast], 
-    [dd_gastos].[monto] AS [monto], 
-    [dd_gastos].[fecha_registro] AS [fecha_registro], 
-    [dd_gastos].[filtro] AS [filtro]
-    FROM [dbo].[dd_gastos] AS [dd_gastos]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="dd_rmeses" EntityType="Self.dd_rmeses" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [dd_rmeses].[id_rubro] AS [id_rubro], 
-    [dd_rmeses].[tipo_rubro] AS [tipo_rubro], 
-    [dd_rmeses].[etiqueta_rubro] AS [etiqueta_rubro], 
-    [dd_rmeses].[rubro] AS [rubro], 
-    [dd_rmeses].[monto_fijo] AS [monto_fijo], 
-    [dd_rmeses].[año] AS [año], 
-    [dd_rmeses].[mes] AS [mes], 
-    [dd_rmeses].[montof] AS [montof]
-    FROM [dbo].[dd_rmeses] AS [dd_rmeses]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="v_pfe" EntityType="Self.v_pfe" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_pfe].[id_mrp_concreto] AS [id_mrp_concreto], 
@@ -1137,52 +1169,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
     [v_pfe].[revb] AS [revb], 
     [v_pfe].[localiza] AS [localiza]
     FROM [dbo].[v_pfe] AS [v_pfe]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="v_rpt_conc" EntityType="Self.v_rpt_conc" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [v_rpt_conc].[id_est_obra] AS [id_est_obra], 
-    [v_rpt_conc].[clave_obra] AS [clave_obra], 
-    [v_rpt_conc].[desc_obra] AS [desc_obra], 
-    [v_rpt_conc].[coordinador] AS [coordinador], 
-    [v_rpt_conc].[contacto_obra] AS [contacto_obra], 
-    [v_rpt_conc].[no_muesra] AS [no_muesra], 
-    [v_rpt_conc].[fecha_colado] AS [fecha_colado], 
-    [v_rpt_conc].[procedecia] AS [procedecia], 
-    [v_rpt_conc].[elemento] AS [elemento], 
-    [v_rpt_conc].[dosificacion] AS [dosificacion], 
-    [v_rpt_conc].[resistencia] AS [resistencia], 
-    [v_rpt_conc].[reva] AS [reva], 
-    [v_rpt_conc].[tma] AS [tma], 
-    [v_rpt_conc].[olla] AS [olla], 
-    [v_rpt_conc].[remision] AS [remision], 
-    [v_rpt_conc].[sali_planta] AS [sali_planta], 
-    [v_rpt_conc].[llega_obra] AS [llega_obra], 
-    [v_rpt_conc].[desca_ini] AS [desca_ini], 
-    [v_rpt_conc].[desca_term] AS [desca_term], 
-    [v_rpt_conc].[vol] AS [vol], 
-    [v_rpt_conc].[revb] AS [revb], 
-    [v_rpt_conc].[localiza] AS [localiza], 
-    [v_rpt_conc].[clase] AS [clase], 
-    [v_rpt_conc].[presion] AS [presion], 
-    [v_rpt_conc].[razon_social] AS [razon_social], 
-    [v_rpt_conc].[cod_esp] AS [cod_esp], 
-    [v_rpt_conc].[dia_ensaye] AS [dia_ensaye], 
-    [v_rpt_conc].[numdia_ensaye] AS [numdia_ensaye], 
-    [v_rpt_conc].[num_muestra] AS [num_muestra], 
-    [v_rpt_conc].[fecha_ensaye] AS [fecha_ensaye], 
-    [v_rpt_conc].[clave_ensa_a] AS [clave_ensa_a], 
-    [v_rpt_conc].[masa_a] AS [masa_a], 
-    [v_rpt_conc].[altura_a] AS [altura_a], 
-    [v_rpt_conc].[altura_b] AS [altura_b], 
-    [v_rpt_conc].[lados_a] AS [lados_a], 
-    [v_rpt_conc].[lados_b] AS [lados_b], 
-    [v_rpt_conc].[directo_a] AS [directo_a], 
-    [v_rpt_conc].[intensidad_a] AS [intensidad_a], 
-    [v_rpt_conc].[presion_a] AS [presion_a], 
-    [v_rpt_conc].[tipofalla_a] AS [tipofalla_a], 
-    [v_rpt_conc].[id_est_ensaye] AS [id_est_ensaye], 
-    [v_rpt_conc].[id_mrp_concreto] AS [id_mrp_concreto]
-    FROM [dbo].[v_rpt_conc] AS [v_rpt_conc]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_contacto_usuarios_general_usuarios" Association="Self.FK_contacto_usuarios_general_usuarios">
             <End Role="inf_usuarios" EntitySet="inf_usuarios" />
@@ -1252,6 +1238,10 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             <End Role="inf_mrp_concreto" EntitySet="inf_mrp_concreto" />
             <End Role="inf_conc_ec" EntitySet="inf_conc_ec" />
           </AssociationSet>
+          <AssociationSet Name="FK_inf_cont_prosp_inf_prospectos" Association="Self.FK_inf_cont_prosp_inf_prospectos">
+            <End Role="inf_prospectos" EntitySet="inf_prospectos" />
+            <End Role="inf_cont_prosp" EntitySet="inf_cont_prosp" />
+          </AssociationSet>
           <AssociationSet Name="FK_inf_control_montos_inf_rubro" Association="Self.FK_inf_control_montos_inf_rubro">
             <End Role="inf_rubro" EntitySet="inf_rubro" />
             <End Role="inf_control_montos" EntitySet="inf_control_montos" />
@@ -1304,6 +1294,22 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             <End Role="inf_emp" EntitySet="inf_emp" />
             <End Role="inf_mrp_concreto" EntitySet="inf_mrp_concreto" />
           </AssociationSet>
+          <AssociationSet Name="FK_inf_prospectos_fact_giro_prosp" Association="Self.FK_inf_prospectos_fact_giro_prosp">
+            <End Role="fact_giro_prosp" EntitySet="fact_giro_prosp" />
+            <End Role="inf_prospectos" EntitySet="inf_prospectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_prospectos_fact_tipo_contprosp" Association="Self.FK_inf_prospectos_fact_tipo_contprosp">
+            <End Role="fact_tipo_contprosp" EntitySet="fact_tipo_contprosp" />
+            <End Role="inf_prospectos" EntitySet="inf_prospectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_prospectos_fact_tserv_prosp" Association="Self.FK_inf_prospectos_fact_tserv_prosp">
+            <End Role="fact_tserv_prosp" EntitySet="fact_tserv_prosp" />
+            <End Role="inf_prospectos" EntitySet="inf_prospectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_prospectos_inf_emp" Association="Self.FK_inf_prospectos_inf_emp">
+            <End Role="inf_emp" EntitySet="inf_emp" />
+            <End Role="inf_prospectos" EntitySet="inf_prospectos" />
+          </AssociationSet>
           <AssociationSet Name="FK_inf_rubro_fact_est_rub" Association="Self.FK_inf_rubro_fact_est_rub">
             <End Role="fact_est_rub" EntitySet="fact_est_rub" />
             <End Role="inf_rubro" EntitySet="inf_rubro" />
@@ -1323,6 +1329,14 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <AssociationSet Name="FK_inf_rubro_mes_inf_rubro" Association="Self.FK_inf_rubro_mes_inf_rubro">
             <End Role="inf_rubro" EntitySet="inf_rubro" />
             <End Role="inf_rubro_mes" EntitySet="inf_rubro_mes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_seg_prospecto_fact_taccion_prosp" Association="Self.FK_inf_seg_prospecto_fact_taccion_prosp">
+            <End Role="fact_taccion_prosp" EntitySet="fact_taccion_prosp" />
+            <End Role="inf_seg_prospecto" EntitySet="inf_seg_prospecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_seg_prospecto_inf_cont_prosp" Association="Self.FK_inf_seg_prospecto_inf_cont_prosp">
+            <End Role="inf_cont_prosp" EntitySet="inf_cont_prosp" />
+            <End Role="inf_seg_prospecto" EntitySet="inf_seg_prospecto" />
           </AssociationSet>
           <AssociationSet Name="FK_inf_usuarios_fact_areas" Association="Self.FK_inf_usuarios_fact_areas">
             <End Role="fact_areas" EntitySet="fact_areas" />
@@ -1364,14 +1378,19 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <EntitySet Name="fact_est_rubm" EntityType="dd_liecModel.fact_est_rubm" />
           <EntitySet Name="fact_estatus" EntityType="dd_liecModel.fact_estatus" />
           <EntitySet Name="fact_generos" EntityType="dd_liecModel.fact_generos" />
+          <EntitySet Name="fact_giro_prosp" EntityType="dd_liecModel.fact_giro_prosp" />
           <EntitySet Name="fact_perfil" EntityType="dd_liecModel.fact_perfil" />
+          <EntitySet Name="fact_taccion_prosp" EntityType="dd_liecModel.fact_taccion_prosp" />
+          <EntitySet Name="fact_tipo_contprosp" EntityType="dd_liecModel.fact_tipo_contprosp" />
           <EntitySet Name="fact_tipo_rfc" EntityType="dd_liecModel.fact_tipo_rfc" />
           <EntitySet Name="fact_tipo_rubro" EntityType="dd_liecModel.fact_tipo_rubro" />
           <EntitySet Name="fact_tipo_servicio" EntityType="dd_liecModel.fact_tipo_servicio" />
+          <EntitySet Name="fact_tserv_prosp" EntityType="dd_liecModel.fact_tserv_prosp" />
           <EntitySet Name="inf_caja" EntityType="dd_liecModel.inf_caja" />
           <EntitySet Name="inf_clte" EntityType="dd_liecModel.inf_clte" />
           <EntitySet Name="inf_clte_obras" EntityType="dd_liecModel.inf_clte_obras" />
           <EntitySet Name="inf_conc_ec" EntityType="dd_liecModel.inf_conc_ec" />
+          <EntitySet Name="inf_cont_prosp" EntityType="dd_liecModel.inf_cont_prosp" />
           <EntitySet Name="inf_cont_usr" EntityType="dd_liecModel.inf_cont_usr" />
           <EntitySet Name="inf_control_montos" EntityType="dd_liecModel.inf_control_montos" />
           <EntitySet Name="inf_email_envio" EntityType="dd_liecModel.inf_email_envio" />
@@ -1380,14 +1399,13 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <EntitySet Name="inf_gastos" EntityType="dd_liecModel.inf_gastos" />
           <EntitySet Name="inf_gastos_dep" EntityType="dd_liecModel.inf_gastos_dep" />
           <EntitySet Name="inf_mrp_concreto" EntityType="dd_liecModel.inf_mrp_concreto" />
+          <EntitySet Name="inf_prospectos" EntityType="dd_liecModel.inf_prospectos" />
           <EntitySet Name="inf_rubro" EntityType="dd_liecModel.inf_rubro" />
           <EntitySet Name="inf_rubro_mes" EntityType="dd_liecModel.inf_rubro_mes" />
+          <EntitySet Name="inf_seg_prospecto" EntityType="dd_liecModel.inf_seg_prospecto" />
           <EntitySet Name="inf_sepomex" EntityType="dd_liecModel.inf_sepomex" />
           <EntitySet Name="inf_usuarios" EntityType="dd_liecModel.inf_usuarios" />
-          <EntitySet Name="dd_gastos" EntityType="dd_liecModel.dd_gastos" />
-          <EntitySet Name="dd_rmeses" EntityType="dd_liecModel.dd_rmeses" />
           <EntitySet Name="v_pfe" EntityType="dd_liecModel.v_pfe" />
-          <EntitySet Name="v_rpt_conc" EntityType="dd_liecModel.v_rpt_conc" />
           <AssociationSet Name="FK_inf_mrp_concreto_fac_situacion_concreto" Association="dd_liecModel.FK_inf_mrp_concreto_fac_situacion_concreto">
             <End Role="fac_sit_concreto" EntitySet="fac_sit_concreto" />
             <End Role="inf_mrp_concreto" EntitySet="inf_mrp_concreto" />
@@ -1464,9 +1482,21 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             <End Role="fact_generos" EntitySet="fact_generos" />
             <End Role="inf_usuarios" EntitySet="inf_usuarios" />
           </AssociationSet>
+          <AssociationSet Name="FK_inf_prospectos_fact_giro_prosp" Association="dd_liecModel.FK_inf_prospectos_fact_giro_prosp">
+            <End Role="fact_giro_prosp" EntitySet="fact_giro_prosp" />
+            <End Role="inf_prospectos" EntitySet="inf_prospectos" />
+          </AssociationSet>
           <AssociationSet Name="FK_general_usuarios_fact_perfil" Association="dd_liecModel.FK_general_usuarios_fact_perfil">
             <End Role="fact_perfil" EntitySet="fact_perfil" />
             <End Role="inf_usuarios" EntitySet="inf_usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_seg_prospecto_fact_taccion_prosp" Association="dd_liecModel.FK_inf_seg_prospecto_fact_taccion_prosp">
+            <End Role="fact_taccion_prosp" EntitySet="fact_taccion_prosp" />
+            <End Role="inf_seg_prospecto" EntitySet="inf_seg_prospecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_prospectos_fact_tipo_contprosp" Association="dd_liecModel.FK_inf_prospectos_fact_tipo_contprosp">
+            <End Role="fact_tipo_contprosp" EntitySet="fact_tipo_contprosp" />
+            <End Role="inf_prospectos" EntitySet="inf_prospectos" />
           </AssociationSet>
           <AssociationSet Name="FK_inf_clte_fact_tipo_rfc" Association="dd_liecModel.FK_inf_clte_fact_tipo_rfc">
             <End Role="fact_tipo_rfc" EntitySet="fact_tipo_rfc" />
@@ -1479,6 +1509,10 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <AssociationSet Name="FK_inf_clte_obras_fact_tipo_servicio" Association="dd_liecModel.FK_inf_clte_obras_fact_tipo_servicio">
             <End Role="fact_tipo_servicio" EntitySet="fact_tipo_servicio" />
             <End Role="inf_clte_obras" EntitySet="inf_clte_obras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_prospectos_fact_tserv_prosp" Association="dd_liecModel.FK_inf_prospectos_fact_tserv_prosp">
+            <End Role="fact_tserv_prosp" EntitySet="fact_tserv_prosp" />
+            <End Role="inf_prospectos" EntitySet="inf_prospectos" />
           </AssociationSet>
           <AssociationSet Name="FK_inf_caja_inf_emp" Association="dd_liecModel.FK_inf_caja_inf_emp">
             <End Role="inf_emp" EntitySet="inf_emp" />
@@ -1495,6 +1529,14 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <AssociationSet Name="FK_inf_conc_ec_inf_mrp_concreto" Association="dd_liecModel.FK_inf_conc_ec_inf_mrp_concreto">
             <End Role="inf_mrp_concreto" EntitySet="inf_mrp_concreto" />
             <End Role="inf_conc_ec" EntitySet="inf_conc_ec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_cont_prosp_inf_prospectos" Association="dd_liecModel.FK_inf_cont_prosp_inf_prospectos">
+            <End Role="inf_prospectos" EntitySet="inf_prospectos" />
+            <End Role="inf_cont_prosp" EntitySet="inf_cont_prosp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inf_seg_prospecto_inf_cont_prosp" Association="dd_liecModel.FK_inf_seg_prospecto_inf_cont_prosp">
+            <End Role="inf_cont_prosp" EntitySet="inf_cont_prosp" />
+            <End Role="inf_seg_prospecto" EntitySet="inf_seg_prospecto" />
           </AssociationSet>
           <AssociationSet Name="FK_contacto_usuarios_general_usuarios" Association="dd_liecModel.FK_contacto_usuarios_general_usuarios">
             <End Role="inf_usuarios" EntitySet="inf_usuarios" />
@@ -1520,6 +1562,10 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             <End Role="inf_emp" EntitySet="inf_emp" />
             <End Role="inf_mrp_concreto" EntitySet="inf_mrp_concreto" />
           </AssociationSet>
+          <AssociationSet Name="FK_inf_prospectos_inf_emp" Association="dd_liecModel.FK_inf_prospectos_inf_emp">
+            <End Role="inf_emp" EntitySet="inf_emp" />
+            <End Role="inf_prospectos" EntitySet="inf_prospectos" />
+          </AssociationSet>
           <AssociationSet Name="FK_inf_rubro_inf_emp" Association="dd_liecModel.FK_inf_rubro_inf_emp">
             <End Role="inf_emp" EntitySet="inf_emp" />
             <End Role="inf_rubro" EntitySet="inf_rubro" />
@@ -1532,8 +1578,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             <End Role="inf_rubro" EntitySet="inf_rubro" />
             <End Role="inf_rubro_mes" EntitySet="inf_rubro_mes" />
           </AssociationSet>
-          <EntitySet Name="inf_prospectos" EntityType="dd_liecModel.inf_prospectos" />
-          <EntitySet Name="inf_seg_prospecto" EntityType="dd_liecModel.inf_seg_prospecto" />
           </EntityContainer>
         <EntityType Name="fac_sit_concreto">
           <Key>
@@ -1685,6 +1729,14 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <Property Name="desc_genero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="inf_usuarios" Relationship="dd_liecModel.FK_general_usuarios_fact_generos" FromRole="fact_generos" ToRole="inf_usuarios" />
         </EntityType>
+        <EntityType Name="fact_giro_prosp">
+          <Key>
+            <PropertyRef Name="id_giro_prosp" />
+          </Key>
+          <Property Name="id_giro_prosp" Type="Int32" Nullable="false" />
+          <Property Name="desc_giro_prosp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="inf_prospectos" Relationship="dd_liecModel.FK_inf_prospectos_fact_giro_prosp" FromRole="fact_giro_prosp" ToRole="inf_prospectos" />
+        </EntityType>
         <EntityType Name="fact_perfil">
           <Key>
             <PropertyRef Name="id_perfil" />
@@ -1692,6 +1744,22 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <Property Name="id_perfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="desc_perfil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="inf_usuarios" Relationship="dd_liecModel.FK_general_usuarios_fact_perfil" FromRole="fact_perfil" ToRole="inf_usuarios" />
+        </EntityType>
+        <EntityType Name="fact_taccion_prosp">
+          <Key>
+            <PropertyRef Name="id_taccion_prosp" />
+          </Key>
+          <Property Name="id_taccion_prosp" Type="Int32" Nullable="false" />
+          <Property Name="desc_taccion_prosp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="inf_seg_prospecto" Relationship="dd_liecModel.FK_inf_seg_prospecto_fact_taccion_prosp" FromRole="fact_taccion_prosp" ToRole="inf_seg_prospecto" />
+        </EntityType>
+        <EntityType Name="fact_tipo_contprosp">
+          <Key>
+            <PropertyRef Name="id_tipo_contprosp" />
+          </Key>
+          <Property Name="id_tipo_contprosp" Type="Int32" Nullable="false" />
+          <Property Name="desc_tipo_contprosp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="inf_prospectos" Relationship="dd_liecModel.FK_inf_prospectos_fact_tipo_contprosp" FromRole="fact_tipo_contprosp" ToRole="inf_prospectos" />
         </EntityType>
         <EntityType Name="fact_tipo_rfc">
           <Key>
@@ -1717,6 +1785,14 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <Property Name="id_tipo_servicio" Type="Int32" Nullable="false" />
           <Property Name="desc_tipo_servicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="inf_clte_obras" Relationship="dd_liecModel.FK_inf_clte_obras_fact_tipo_servicio" FromRole="fact_tipo_servicio" ToRole="inf_clte_obras" />
+        </EntityType>
+        <EntityType Name="fact_tserv_prosp">
+          <Key>
+            <PropertyRef Name="id_tserv_prosp" />
+          </Key>
+          <Property Name="id_tserv_prosp" Type="Int32" Nullable="false" />
+          <Property Name="desc_tserv_prosp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="inf_prospectos" Relationship="dd_liecModel.FK_inf_prospectos_fact_tserv_prosp" FromRole="fact_tserv_prosp" ToRole="inf_prospectos" />
         </EntityType>
         <EntityType Name="inf_caja">
           <Key>
@@ -1745,8 +1821,8 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <Property Name="cod_clte" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_tipo_rfc" Type="Int32" />
           <Property Name="rfc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="razon_social" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="razon_social" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="28" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="callenum" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="d_codigo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
@@ -1806,6 +1882,23 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <Property Name="id_mrp_concreto" Type="Guid" Nullable="false" />
           <NavigationProperty Name="fact_est_ensaye" Relationship="dd_liecModel.FK_inf_conc_ec_fact_est_ensaye" FromRole="inf_conc_ec" ToRole="fact_est_ensaye" />
           <NavigationProperty Name="inf_mrp_concreto" Relationship="dd_liecModel.FK_inf_conc_ec_inf_mrp_concreto" FromRole="inf_conc_ec" ToRole="inf_mrp_concreto" />
+        </EntityType>
+        <EntityType Name="inf_cont_prosp">
+          <Key>
+            <PropertyRef Name="id_cont_prosp" />
+          </Key>
+          <Property Name="id_cont_prosp" Type="Guid" Nullable="false" />
+          <Property Name="dpto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tel1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tel2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario" Type="Guid" Nullable="false" />
+          <Property Name="id_prospecto" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="inf_prospectos" Relationship="dd_liecModel.FK_inf_cont_prosp_inf_prospectos" FromRole="inf_cont_prosp" ToRole="inf_prospectos" />
+          <NavigationProperty Name="inf_seg_prospecto" Relationship="dd_liecModel.FK_inf_seg_prospecto_inf_cont_prosp" FromRole="inf_cont_prosp" ToRole="inf_seg_prospecto" />
         </EntityType>
         <EntityType Name="inf_cont_usr">
           <Key>
@@ -1881,6 +1974,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <NavigationProperty Name="inf_email_recepcion" Relationship="dd_liecModel.FK_inf_email_recepcion_inf_emp" FromRole="inf_emp" ToRole="inf_email_recepcion" />
           <NavigationProperty Name="inf_gastos" Relationship="dd_liecModel.FK_inf_gastos_inf_emp" FromRole="inf_emp" ToRole="inf_gastos" />
           <NavigationProperty Name="inf_mrp_concreto" Relationship="dd_liecModel.FK_inf_mrp_concreto_inf_emp" FromRole="inf_emp" ToRole="inf_mrp_concreto" />
+          <NavigationProperty Name="inf_prospectos" Relationship="dd_liecModel.FK_inf_prospectos_inf_emp" FromRole="inf_emp" ToRole="inf_prospectos" />
           <NavigationProperty Name="inf_rubro" Relationship="dd_liecModel.FK_inf_rubro_inf_emp" FromRole="inf_emp" ToRole="inf_rubro" />
         </EntityType>
         <EntityType Name="inf_gastos">
@@ -1955,6 +2049,30 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <NavigationProperty Name="inf_conc_ec" Relationship="dd_liecModel.FK_inf_conc_ec_inf_mrp_concreto" FromRole="inf_mrp_concreto" ToRole="inf_conc_ec" />
           <NavigationProperty Name="inf_emp" Relationship="dd_liecModel.FK_inf_mrp_concreto_inf_emp" FromRole="inf_mrp_concreto" ToRole="inf_emp" />
         </EntityType>
+        <EntityType Name="inf_prospectos">
+          <Key>
+            <PropertyRef Name="id_prospecto" />
+          </Key>
+          <Property Name="id_prospecto" Type="Guid" Nullable="false" />
+          <Property Name="id_giro_prosp" Type="Int32" Nullable="false" />
+          <Property Name="id_tserv_prosp" Type="Int32" Nullable="false" />
+          <Property Name="id_est_prospecto" Type="Int32" />
+          <Property Name="cod_prospecto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_contprosp" Type="Int32" Nullable="false" />
+          <Property Name="empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="callenum" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="d_codigo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="id_asenta_cpcons" Type="Int32" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+          <Property Name="id_emp" Type="Guid" Nullable="false" />
+          <Property Name="id_usuario" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="fact_giro_prosp" Relationship="dd_liecModel.FK_inf_prospectos_fact_giro_prosp" FromRole="inf_prospectos" ToRole="fact_giro_prosp" />
+          <NavigationProperty Name="fact_tipo_contprosp" Relationship="dd_liecModel.FK_inf_prospectos_fact_tipo_contprosp" FromRole="inf_prospectos" ToRole="fact_tipo_contprosp" />
+          <NavigationProperty Name="fact_tserv_prosp" Relationship="dd_liecModel.FK_inf_prospectos_fact_tserv_prosp" FromRole="inf_prospectos" ToRole="fact_tserv_prosp" />
+          <NavigationProperty Name="inf_cont_prosp" Relationship="dd_liecModel.FK_inf_cont_prosp_inf_prospectos" FromRole="inf_prospectos" ToRole="inf_cont_prosp" />
+          <NavigationProperty Name="inf_emp" Relationship="dd_liecModel.FK_inf_prospectos_inf_emp" FromRole="inf_prospectos" ToRole="inf_emp" />
+        </EntityType>
         <EntityType Name="inf_rubro">
           <Key>
             <PropertyRef Name="id_rubro" />
@@ -1990,6 +2108,19 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <Property Name="id_rubro" Type="Guid" />
           <NavigationProperty Name="fact_est_rubm" Relationship="dd_liecModel.FK_inf_rubro_mes_fact_est_rubm" FromRole="inf_rubro_mes" ToRole="fact_est_rubm" />
           <NavigationProperty Name="inf_rubro" Relationship="dd_liecModel.FK_inf_rubro_mes_inf_rubro" FromRole="inf_rubro_mes" ToRole="inf_rubro" />
+        </EntityType>
+        <EntityType Name="inf_seg_prospecto">
+          <Key>
+            <PropertyRef Name="id_seg_prospecto" />
+          </Key>
+          <Property Name="id_seg_prospecto" Type="Guid" Nullable="false" />
+          <Property Name="id_taccion_prosp" Type="Int32" />
+          <Property Name="comentarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario" Type="Guid" Nullable="false" />
+          <Property Name="id_cont_prosp" Type="Guid" />
+          <NavigationProperty Name="fact_taccion_prosp" Relationship="dd_liecModel.FK_inf_seg_prospecto_fact_taccion_prosp" FromRole="inf_seg_prospecto" ToRole="fact_taccion_prosp" />
+          <NavigationProperty Name="inf_cont_prosp" Relationship="dd_liecModel.FK_inf_seg_prospecto_inf_cont_prosp" FromRole="inf_seg_prospecto" ToRole="inf_cont_prosp" />
         </EntityType>
         <EntityType Name="inf_sepomex">
           <Key>
@@ -2039,33 +2170,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <NavigationProperty Name="fact_perfil" Relationship="dd_liecModel.FK_general_usuarios_fact_perfil" FromRole="inf_usuarios" ToRole="fact_perfil" />
           <NavigationProperty Name="inf_cont_usr" Relationship="dd_liecModel.FK_contacto_usuarios_general_usuarios" FromRole="inf_usuarios" ToRole="inf_cont_usr" />
         </EntityType>
-        <EntityType Name="dd_gastos">
-          <Key>
-            <PropertyRef Name="filtro" />
-          </Key>
-          <Property Name="codigo_rubro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="tipo_rubro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="etiqueta_rubro" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="rubro" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="cod" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="desc_gast" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="monto" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
-          <Property Name="filtro" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="dd_rmeses">
-          <Key>
-            <PropertyRef Name="id_rubro" />
-          </Key>
-          <Property Name="id_rubro" Type="Guid" Nullable="false" />
-          <Property Name="tipo_rubro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="etiqueta_rubro" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="rubro" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="monto_fijo" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="año" Type="Int32" />
-          <Property Name="mes" Type="Int32" />
-          <Property Name="montof" Type="Decimal" Precision="38" Scale="4" />
-        </EntityType>
         <EntityType Name="v_pfe">
           <Key>
             <PropertyRef Name="id_mrp_concreto" />
@@ -2104,54 +2208,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
           <Property Name="desca_term" Type="Time" Precision="7" />
           <Property Name="revb" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="localiza" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="v_rpt_conc">
-          <Key>
-            <PropertyRef Name="id_est_ensaye" />
-            <PropertyRef Name="id_mrp_concreto" />
-          </Key>
-          <Property Name="id_est_obra" Type="Int32" />
-          <Property Name="clave_obra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="desc_obra" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="coordinador" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="contacto_obra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="no_muesra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_colado" Type="DateTime" Precision="3" />
-          <Property Name="procedecia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="elemento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dosificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="resistencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="reva" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="tma" Type="Int32" />
-          <Property Name="olla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="remision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="sali_planta" Type="Time" Precision="7" />
-          <Property Name="llega_obra" Type="Time" Precision="7" />
-          <Property Name="desca_ini" Type="Time" Precision="7" />
-          <Property Name="desca_term" Type="Time" Precision="7" />
-          <Property Name="vol" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="revb" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="localiza" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="clase" Type="Int32" />
-          <Property Name="presion" Type="Int32" />
-          <Property Name="razon_social" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cod_esp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dia_ensaye" Type="Int32" />
-          <Property Name="numdia_ensaye" Type="Int32" />
-          <Property Name="num_muestra" Type="Int32" />
-          <Property Name="fecha_ensaye" Type="DateTime" Precision="0" />
-          <Property Name="clave_ensa_a" Type="Int32" />
-          <Property Name="masa_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="altura_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="altura_b" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="lados_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="lados_b" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="directo_a" Type="Int32" />
-          <Property Name="intensidad_a" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="presion_a" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="tipofalla_a" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="id_est_ensaye" Type="Int32" Nullable="false" />
-          <Property Name="id_mrp_concreto" Type="Guid" Nullable="false" />
         </EntityType>
         <Association Name="FK_inf_mrp_concreto_fac_situacion_concreto">
           <End Type="dd_liecModel.fac_sit_concreto" Role="fac_sit_concreto" Multiplicity="1" />
@@ -2381,6 +2437,18 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_inf_prospectos_fact_giro_prosp">
+          <End Type="dd_liecModel.fact_giro_prosp" Role="fact_giro_prosp" Multiplicity="1" />
+          <End Type="dd_liecModel.inf_prospectos" Role="inf_prospectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fact_giro_prosp">
+              <PropertyRef Name="id_giro_prosp" />
+            </Principal>
+            <Dependent Role="inf_prospectos">
+              <PropertyRef Name="id_giro_prosp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_general_usuarios_fact_perfil">
           <End Type="dd_liecModel.fact_perfil" Role="fact_perfil" Multiplicity="0..1" />
           <End Type="dd_liecModel.inf_usuarios" Role="inf_usuarios" Multiplicity="*" />
@@ -2390,6 +2458,30 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             </Principal>
             <Dependent Role="inf_usuarios">
               <PropertyRef Name="id_perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_seg_prospecto_fact_taccion_prosp">
+          <End Type="dd_liecModel.fact_taccion_prosp" Role="fact_taccion_prosp" Multiplicity="0..1" />
+          <End Type="dd_liecModel.inf_seg_prospecto" Role="inf_seg_prospecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fact_taccion_prosp">
+              <PropertyRef Name="id_taccion_prosp" />
+            </Principal>
+            <Dependent Role="inf_seg_prospecto">
+              <PropertyRef Name="id_taccion_prosp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_prospectos_fact_tipo_contprosp">
+          <End Type="dd_liecModel.fact_tipo_contprosp" Role="fact_tipo_contprosp" Multiplicity="1" />
+          <End Type="dd_liecModel.inf_prospectos" Role="inf_prospectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fact_tipo_contprosp">
+              <PropertyRef Name="id_tipo_contprosp" />
+            </Principal>
+            <Dependent Role="inf_prospectos">
+              <PropertyRef Name="id_tipo_contprosp" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2426,6 +2518,18 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             </Principal>
             <Dependent Role="inf_clte_obras">
               <PropertyRef Name="id_tipo_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_prospectos_fact_tserv_prosp">
+          <End Type="dd_liecModel.fact_tserv_prosp" Role="fact_tserv_prosp" Multiplicity="1" />
+          <End Type="dd_liecModel.inf_prospectos" Role="inf_prospectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fact_tserv_prosp">
+              <PropertyRef Name="id_tserv_prosp" />
+            </Principal>
+            <Dependent Role="inf_prospectos">
+              <PropertyRef Name="id_tserv_prosp" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2474,6 +2578,30 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             </Principal>
             <Dependent Role="inf_conc_ec">
               <PropertyRef Name="id_mrp_concreto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_cont_prosp_inf_prospectos">
+          <End Type="dd_liecModel.inf_prospectos" Role="inf_prospectos" Multiplicity="1" />
+          <End Type="dd_liecModel.inf_cont_prosp" Role="inf_cont_prosp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inf_prospectos">
+              <PropertyRef Name="id_prospecto" />
+            </Principal>
+            <Dependent Role="inf_cont_prosp">
+              <PropertyRef Name="id_prospecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inf_seg_prospecto_inf_cont_prosp">
+          <End Type="dd_liecModel.inf_cont_prosp" Role="inf_cont_prosp" Multiplicity="0..1" />
+          <End Type="dd_liecModel.inf_seg_prospecto" Role="inf_seg_prospecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inf_cont_prosp">
+              <PropertyRef Name="id_cont_prosp" />
+            </Principal>
+            <Dependent Role="inf_seg_prospecto">
+              <PropertyRef Name="id_cont_prosp" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2549,6 +2677,18 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_inf_prospectos_inf_emp">
+          <End Type="dd_liecModel.inf_emp" Role="inf_emp" Multiplicity="1" />
+          <End Type="dd_liecModel.inf_prospectos" Role="inf_prospectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inf_emp">
+              <PropertyRef Name="id_emp" />
+            </Principal>
+            <Dependent Role="inf_prospectos">
+              <PropertyRef Name="id_emp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_inf_rubro_inf_emp">
           <End Type="dd_liecModel.inf_emp" Role="inf_emp" Multiplicity="0..1" />
           <End Type="dd_liecModel.inf_rubro" Role="inf_rubro" Multiplicity="*" />
@@ -2585,35 +2725,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="inf_prospectos">
-          <Key>
-            <PropertyRef Name="id_prospecto" />
-          </Key>
-          <Property Name="id_prospecto" Type="Guid" Nullable="false" />
-          <Property Name="id_est_prospecto" Type="Int32" />
-          <Property Name="cod_prospecto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="callenum" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="d_codigo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="id_asenta_cpcons" Type="Int32" />
-          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
-          <Property Name="id_emp" Type="Guid" Nullable="false" />
-          <Property Name="id_usuario" Type="Guid" Nullable="false" />
-        </EntityType>
-        <EntityType Name="inf_seg_prospecto">
-          <Key>
-            <PropertyRef Name="id_seg_prospecto" />
-          </Key>
-          <Property Name="id_seg_prospecto" Type="Guid" Nullable="false" />
-          <Property Name="id_tipo_accion" Type="Int32" />
-          <Property Name="comentarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
-          <Property Name="id_usuario" Type="Guid" Nullable="false" />
-          <Property Name="id_prospecto" Type="Guid" Nullable="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2783,11 +2894,35 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="fact_giro_prosp">
+            <EntityTypeMapping TypeName="dd_liecModel.fact_giro_prosp">
+              <MappingFragment StoreEntitySet="fact_giro_prosp">
+                <ScalarProperty Name="desc_giro_prosp" ColumnName="desc_giro_prosp" />
+                <ScalarProperty Name="id_giro_prosp" ColumnName="id_giro_prosp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="fact_perfil">
             <EntityTypeMapping TypeName="dd_liecModel.fact_perfil">
               <MappingFragment StoreEntitySet="fact_perfil">
                 <ScalarProperty Name="desc_perfil" ColumnName="desc_perfil" />
                 <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fact_taccion_prosp">
+            <EntityTypeMapping TypeName="dd_liecModel.fact_taccion_prosp">
+              <MappingFragment StoreEntitySet="fact_taccion_prosp">
+                <ScalarProperty Name="desc_taccion_prosp" ColumnName="desc_taccion_prosp" />
+                <ScalarProperty Name="id_taccion_prosp" ColumnName="id_taccion_prosp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fact_tipo_contprosp">
+            <EntityTypeMapping TypeName="dd_liecModel.fact_tipo_contprosp">
+              <MappingFragment StoreEntitySet="fact_tipo_contprosp">
+                <ScalarProperty Name="desc_tipo_contprosp" ColumnName="desc_tipo_contprosp" />
+                <ScalarProperty Name="id_tipo_contprosp" ColumnName="id_tipo_contprosp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2813,6 +2948,14 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
               <MappingFragment StoreEntitySet="fact_tipo_servicio">
                 <ScalarProperty Name="desc_tipo_servicio" ColumnName="desc_tipo_servicio" />
                 <ScalarProperty Name="id_tipo_servicio" ColumnName="id_tipo_servicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fact_tserv_prosp">
+            <EntityTypeMapping TypeName="dd_liecModel.fact_tserv_prosp">
+              <MappingFragment StoreEntitySet="fact_tserv_prosp">
+                <ScalarProperty Name="desc_tserv_prosp" ColumnName="desc_tserv_prosp" />
+                <ScalarProperty Name="id_tserv_prosp" ColumnName="id_tserv_prosp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2895,6 +3038,22 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
                 <ScalarProperty Name="dia_ensaye" ColumnName="dia_ensaye" />
                 <ScalarProperty Name="cod_esp" ColumnName="cod_esp" />
                 <ScalarProperty Name="id_conc_ec" ColumnName="id_conc_ec" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inf_cont_prosp">
+            <EntityTypeMapping TypeName="dd_liecModel.inf_cont_prosp">
+              <MappingFragment StoreEntitySet="inf_cont_prosp">
+                <ScalarProperty Name="id_prospecto" ColumnName="id_prospecto" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="email2" ColumnName="email2" />
+                <ScalarProperty Name="email1" ColumnName="email1" />
+                <ScalarProperty Name="tel2" ColumnName="tel2" />
+                <ScalarProperty Name="tel1" ColumnName="tel1" />
+                <ScalarProperty Name="contacto" ColumnName="contacto" />
+                <ScalarProperty Name="dpto" ColumnName="dpto" />
+                <ScalarProperty Name="id_cont_prosp" ColumnName="id_cont_prosp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3030,6 +3189,26 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="inf_prospectos">
+            <EntityTypeMapping TypeName="dd_liecModel.inf_prospectos">
+              <MappingFragment StoreEntitySet="inf_prospectos">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_emp" ColumnName="id_emp" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="id_asenta_cpcons" ColumnName="id_asenta_cpcons" />
+                <ScalarProperty Name="d_codigo" ColumnName="d_codigo" />
+                <ScalarProperty Name="callenum" ColumnName="callenum" />
+                <ScalarProperty Name="web" ColumnName="web" />
+                <ScalarProperty Name="empresa" ColumnName="empresa" />
+                <ScalarProperty Name="id_tipo_contprosp" ColumnName="id_tipo_contprosp" />
+                <ScalarProperty Name="cod_prospecto" ColumnName="cod_prospecto" />
+                <ScalarProperty Name="id_est_prospecto" ColumnName="id_est_prospecto" />
+                <ScalarProperty Name="id_tserv_prosp" ColumnName="id_tserv_prosp" />
+                <ScalarProperty Name="id_giro_prosp" ColumnName="id_giro_prosp" />
+                <ScalarProperty Name="id_prospecto" ColumnName="id_prospecto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="inf_rubro">
             <EntityTypeMapping TypeName="dd_liecModel.inf_rubro">
               <MappingFragment StoreEntitySet="inf_rubro">
@@ -3058,6 +3237,18 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
                 <ScalarProperty Name="monto_fijo" ColumnName="monto_fijo" />
                 <ScalarProperty Name="id_est_rubm" ColumnName="id_est_rubm" />
                 <ScalarProperty Name="id_rubro_mes" ColumnName="id_rubro_mes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inf_seg_prospecto">
+            <EntityTypeMapping TypeName="dd_liecModel.inf_seg_prospecto">
+              <MappingFragment StoreEntitySet="inf_seg_prospecto">
+                <ScalarProperty Name="id_cont_prosp" ColumnName="id_cont_prosp" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+                <ScalarProperty Name="id_taccion_prosp" ColumnName="id_taccion_prosp" />
+                <ScalarProperty Name="id_seg_prospecto" ColumnName="id_seg_prospecto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3104,35 +3295,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="dd_gastos">
-            <EntityTypeMapping TypeName="dd_liecModel.dd_gastos">
-              <MappingFragment StoreEntitySet="dd_gastos">
-                <ScalarProperty Name="filtro" ColumnName="filtro" />
-                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
-                <ScalarProperty Name="monto" ColumnName="monto" />
-                <ScalarProperty Name="desc_gast" ColumnName="desc_gast" />
-                <ScalarProperty Name="cod" ColumnName="cod" />
-                <ScalarProperty Name="rubro" ColumnName="rubro" />
-                <ScalarProperty Name="etiqueta_rubro" ColumnName="etiqueta_rubro" />
-                <ScalarProperty Name="tipo_rubro" ColumnName="tipo_rubro" />
-                <ScalarProperty Name="codigo_rubro" ColumnName="codigo_rubro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="dd_rmeses">
-            <EntityTypeMapping TypeName="dd_liecModel.dd_rmeses">
-              <MappingFragment StoreEntitySet="dd_rmeses">
-                <ScalarProperty Name="montof" ColumnName="montof" />
-                <ScalarProperty Name="mes" ColumnName="mes" />
-                <ScalarProperty Name="año" ColumnName="año" />
-                <ScalarProperty Name="monto_fijo" ColumnName="monto_fijo" />
-                <ScalarProperty Name="rubro" ColumnName="rubro" />
-                <ScalarProperty Name="etiqueta_rubro" ColumnName="etiqueta_rubro" />
-                <ScalarProperty Name="tipo_rubro" ColumnName="tipo_rubro" />
-                <ScalarProperty Name="id_rubro" ColumnName="id_rubro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="v_pfe">
             <EntityTypeMapping TypeName="dd_liecModel.v_pfe">
               <MappingFragment StoreEntitySet="v_pfe">
@@ -3166,85 +3328,6 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_rpt_conc' no tiene definida ni
                 <ScalarProperty Name="no_muesra" ColumnName="no_muesra" />
                 <ScalarProperty Name="id_est_concreto" ColumnName="id_est_concreto" />
                 <ScalarProperty Name="id_mrp_concreto" ColumnName="id_mrp_concreto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_rpt_conc">
-            <EntityTypeMapping TypeName="dd_liecModel.v_rpt_conc">
-              <MappingFragment StoreEntitySet="v_rpt_conc">
-                <ScalarProperty Name="id_mrp_concreto" ColumnName="id_mrp_concreto" />
-                <ScalarProperty Name="id_est_ensaye" ColumnName="id_est_ensaye" />
-                <ScalarProperty Name="tipofalla_a" ColumnName="tipofalla_a" />
-                <ScalarProperty Name="presion_a" ColumnName="presion_a" />
-                <ScalarProperty Name="intensidad_a" ColumnName="intensidad_a" />
-                <ScalarProperty Name="directo_a" ColumnName="directo_a" />
-                <ScalarProperty Name="lados_b" ColumnName="lados_b" />
-                <ScalarProperty Name="lados_a" ColumnName="lados_a" />
-                <ScalarProperty Name="altura_b" ColumnName="altura_b" />
-                <ScalarProperty Name="altura_a" ColumnName="altura_a" />
-                <ScalarProperty Name="masa_a" ColumnName="masa_a" />
-                <ScalarProperty Name="clave_ensa_a" ColumnName="clave_ensa_a" />
-                <ScalarProperty Name="fecha_ensaye" ColumnName="fecha_ensaye" />
-                <ScalarProperty Name="num_muestra" ColumnName="num_muestra" />
-                <ScalarProperty Name="numdia_ensaye" ColumnName="numdia_ensaye" />
-                <ScalarProperty Name="dia_ensaye" ColumnName="dia_ensaye" />
-                <ScalarProperty Name="cod_esp" ColumnName="cod_esp" />
-                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
-                <ScalarProperty Name="presion" ColumnName="presion" />
-                <ScalarProperty Name="clase" ColumnName="clase" />
-                <ScalarProperty Name="localiza" ColumnName="localiza" />
-                <ScalarProperty Name="revb" ColumnName="revb" />
-                <ScalarProperty Name="vol" ColumnName="vol" />
-                <ScalarProperty Name="desca_term" ColumnName="desca_term" />
-                <ScalarProperty Name="desca_ini" ColumnName="desca_ini" />
-                <ScalarProperty Name="llega_obra" ColumnName="llega_obra" />
-                <ScalarProperty Name="sali_planta" ColumnName="sali_planta" />
-                <ScalarProperty Name="remision" ColumnName="remision" />
-                <ScalarProperty Name="olla" ColumnName="olla" />
-                <ScalarProperty Name="tma" ColumnName="tma" />
-                <ScalarProperty Name="reva" ColumnName="reva" />
-                <ScalarProperty Name="resistencia" ColumnName="resistencia" />
-                <ScalarProperty Name="dosificacion" ColumnName="dosificacion" />
-                <ScalarProperty Name="elemento" ColumnName="elemento" />
-                <ScalarProperty Name="procedecia" ColumnName="procedecia" />
-                <ScalarProperty Name="fecha_colado" ColumnName="fecha_colado" />
-                <ScalarProperty Name="no_muesra" ColumnName="no_muesra" />
-                <ScalarProperty Name="contacto_obra" ColumnName="contacto_obra" />
-                <ScalarProperty Name="coordinador" ColumnName="coordinador" />
-                <ScalarProperty Name="desc_obra" ColumnName="desc_obra" />
-                <ScalarProperty Name="clave_obra" ColumnName="clave_obra" />
-                <ScalarProperty Name="id_est_obra" ColumnName="id_est_obra" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="inf_prospectos">
-            <EntityTypeMapping TypeName="dd_liecModel.inf_prospectos">
-              <MappingFragment StoreEntitySet="inf_prospectos">
-                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-                <ScalarProperty Name="id_emp" ColumnName="id_emp" />
-                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
-                <ScalarProperty Name="id_asenta_cpcons" ColumnName="id_asenta_cpcons" />
-                <ScalarProperty Name="d_codigo" ColumnName="d_codigo" />
-                <ScalarProperty Name="callenum" ColumnName="callenum" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="contacto" ColumnName="contacto" />
-                <ScalarProperty Name="empresa" ColumnName="empresa" />
-                <ScalarProperty Name="cod_prospecto" ColumnName="cod_prospecto" />
-                <ScalarProperty Name="id_est_prospecto" ColumnName="id_est_prospecto" />
-                <ScalarProperty Name="id_prospecto" ColumnName="id_prospecto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="inf_seg_prospecto">
-            <EntityTypeMapping TypeName="dd_liecModel.inf_seg_prospecto">
-              <MappingFragment StoreEntitySet="inf_seg_prospecto">
-                <ScalarProperty Name="id_prospecto" ColumnName="id_prospecto" />
-                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
-                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
-                <ScalarProperty Name="id_tipo_accion" ColumnName="id_tipo_accion" />
-                <ScalarProperty Name="id_seg_prospecto" ColumnName="id_seg_prospecto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

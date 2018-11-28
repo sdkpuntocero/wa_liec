@@ -139,6 +139,33 @@ namespace wa_liec {
         protected global::System.Web.UI.UpdatePanel up_clte_menu;
         
         /// <summary>
+        /// Control lkb_prosp.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lkb_prosp;
+        
+        /// <summary>
+        /// Control i_prosp.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl i_prosp;
+        
+        /// <summary>
+        /// Control lbl_prosp.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_prosp;
+        
+        /// <summary>
         /// Control lkb_clte.
         /// </summary>
         /// <remarks>

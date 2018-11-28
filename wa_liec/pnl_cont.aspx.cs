@@ -870,7 +870,7 @@ namespace wa_liec
                                 var f_rubm = (from r in edm_rub.inf_rubro_mes
                                               where r.id_rubro == guid_rub
                                               where r.id_est_rubm == 1
-                                              where r.fecha_registro.Value.Month == DateTime.Now.Month - 1
+                                              where r.fecha_registro.Value.Month == DateTime.Now.Month 
                                               select new
                                               {
                                                   r.monto_fijo,
