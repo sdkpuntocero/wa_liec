@@ -10,7 +10,7 @@
 namespace wa_liec {
     
     
-    public partial class demo {
+    public partial class WebForm1 {
         
         /// <summary>
         /// Control form1.
@@ -22,21 +22,12 @@ namespace wa_liec {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control ScriptManager1.
+        /// Control TreeView1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
-        /// Control up_gastos_bienvenida.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel up_gastos_bienvenida;
+        protected global::System.Web.UI.WebControls.TreeView TreeView1;
     }
 }

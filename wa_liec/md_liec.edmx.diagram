@@ -5,51 +5,51 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a5a4c50f0fea4124ad9b528733a01757" Name="Diagram1">
-        <EntityTypeShape EntityType="dd_liecModel.fac_sit_concreto" Width="1.5" PointX="6.75" PointY="40.125" />
-        <EntityTypeShape EntityType="dd_liecModel.fac_tipo_concreto" Width="1.5" PointX="6.75" PointY="42.5" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_areas" Width="1.5" PointX="3" PointY="25.75" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_departamento" Width="1.5" PointX="9" PointY="43.125" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_especimen" Width="1.5" PointX="6.75" PointY="44.75" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_areas" Width="1.5" PointX="0.75" PointY="30.25" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_caja" Width="1.5" PointX="0.75" PointY="22.25" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_clte" Width="1.5" PointX="6.75" PointY="17.125" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_concreto" Width="1.5" PointX="6.75" PointY="6.75" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_e_env" Width="1.5" PointX="3.75" PointY="36.25" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_e_recep" Width="1.5" PointX="0.75" PointY="33.25" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_ensaye" Width="1.5" PointX="12" PointY="40.25" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_gast" Width="1.5" PointX="3.75" PointY="33.25" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_obra" Width="1.5" PointX="9" PointY="6.5" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_rub" Width="1.5" PointX="6.75" PointY="34.5" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_est_rubm" Width="1.5" PointX="9" PointY="50.25" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_estatus" Width="1.5" PointX="9" PointY="45.5" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_generos" Width="1.5" PointX="9" PointY="47.75" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_giro_prosp" Width="1.5" PointX="3.75" PointY="16.25" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_perfil" Width="1.5" PointX="9" PointY="40.75" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_taccion_prosp" Width="1.5" PointX="8.25" PointY="3.25" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_contprosp" Width="1.5" PointX="3.75" PointY="13.625" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_rfc" Width="1.5" PointX="6.75" PointY="9.5" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_rubro" Width="1.5" PointX="6.75" PointY="48" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_servicio" Width="1.5" PointX="9" PointY="9.125" />
-        <EntityTypeShape EntityType="dd_liecModel.fact_tserv_prosp" Width="1.5" PointX="3.75" PointY="18.875" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_caja" Width="1.5" PointX="3" PointY="21.25" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_clte" Width="1.5" PointX="9" PointY="16.75" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_clte_obras" Width="1.5" PointX="11.25" PointY="17.25" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_conc_ec" Width="1.5" PointX="14.25" PointY="24.375" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_cont_prosp" Width="1.5" PointX="8.25" PointY="12.375" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_cont_usr" Width="1.5" PointX="13.5" PointY="30.75" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_control_montos" Width="1.5" PointX="11.25" PointY="37.125" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_email_envio" Width="1.5" PointX="6" PointY="30.375" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_email_recepcion" Width="1.5" PointX="3" PointY="29.875" />
+        <EntityTypeShape EntityType="dd_liecModel.fac_sit_concreto" Width="1.5" PointX="6.75" PointY="43.5" />
+        <EntityTypeShape EntityType="dd_liecModel.fac_tipo_concreto" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_areas" Width="1.5" PointX="6" PointY="30.75" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_departamento" Width="1.5" PointX="9" PointY="55.75" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_especimen" Width="1.5" PointX="6.75" PointY="7.125" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_areas" Width="1.5" PointX="3.75" PointY="43.25" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_caja" Width="1.5" PointX="6.75" PointY="12.25" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_clte" Width="1.5" PointX="6.75" PointY="51.125" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_concreto" Width="1.5" PointX="6.75" PointY="45.75" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_e_env" Width="1.5" PointX="0.75" PointY="33.25" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_e_recep" Width="1.5" PointX="0.75" PointY="22.25" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_ensaye" Width="1.5" PointX="9" PointY="43.25" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_gast" Width="1.5" PointX="0.75" PointY="30.25" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_obra" Width="1.5" PointX="12" PointY="44.5" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_rub" Width="1.5" PointX="3.75" PointY="16.5" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_est_rubm" Width="1.5" PointX="9" PointY="12.25" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_estatus" Width="1.5" PointX="9" PointY="51.125" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_generos" Width="1.5" PointX="9" PointY="45.75" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_giro_prosp" Width="1.5" PointX="3.75" PointY="13.875" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_perfil" Width="1.5" PointX="9" PointY="53.5" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_taccion_prosp" Width="1.5" PointX="8.25" PointY="48.25" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_contprosp" Width="1.5" PointX="3.75" PointY="40.625" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_rfc" Width="1.5" PointX="6.75" PointY="53.5" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_rubro" Width="1.5" PointX="3.75" PointY="19" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_tipo_servicio" Width="1.5" PointX="12" PointY="42.125" />
+        <EntityTypeShape EntityType="dd_liecModel.fact_tserv_prosp" Width="1.5" PointX="3.75" PointY="38.25" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_caja" Width="1.5" PointX="9" PointY="18.25" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_clte" Width="1.5" PointX="9" PointY="32.75" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_clte_obras" Width="1.5" PointX="14.25" PointY="33.25" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_conc_ec" Width="1.5" PointX="11.25" PointY="25.375" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_cont_prosp" Width="1.5" PointX="8.25" PointY="38.375" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_cont_usr" Width="1.5" PointX="13.5" PointY="37.75" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_control_montos" Width="1.5" PointX="8.25" PointY="15.125" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_email_envio" Width="1.5" PointX="3" PointY="30.375" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_email_recepcion" Width="1.5" PointX="3" PointY="21.875" />
         <EntityTypeShape EntityType="dd_liecModel.inf_emp" Width="1.5" PointX="0.75" PointY="24.75" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_gastos" Width="1.5" PointX="6" PointY="25.25" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_gastos_dep" Width="1.5" PointX="8.25" PointY="37" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_gastos" Width="1.5" PointX="3" PointY="25.25" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_gastos_dep" Width="1.5" PointX="5.25" PointY="35" />
         <EntityTypeShape EntityType="dd_liecModel.inf_mrp_concreto" Width="1.5" PointX="9" PointY="23" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_prospectos" Width="1.5" PointX="6" PointY="19.75" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_rubro" Width="1.5" PointX="9" PointY="32.25" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_rubro_mes" Width="1.5" PointX="11.25" PointY="32.375" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_seg_prospecto" Width="1.5" PointX="10.5" PointY="12.75" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_prospectos" Width="1.5" PointX="6" PointY="24.75" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_rubro" Width="1.5" PointX="6" PointY="20.25" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_rubro_mes" Width="1.5" PointX="11.25" PointY="20.375" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_seg_prospecto" Width="1.5" PointX="10.5" PointY="38.75" />
         <EntityTypeShape EntityType="dd_liecModel.inf_sepomex" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="dd_liecModel.inf_usuarios" Width="1.5" PointX="11.25" PointY="24.5" />
+        <EntityTypeShape EntityType="dd_liecModel.inf_usuarios" Width="1.5" PointX="11.25" PointY="32.5" />
         <EntityTypeShape EntityType="dd_liecModel.v_pfe" Width="1.5" PointX="2.75" PointY="0.75" />
         <AssociationConnector Association="dd_liecModel.FK_inf_mrp_concreto_fac_situacion_concreto" />
         <AssociationConnector Association="dd_liecModel.FK_inf_mrp_concreto_fac_tipo_concreto" />

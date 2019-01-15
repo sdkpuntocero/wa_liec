@@ -890,10 +890,12 @@ namespace wa_liec
                             }
                             catch
                             {
+                                //cambiar por fin de año el filtro del mes
+
                                 var f_rubm = (from r in edm_rub.inf_rubro_mes
                                               where r.id_rubro == guid_rub
                                               where r.id_est_rubm == 1
-                                              where r.fecha_registro.Value.Month == DateTime.Now.Month
+                                              where r.fecha_registro.Value.Month == DateTime.Now.Month + 11
                                               select new
                                               {
                                                   r.monto_fijo,
@@ -1424,15 +1426,13 @@ namespace wa_liec
                 monto_rr = double.Parse(i_rr.monto_fijo.ToString());
                 monto_r = string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(monto_rr) * 100.0) / 100.0)); ;
 
-                var i_r = (from i_g in m_r.inf_rubro
-                           join i_rm in m_r.inf_rubro_mes on i_g.id_rubro equals i_rm.id_rubro
-                           join i_gm in m_r.inf_gastos on i_g.id_rubro equals i_gm.id_rubro
-                           where i_rm.id_est_rubm == 1
+                var i_r = (from i_g in m_r.inf_gastos
                            where i_g.id_rubro == guid_r
-                           where i_gm.fecha_registro.Value.Month == DateTime.Now.Month
+                           where i_g.fecha_registro.Value.Month == DateTime.Now.Month
+                           where i_g.fecha_registro.Value.Year == DateTime.Now.Year
                            select new
                            {
-                               i_gm.monto
+                               i_g.monto
                            }).ToList();
 
                 if (i_r.Count == 0)
@@ -1641,6 +1641,7 @@ namespace wa_liec
                                           where i_g.id_rubro == guid_rubf
                                           where i_g.id_est_rubm == 1
                                           where i_g.fecha_registro.Value.Month == DateTime.Now.Month
+                                          where i_g.fecha_registro.Value.Year == DateTime.Now.Year
                                           select new
                                           {
                                               i_g.monto_fijo,
@@ -1716,10 +1717,11 @@ namespace wa_liec
                                             where i_g.id_tipo_rubro == t_gasto
                                             where i_g.id_rubro == guid_rubf
                                             where i_g.fecha_registro.Value.Month == DateTime.Now.Month
+                                            where i_g.fecha_registro.Value.Year == DateTime.Now.Year
                                             select new
                                             {
                                                 i_g.monto,
-                                            }).ToList();
+                                            }).Distinct().ToList();
 
                             if (i_gastos.Count == 0)
                             {

@@ -64,9 +64,9 @@ namespace wa_liec
                 carga_ddl();
             }
         }
+
         private void carga_ddl()
         {
-
             ddl_colonia_prospecto.Items.Clear();
             ddl_colonia_prospecto.Items.Insert(0, new ListItem("SELECCIONAR", "0"));
             ddl_tipocont_prospecto.Items.Clear();
@@ -215,7 +215,9 @@ namespace wa_liec
         }
 
         #endregion menu
+
         #region prospectos
+
         protected void btn_buscar_prospecto_Click(object sender, EventArgs e)
         {
             limp_txt_prospecto();
@@ -345,7 +347,6 @@ namespace wa_liec
 
         protected void btn_editar_prospecto_Click(object sender, EventArgs e)
         {
-       
             int_prospecto = 2;
             div_busc_clt.Visible = true;
             div_cont_prosp.Visible = false;
@@ -369,6 +370,8 @@ namespace wa_liec
 
         protected void chk_prospecto_CheckedChanged(object sender, EventArgs e)
         {
+            limp_txt_prospecto();
+            rfv_colonia_prospecto.Enabled = false;
             Guid guid_prospecto, guid_cont_prosp;
             int int_estatusID = 0;
 
@@ -406,6 +409,36 @@ namespace wa_liec
 
                             ddl_giro_prospecto.SelectedValue = i_prospecto.id_giro_prosp.ToString();
                             ddl_serv_prospecto.SelectedValue = i_prospecto.id_tserv_prosp.ToString();
+
+                         
+
+                            try
+                            {
+                                txt_callenum_prospecto.Text = i_prospecto.callenum.Trim();
+                                txt_cp_prospecto.Text = i_prospecto.d_codigo;
+                                int int_col = int.Parse(i_prospecto.id_asenta_cpcons.ToString());
+
+                                using (dd_liecEntities db_sepomex = new dd_liecEntities())
+                                {
+                                    var tbl_sepomex = (from c in db_sepomex.inf_sepomex
+                                                       where c.id_asenta_cpcons == int_col
+                                                       where c.d_codigo == i_prospecto.d_codigo
+                                                       select c).ToList();
+
+                                    ddl_colonia_prospecto.DataSource = tbl_sepomex;
+                                    ddl_colonia_prospecto.DataTextField = "d_asenta";
+                                    ddl_colonia_prospecto.DataValueField = "id_asenta_cpcons";
+                                    ddl_colonia_prospecto.DataBind();
+
+                                    txt_municipio_prospecto.Text = tbl_sepomex[0].d_mnpio;
+                                    txt_estado_prospecto.Text = tbl_sepomex[0].d_estado;
+                                }
+                            }
+                            catch
+                            {
+                                ddl_colonia_prospecto.Items.Clear();
+                                ddl_colonia_prospecto.Items.Insert(0, new ListItem("SELECCIONAR", "0"));
+                            }
                         }
                     }
                     else
@@ -549,8 +582,11 @@ namespace wa_liec
             string str_tel2 = txt_tel2_prospecto.Text.Trim();
             string str_email1 = txt_email1_prospecto.Text.Trim();
             string str_email2 = txt_email2_prospecto.Text.Trim();
-
+            string str_callenum = txt_callenum_prospecto.Text.ToUpper().Trim();
+            string str_cp = txt_cp_prospecto.Text;
+            int int_colonia = Convert.ToInt32(ddl_colonia_prospecto.SelectedValue);
             int int_accion = Convert.ToInt32(ddl_acc_prospecto.SelectedValue);
+
             string str_coment = txt_prospecto_coment.Text.Trim().ToUpper();
 
             if (int_giro == 0)
@@ -604,7 +640,6 @@ namespace wa_liec
                             }
                             break;
                         }
-
                     }
                 }
 
@@ -628,16 +663,16 @@ namespace wa_liec
                         i_prospecto.id_est_prospecto = 1;
                         i_prospecto.id_tipo_contprosp = int_tcont;
                         i_prospecto.empresa = str_emp;
-
+                        i_prospecto.callenum = str_callenum;
+                        i_prospecto.d_codigo = str_cp;
+                        i_prospecto.id_asenta_cpcons = int_colonia;
 
                         m_prospecto.SaveChanges();
 
                         if (string.IsNullOrEmpty(str_contacto))
                         {
-
                             if (int_prospcont == 1)
                             {
-
                                 if (string.IsNullOrEmpty(str_contacto))
                                 {
                                 }
@@ -667,7 +702,6 @@ namespace wa_liec
                         {
                             if (int_prospcont == 1)
                             {
-
                                 if (string.IsNullOrEmpty(str_contacto))
                                 {
                                 }
@@ -698,7 +732,6 @@ namespace wa_liec
 
                             if (i_cont_prosp.Count == 0)
                             {
-
                                 var i_cont_prospff = new inf_cont_prosp
 
                                 {
@@ -717,7 +750,6 @@ namespace wa_liec
                                 m_prospecto.inf_cont_prosp.Add(i_cont_prospff);
                                 m_prospecto.SaveChanges();
                             }
-
                         }
                         if (string.IsNullOrEmpty(str_coment))
                         { }
@@ -737,7 +769,6 @@ namespace wa_liec
                             m_prospecto.inf_seg_prospecto.Add(i_prospecto_s);
                             m_prospecto.SaveChanges();
                         }
-
                     }
                     foreach (GridViewRow row in gv_prospecto.Rows)
                     {
@@ -750,7 +781,6 @@ namespace wa_liec
                                 chkRow.Checked = false;
                                 row.BackColor = Color.White;
                             }
-
                         }
                     }
                     limp_txt_prospecto();
@@ -768,7 +798,6 @@ namespace wa_liec
                     Mensaje("Datos de cliente actualizados con éxito.");
                 }
             }
-
         }
 
         protected void btn_guardar_prospecto_Click(object sender, EventArgs e)
@@ -800,7 +829,9 @@ namespace wa_liec
             string str_tel2 = txt_tel2_prospecto.Text.Trim();
             string str_email1 = txt_email1_prospecto.Text.Trim();
             string str_email2 = txt_email2_prospecto.Text.Trim();
-
+            string str_callenum = txt_callenum_prospecto.Text.ToUpper().Trim();
+            string str_cp = txt_cp_prospecto.Text;
+            int int_colonia = Convert.ToInt32(ddl_colonia_prospecto.SelectedValue);
             int int_accion = Convert.ToInt32(ddl_acc_prospecto.SelectedValue);
             string str_coment = txt_prospecto_coment.Text.Trim().ToUpper();
 
@@ -849,6 +880,9 @@ namespace wa_liec
                                     empresa = str_emp,
                                     cod_prospecto = str_cod_prospecto,
 
+                                    callenum = str_callenum,
+                                    d_codigo = str_cp,
+                                    id_asenta_cpcons = int_colonia,
                                     fecha_registro = DateTime.Now,
                                     id_emp = guid_emp,
                                     id_usuario = guid_idusr
@@ -919,6 +953,9 @@ namespace wa_liec
                                     empresa = str_emp,
                                     cod_prospecto = str_cod_prospecto,
 
+                                    callenum = str_callenum,
+                                    d_codigo = str_cp,
+                                    id_asenta_cpcons = int_colonia,
                                     fecha_registro = DateTime.Now,
                                     id_emp = guid_emp,
                                     id_usuario = guid_idusr
@@ -994,53 +1031,22 @@ namespace wa_liec
             rfv_tipocont_prospecto.Enabled = false;
             rfv_emp_prospecto.Enabled = false;
             rfv_cont_prospecto.Enabled = false;
-
+            rfv_colonia_prospecto.Enabled = false;
             rfv_acc_prospecto.Enabled = false;
             rfv_prospecto_coment.Enabled = false;
         }
 
- 
-
-        #endregion
+        #endregion prospectos
 
         #region contactos_prospectos
+
         protected void btn_buscar_prospcontf_Click(object sender, EventArgs e)
         {
             limp_txt_contprosp();
-            string str_rub = txt_buscar_prospecto.Text.ToUpper().Trim();
+            string str_rub = txt_buscar_prospcontf.Text.ToUpper().Trim();
 
-            if (str_rub == "TODO")
+            if (str_rub == "")
             {
-                using (dd_liecEntities data_user = new dd_liecEntities())
-                {
-                    var inf_user = (from i_r in data_user.inf_prospectos
-                                    join i_c in data_user.inf_usuarios on i_r.id_usuario equals i_c.id_usuario
-                                    select new
-                                    {
-                                        i_r.id_prospecto,
-                                        i_r.cod_prospecto,
-                                        i_r.empresa,
-                                        i_r.fecha_registro,
-                                        nom_usr = i_c.nombres + " " + i_c.a_paterno + " " + i_c.a_materno
-                                    }).OrderBy(x => x.cod_prospecto).ToList();
-
-                    if (inf_user.Count == 0)
-                    {
-                        gv_prospecto.DataSource = inf_user;
-                        gv_prospecto.DataBind();
-                        gv_prospecto.Visible = true;
-                        div_prospecto.Visible = true;
-
-                        Mensaje("Empresa no encontrado.");
-                    }
-                    else
-                    {
-                        gv_prospecto.DataSource = inf_user;
-                        gv_prospecto.DataBind();
-                        gv_prospecto.Visible = true;
-                        div_prospecto.Visible = true;
-                    }
-                }
             }
             else
             {
@@ -1049,7 +1055,7 @@ namespace wa_liec
                     string n_rub;
                     Guid guid_fclte;
                     Char char_s = '|';
-                    string d_rub = txt_buscar_prospecto.Text.Trim();
+                    string d_rub = txt_buscar_prospcontf.Text.Trim();
                     String[] de_rub = d_rub.Trim().Split(char_s);
 
                     n_rub = de_rub[1].Trim();
@@ -1065,33 +1071,18 @@ namespace wa_liec
 
                     using (dd_liecEntities data_user = new dd_liecEntities())
                     {
-                        var inf_user = (from i_r in data_user.inf_prospectos
-                                        join i_c in data_user.inf_usuarios on i_r.id_usuario equals i_c.id_usuario
+                        var inf_user = (from i_r in data_user.inf_cont_prosp
+                                        where i_r.id_prospecto == guid_fclte
                                         select new
                                         {
-                                            i_r.id_prospecto,
-                                            i_r.cod_prospecto,
-                                            i_r.empresa,
+                                            i_r.id_cont_prosp,
+                                            i_r.dpto,
+                                            i_r.contacto,
                                             i_r.fecha_registro,
-                                            nom_usr = i_c.nombres + " " + i_c.a_paterno + " " + i_c.a_materno
-                                        }).OrderBy(x => x.cod_prospecto).ToList();
-
-                        if (inf_user.Count == 0)
-                        {
-                            gv_prospecto.DataSource = inf_user;
-                            gv_prospecto.DataBind();
-                            gv_prospecto.Visible = true;
-                            div_prospecto.Visible = true;
-
-                            Mensaje("Empresa no encontrado.");
-                        }
-                        else
-                        {
-                            gv_prospecto.DataSource = inf_user;
-                            gv_prospecto.DataBind();
-                            gv_prospecto.Visible = true;
-                            div_prospecto.Visible = true;
-                        }
+                                        }).ToList();
+                        gv_cont_prosp.DataSource = inf_user;
+                        gv_cont_prosp.DataBind();
+                        gv_cont_prosp.Visible = true;
                     }
                 }
                 catch
@@ -1102,6 +1093,7 @@ namespace wa_liec
                 }
             }
         }
+
         protected void btn_agregar_prospcontf_Click(object sender, EventArgs e)
         {
             int_prospecto = 1;
@@ -1109,7 +1101,6 @@ namespace wa_liec
             div_cont_prosp.Visible = true;
 
             limp_txt_contprosp();
-            
 
             gv_cont_prosp.Visible = false;
             chkb_desactivar_prospecto.Checked = false;
@@ -1123,31 +1114,255 @@ namespace wa_liec
 
         private void limp_txt_contprosp()
         {
-            txt_emp_prospecto.Text = null;
-            txt_cont_prospecto.Text = null;
-            txt_tel1_prospecto.Text = null;
-            txt_email1_prospecto.Text = null;
-            txt_tel2_prospecto.Text = null;
-            txt_email2_prospecto.Text = null;
-            //txt_callenum_prospecto.Text = null;
-            //txt_cp_prospecto.Text = null;
-            //txt_municipio_prospecto.Text = null;
-            //txt_estado_prospecto.Text = null;
-            txt_dpto_prosp.Text = null;
-            txt_prospecto_coment.Text = null;
-            carga_ddl();
+            txt_dpto_prospcontf.Text = null;
+            txt_cont_prospcontf.Text = null;
+            txt_tel1_prospcontf.Text = null;
+            txt_tel2_prospcontf.Text = null;
+            txt_email1_prospcontf.Text = null;
+            txt_email2_prospcontf.Text = null;
+            ddl_acc_prospecto.Items.Clear();
+
+            using (dd_liecEntities db_sepomex = new dd_liecEntities())
+            {
+                var tbl_sepomex = (from c in db_sepomex.fact_taccion_prosp
+                                   select c).ToList();
+
+                ddl_acc_prospecto.DataSource = tbl_sepomex;
+                ddl_acc_prospecto.DataTextField = "desc_taccion_prosp";
+                ddl_acc_prospecto.DataValueField = "id_taccion_prosp";
+                ddl_acc_prospecto.DataBind();
+            }
+            ddl_acc_prospecto.Items.Insert(0, new ListItem("SELECCIONAR", "0"));
         }
 
         protected void btn_editar_prospcontf_Click(object sender, EventArgs e)
         {
+            limp_txt_contprosp();
+            gv_cont_prosp.Visible = false;
+            chkb_desactivar_prospecto.Checked = false;
+
+            i_agregar_prospcontf.Attributes["style"] = "color:white";
+            i_editar_prospcontf.Attributes["style"] = "color:#E34C0E";
+
+            rfv_buscar_prospcontf.Enabled = true;
+
             rfv_cont_prospcontf.Enabled = false;
+        }
+
+        protected void btn_cp_prospecto_Click(object sender, EventArgs e)
+        {
+            string str_cp = txt_cp_prospecto.Text;
+
+            using (dd_liecEntities db_sepomex = new dd_liecEntities())
+            {
+                var tbl_sepomex = (from c in db_sepomex.inf_sepomex
+                                   where c.d_codigo == str_cp
+                                   select c).ToList();
+
+                ddl_colonia_prospecto.DataSource = tbl_sepomex;
+                ddl_colonia_prospecto.DataTextField = "d_asenta";
+                ddl_colonia_prospecto.DataValueField = "id_asenta_cpcons";
+                ddl_colonia_prospecto.DataBind();
+
+                if (tbl_sepomex.Count == 1)
+                {
+                    txt_municipio_prospecto.Text = tbl_sepomex[0].d_mnpio;
+                    txt_estado_prospecto.Text = tbl_sepomex[0].d_estado;
+                    rfv_colonia_prospecto.Enabled = true;
+                }
+                if (tbl_sepomex.Count > 1)
+                {
+                    ddl_colonia_prospecto.Items.Insert(0, new ListItem("SELECCIONAR", "0"));
+
+                    txt_municipio_prospecto.Text = tbl_sepomex[0].d_mnpio;
+                    txt_estado_prospecto.Text = tbl_sepomex[0].d_estado;
+                    rfv_colonia_prospecto.Enabled = true;
+                }
+                else if (tbl_sepomex.Count == 0)
+                {
+                    ddl_colonia_prospecto.Items.Clear();
+                    ddl_colonia_prospecto.Items.Insert(0, new ListItem("SELECCIONAR", "0"));
+                    txt_municipio_prospecto.Text = null;
+                    txt_estado_prospecto.Text = null;
+                    rfv_colonia_prospecto.Enabled = false;
+                }
+            }
+            ddl_colonia_prospecto.Focus();
         }
 
         protected void chkb_desactivar_prospcontf_CheckedChanged(object sender, EventArgs e)
         {
-
+            rfv_cont_prospcontf.Enabled = false;
         }
-        #endregion
+
+        protected void btn_guardar_prospcontf_Click(object sender, EventArgs e)
+        {
+            Guid guid_contprosp = Guid.NewGuid();
+            string str_contacto = txt_cont_prospcontf.Text.ToUpper().Trim();
+            string str_dpto = txt_dpto_prospcontf.Text.ToUpper().Trim();
+
+            string str_tel1 = txt_tel1_prospcontf.Text.Trim();
+            string str_tel2 = txt_tel2_prospcontf.Text.Trim();
+            string str_email1 = txt_email1_prospcontf.Text.Trim();
+            string str_email2 = txt_email2_prospcontf.Text.Trim();
+
+            Guid str_fclte = Guid.Empty;
+            string n_rub;
+
+            Char char_s = '|';
+            string d_rub = txt_buscar_prospcontf.Text.Trim();
+            String[] de_rub = d_rub.Trim().Split(char_s);
+
+            n_rub = de_rub[1].Trim();
+
+            using (dd_liecEntities edm_nclte = new dd_liecEntities())
+            {
+                var i_nclte = (from c in edm_nclte.inf_prospectos
+                               where c.cod_prospecto == n_rub
+                               select c).FirstOrDefault();
+
+                str_fclte = i_nclte.id_prospecto;
+            }
+
+            using (dd_liecEntities edm_nclte = new dd_liecEntities())
+            {
+                var i_nclte = (from c in edm_nclte.inf_cont_prosp
+                               where c.dpto == str_dpto
+                               where c.contacto == str_contacto
+                               select c).ToList();
+
+                if (i_nclte.Count == 0)
+                {
+                    using (var m_prospecto = new dd_liecEntities())
+                    {
+                        var i_cont_prospff = new inf_cont_prosp
+
+                        {
+                            id_cont_prosp = guid_contprosp,
+                            dpto = str_dpto,
+                            contacto = str_contacto,
+                            tel1 = str_tel1,
+                            email1 = str_email1,
+                            tel2 = str_tel2,
+                            email2 = str_email2,
+                            fecha_registro = DateTime.Now,
+                            id_usuario = guid_idusr,
+                            id_prospecto = str_fclte,
+                        };
+
+                        m_prospecto.inf_cont_prosp.Add(i_cont_prospff);
+                        m_prospecto.SaveChanges();
+                    }
+                    limp_txt_contprosp();
+                    Mensaje("Datos de contacto agregados con exito.");
+                }
+                else
+                {
+                    limp_txt_contprosp();
+                    Mensaje("Existe el mismo contacto en el mismo departamento, favor de revisar.");
+                }
+            }
+    
+        }
+
+        protected void chk_cont_prosp_CheckedChanged(object sender, EventArgs e)
+        {
+            Guid guid_prospecto, guid_cont_prosp;
+            int int_estatusID = 0;
+
+            foreach (GridViewRow row in gv_cont_prosp.Rows)
+            {
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+                    CheckBox chkRow = (row.Cells[0].FindControl("chk_cont_prosp") as CheckBox);
+                    if (chkRow.Checked)
+                    {
+                        int_estatusID = int_estatusID + 1;
+                        row.BackColor = Color.FromArgb(227, 76, 14);
+                        guid_prospecto = Guid.Parse(row.Cells[1].Text);
+
+                        using (dd_liecEntities edm_prospecto = new dd_liecEntities())
+                        {
+                            try
+                            {
+                                var i_cont_pros = (from t_prospecto in edm_prospecto.inf_cont_prosp
+
+                                                   where t_prospecto.id_cont_prosp == guid_prospecto
+                                                   select new
+                                                   {
+                                                       t_prospecto.id_cont_prosp,
+                                                       t_prospecto.dpto,
+                                                       t_prospecto.contacto,
+                                                       t_prospecto.tel1,
+                                                       t_prospecto.tel2,
+                                                       t_prospecto.email1,
+                                                       t_prospecto.email2,
+                                                   }).FirstOrDefault();
+                                txt_dpto_prospcontf.Text = i_cont_pros.dpto;
+                                txt_cont_prospcontf.Text = i_cont_pros.contacto;
+                                txt_tel1_prospcontf.Text = i_cont_pros.tel1;
+                                txt_email1_prospcontf.Text = i_cont_pros.email1;
+                                txt_tel2_prospcontf.Text = i_cont_pros.tel2;
+                                txt_email2_prospcontf.Text = i_cont_pros.email2;
+
+                                guid_cont_prosp = i_cont_pros.id_cont_prosp;
+
+                                var inf_user = (from i_r in edm_prospecto.inf_seg_prospecto
+                                                join i_acc in edm_prospecto.fact_taccion_prosp on i_r.id_taccion_prosp equals i_acc.id_taccion_prosp
+                                                join i_c in edm_prospecto.inf_usuarios on i_r.id_usuario equals i_c.id_usuario
+                                                where i_r.id_cont_prosp == guid_cont_prosp
+                                                where i_r.comentarios != ""
+                                                select new
+                                                {
+                                                    i_acc.desc_taccion_prosp,
+                                                    i_r.id_seg_prospecto,
+                                                    i_r.id_taccion_prosp,
+                                                    i_r.comentarios,
+                                                    i_r.fecha_registro,
+                                                    nom_usr = i_c.nombres + " " + i_c.a_paterno + " " + i_c.a_materno
+                                                }).ToList();
+
+                                ddl_acc_prospecto.Items.Clear();
+
+                                using (dd_liecEntities db_sepomex = new dd_liecEntities())
+                                {
+                                    var tbl_sepomex = (from c in db_sepomex.fact_taccion_prosp
+                                                       where c.id_taccion_prosp != 1
+                                                       select c).ToList();
+
+                                    ddl_acc_prospecto.DataSource = tbl_sepomex;
+                                    ddl_acc_prospecto.DataTextField = "desc_taccion_prosp";
+                                    ddl_acc_prospecto.DataValueField = "id_taccion_prosp";
+                                    ddl_acc_prospecto.DataBind();
+                                }
+                                ddl_acc_prospecto.Items.Insert(0, new ListItem("SELECCIONAR", "0"));
+
+                                rfv_emp_prospecto.Enabled = true;
+                            }
+                            catch
+                            {
+                                txt_cont_prospecto.Text = null;
+                                txt_tel1_prospecto.Text = null;
+                                txt_email1_prospecto.Text = null;
+                                txt_tel2_prospecto.Text = null;
+                                txt_email2_prospecto.Text = null;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        row.BackColor = Color.White;
+                    }
+                }
+            }
+            if (int_estatusID == 0)
+            {
+                limp_txt_prospecto();
+            }
+        }
+
+        #endregion contactos_prospectos
+
         private void limp_txt_prospecto()
         {
             txt_emp_prospecto.Text = null;
@@ -1156,7 +1371,10 @@ namespace wa_liec
             txt_email1_prospecto.Text = null;
             txt_tel2_prospecto.Text = null;
             txt_email2_prospecto.Text = null;
-
+            txt_callenum_prospecto.Text = null;
+            txt_cp_prospecto.Text = null;
+            txt_municipio_prospecto.Text = null;
+            txt_estado_prospecto.Text = null;
             txt_dpto_prosp.Text = null;
             txt_prospecto_coment.Text = null;
             carga_ddl();

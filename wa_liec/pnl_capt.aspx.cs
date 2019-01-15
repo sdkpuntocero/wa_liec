@@ -15,7 +15,7 @@ namespace wa_liec
 {
     public partial class pnl_capt : System.Web.UI.Page
     {
-        public static int int_clte, int_clte_obras, int_pnlID, int_rppc, int_ensa_comp, int_idperf, int_dem = 0;
+        public static int int_clte, int_clte_obras, int_pnlID, int_rppc, int_ensa_comp, int_idperf, int_dem = 0, int_est_esp = 0;
         public static string str_clte, str_usr_oper, nc = null;
         public static Guid guid_emp;
         public static Guid guid_idusr;
@@ -294,10 +294,18 @@ namespace wa_liec
             txt_inte_a.Text = null;
             txt_altu_aa.Text = null;
             txt_altu_ab.Text = null;
+            txt_altu_ap.Text = null;
+            txt_lad_ap.Text = null;
             txt_lad_aa.Text = null;
             txt_lad_ab.Text = null;
+            txt_esfu_a.Text = null;
+            txt_esfuprom_a.Text = null;
+            txt_masavol_a.Text = null;
+            txt_masavolprom_a.Text = null;
+            txt_dif_ab_a.Text = null;
             txt_pres_a.Text = null;
             txt_tf_a.Text = null;
+            txt_area_a.Text = null;
         }
 
         protected void lkb_salir_Click(object sender, EventArgs e)
@@ -1370,6 +1378,7 @@ namespace wa_liec
                 rvf1_rppc.Enabled = false;
                 chkb_1_rppc.Checked = false;
                 txt_f1_rppc.Text = null;
+                txt_cant1_rppc.Text = null;
             }
         }
 
@@ -1398,6 +1407,7 @@ namespace wa_liec
                 rvf3_rppc.Enabled = false;
                 chkb_3_rppc.Checked = false;
                 txt_f3_rppc.Text = null;
+                txt_cant3_rppc.Text = null;
             }
         }
 
@@ -1426,6 +1436,7 @@ namespace wa_liec
                 rvf7_rppc.Enabled = false;
                 chkb_7_rppc.Checked = false;
                 txt_f7_rppc.Text = null;
+                txt_cant7_rppc.Text = null;
             }
         }
 
@@ -1454,6 +1465,7 @@ namespace wa_liec
                 rvf14_rppc.Enabled = false;
                 chkb_14_rppc.Checked = false;
                 txt_f14_rppc.Text = null;
+                txt_cant14_rppc.Text = null;
             }
         }
 
@@ -1482,6 +1494,7 @@ namespace wa_liec
                 rvf28_rppc.Enabled = false;
                 chkb_28_rppc.Checked = false;
                 txt_f28_rppc.Text = null;
+                txt_cant28_rppc.Text = null;
             }
         }
 
@@ -1525,6 +1538,7 @@ namespace wa_liec
                 rvfotro_rppc.Enabled = false;
                 chkb_otro_rppc.Checked = false;
                 txt_cantotro_rppc.Text = null;
+                txt_cantesp_rppc.Text = null;
                 txt_fotro_rppc.Text = null;
             }
         }
@@ -2213,18 +2227,15 @@ namespace wa_liec
                                         m_clte.SaveChanges();
                                     }
 
-                                    //using (var m_conc_ec = new dd_liecEntities())
-                                    //{
-                                    //    var i_s = (from c in m_conc_ec.inf_conc_ec
-                                    //               where c.id_mrp_concreto == guid_frppc
-                                    //               select c).ToList();
-                                    //    if (i_s.Count != 0)
-                                    //    {
-                                    //        i_s.ForEach(c => m_conc_ec.inf_conc_ec.Remove(c));
-                                    //        m_conc_ec.SaveChanges();
-                                    //    }
+                                    using (var m_conc_ec = new dd_liecEntities())
+                                    {
+                                        var i_s = (from c in m_conc_ec.inf_conc_ec
+                                                   where c.id_mrp_concreto == guid_frppc
+                                                   where c.dia_ensaye == int_1d
+                                                   select c).ToList();
 
-                                    //}
+
+                                    }
 
                                     //foreach (int n in pfe_array)
                                     //{
@@ -2820,7 +2831,7 @@ namespace wa_liec
 
                     int index = Convert.ToInt32(e.CommandArgument);
 
-            
+
                     GridViewRow row = gv_ensa_comp.Rows[index];
                     row.BackColor = Color.FromArgb(227, 76, 14);
 
@@ -2965,6 +2976,18 @@ namespace wa_liec
 
         protected void chk_espec_CheckedChanged(object sender, EventArgs e)
         {
+            int int_sel_gv = 0;
+            if (int_est_esp == 1)
+            {
+                div_eca.Visible = true;
+
+            }
+            if (int_est_esp == 2)
+            {
+                div_eca.Visible = true;
+
+            }
+            limp_txt_ensa_comp();
             foreach (GridViewRow row in gv_espec.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
@@ -2972,15 +2995,92 @@ namespace wa_liec
                     CheckBox chkRow = (row.Cells[0].FindControl("chk_espec") as CheckBox);
                     if (chkRow.Checked)
                     {
+                        int_sel_gv = int_sel_gv + 1;
                         row.BackColor = Color.FromArgb(227, 76, 14);
+                        Guid id_mc = Guid.Parse(row.Cells[1].Text);
+                        if (int_est_esp == 1)
+                        {
 
-                        div_eca.Visible = true;
+                            div_eca.Visible = true;
+                            
+
+                            using (var m_clte = new dd_liecEntities())
+                            {
+                                var i_clte = (from c in m_clte.inf_conc_ec
+                                              where c.id_conc_ec == id_mc
+                                              select c).FirstOrDefault();
+                                try
+                                {
+                                    txt_clavensa_a.Text = i_clte.clave_ensa_a.ToString();
+                                    txt_masa_a.Text = i_clte.masa_a.ToString();
+                                    txt_dire_a.Text = i_clte.directo_a;
+                                    txt_inte_a.Text = i_clte.intensidad_a.ToString();
+                                    txt_altu_aa.Text = i_clte.altura_a.ToString();
+                                    txt_altu_ab.Text = i_clte.altura_b.ToString();
+                                    txt_lad_aa.Text = i_clte.lados_a.ToString();
+                                    txt_lad_ab.Text = i_clte.lados_b.ToString();
+                                    txt_pres_a.Text = i_clte.presion_a.ToString();
+                                    txt_tf_a.Text = i_clte.tipofalla_a.ToString();
+                                }
+                                catch
+                                {
+                                }
+                            }
+                        }
+                        else
+                        {
+                            div_eca.Visible = true;
+                            using (var m_clte = new dd_liecEntities())
+                            {
+                                var i_clte = (from c in m_clte.inf_conc_ec
+                                              where c.id_conc_ec == id_mc
+                                              select c).FirstOrDefault();
+                                try
+                                {
+                                    txt_clavensa_a.Text = i_clte.clave_ensa_a.ToString();
+                                    txt_masa_a.Text = i_clte.masa_a.ToString();
+                                    txt_dire_a.Text = i_clte.directo_a;
+                                    txt_inte_a.Text = i_clte.intensidad_a.ToString();
+                                    txt_altu_aa.Text = i_clte.altura_a.ToString();
+                                    txt_altu_ab.Text = i_clte.altura_b.ToString();
+                                    txt_lad_aa.Text = i_clte.lados_a.ToString();
+                                    txt_lad_ab.Text = i_clte.lados_b.ToString();
+                                    txt_pres_a.Text = i_clte.presion_a.ToString();
+                                    txt_tf_a.Text = i_clte.tipofalla_a.ToString();
+                                }
+                                catch
+                                {
+                                }
+                            }
+                        }
                     }
                     else
                     {
                         row.BackColor = Color.White;
                     }
                 }
+            }
+
+            if (int_sel_gv == 0)
+            {
+                foreach (GridViewRow row in gv_espec.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        CheckBox chkRow = (row.Cells[0].FindControl("chk_espec") as CheckBox);
+                        if (chkRow.Checked)
+                        {
+
+                            chkRow.Checked = false;
+                            row.BackColor = Color.White;
+                        }
+                    }
+                }
+                limp_txt_ensa_comp();
+            }
+            else
+            {
+
             }
         }
 
@@ -3126,6 +3226,7 @@ namespace wa_liec
         {
             Guid guid_ensaye;
             int int_estatusID = 0;
+
             DateTime nmc = DateTime.Parse(txt_buscar_ensa_comp.Text);
             Guid id_mc;
 
@@ -3153,6 +3254,15 @@ namespace wa_liec
                                             t_clte.fecha_ensaye
                                         }).ToList();
 
+                            if (i_co.Count == 1)
+                            {
+                                int_est_esp = 1;
+                            }
+                            else
+                            {
+                                int_est_esp = 2;
+                            }
+
                             gv_espec.DataSource = i_co;
                             gv_espec.DataBind();
                             gv_espec.Visible = true;
@@ -3179,14 +3289,7 @@ namespace wa_liec
                 limp_txt_clte();
                 div_eca.Visible = false;
             }
-            if (int_dem == 1)
-            {
-                div_eca.Visible = true;
-            }
-            if (int_dem == 2)
-            {
-                div_eca.Visible = false;
-            }
+
         }
 
         protected void btn_guardar_ensa_comp_Click(object sender, EventArgs e)
@@ -3297,6 +3400,7 @@ namespace wa_liec
 
         protected void btn_buscar_ensa_comp_Click(object sender, EventArgs e)
         {
+            div_eca.Visible = false;
             DateTime dt_dmuest = DateTime.Parse(txt_buscar_ensa_comp.Text);
 
             string f_rpc = txt_buscar_rpc.Text.Trim();

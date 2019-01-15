@@ -12,8 +12,8 @@ namespace wa_liec
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 if (!IsPostBack)
                 {
                     defual_rpt();
@@ -21,11 +21,11 @@ namespace wa_liec
                 else
                 {
                 }
-            }
-            catch
-            {
-                Response.Redirect("acceso.aspx");
-            }
+            //}
+            //catch
+            //{
+            //    Response.Redirect("acceso.aspx");
+            //}
         }
 
         private void defual_rpt()
@@ -50,63 +50,25 @@ namespace wa_liec
                 }
             }
 
+            #region ds00
             // Setup DataSet
-            System.Data.DataSet ds = new System.Data.DataSet();
-            SqlDataAdapter da = new SqlDataAdapter();
-            SqlCommand cmd = new SqlCommand(@"SELECT [id_est_obra]
-      ,[clave_obra]
-      ,[desc_obra]
-      ,[coordinador]
-      ,[contacto_obra]
-      ,[no_muesra]
-      ,[fecha_colado]
-      ,[procedecia]
-      ,[elemento]
-      ,[dosificacion]
-      ,[resistencia]
-      ,[reva]
-      ,[tma]
-      ,[olla]
-      ,[remision]
-      ,[sali_planta]
-      ,[llega_obra]
-      ,[desca_ini]
-      ,[desca_term]
-      ,[vol]
-      ,[revb]
-      ,[localiza]
-      ,[clase]
-      ,[presion]
-      ,[razon_social]
-      ,[cod_esp]
-      ,[dia_ensaye]
-      ,[numdia_ensaye]
-      ,[num_muestra]
-      ,[fecha_ensaye]
-      ,[clave_ensa_a]
-      ,[masa_a]
-      ,[altura_a]
-      ,[altura_b]
-      ,[lados_a]
-      ,[lados_b]
-      ,[directo_a]
-      ,[intensidad_a]
-      ,[presion_a]
-      ,[tipofalla_a]
-      ,[id_est_ensaye]
+            DataSet ds00 = new DataSet();
 
-  FROM [dd_liec].[dbo].[v_rpt_conc]
-            WHERE v_rpt_conc.[id_mrp_concreto] in ('" + guid_idmc + "')");
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = new SqlConnection(cn.cn_SQL);
-            da.SelectCommand = cmd;
+            SqlDataAdapter da00 = new SqlDataAdapter();
+            SqlCommand cmd00 = new SqlCommand(@"SELECT * FROM [dd_liec].[dbo].[tbl_rpt_v01] ('" + guid_idmc + "')");
+            cmd00.CommandType = CommandType.Text;
+            cmd00.Connection = new SqlConnection(cn.cn_SQL);
+            da00.SelectCommand = cmd00;
 
-            da.Fill(ds, "DataSet1");
-            ReportDataSource datasource = new ReportDataSource("DataSet1", ds.Tables[0]);
+            da00.Fill(ds00, "ds00");
+
 
             // Create Report DataSource
-            ReportDataSource rds = new ReportDataSource("DataSet1", ds.Tables[0]);
-
+            ReportDataSource rds00 = new ReportDataSource("ds00", ds00.Tables[0]);
+            #endregion
+ 
+            #region ds0
+            #endregion
             // Variables
             Warning[] warnings;
             string[] streamIds;
@@ -119,7 +81,24 @@ namespace wa_liec
             viewer.ProcessingMode = ProcessingMode.Local;
             viewer.LocalReport.ReportPath = Server.MapPath("~/reportes/rpt_concreto.rdl"); ;
             viewer.LocalReport.EnableHyperlinks = true;
-            viewer.LocalReport.DataSources.Add(rds); // Add datasource here
+            viewer.LocalReport.DataSources.Add(rds00); // Add datasource here
+            //viewer.LocalReport.DataSources.Add(rds1); // Add datasource here
+            //viewer.LocalReport.DataSources.Add(rds3); // Add datasource 
+            //viewer.LocalReport.DataSources.Add(rds7); // Add datasource 
+            //viewer.LocalReport.DataSources.Add(rds14); // Add datasource 
+            //viewer.LocalReport.DataSources.Add(rds28); // Add datasource 
+            //ReportViewer1.LocalReport.DataSources.Clear();
+            //ReportDataSource rds = new ReportDataSource("ds00", ds00.Tables[0]);
+            //viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSources1", ds00.Tables[0]));
+            
+            //viewer.LocalReport.DataSources.Add(rds);
+            //viewer.LocalReport.DataSources.Add(rds1);
+            //viewer.LocalReport.DataSources.Add(rds3);
+            //viewer.LocalReport.DataSources.Add(rds7);
+            //viewer.LocalReport.DataSources.Add(rds14);
+            //viewer.LocalReport.DataSources.Add(rds28);
+
+
 
             byte[] bytes = viewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
 

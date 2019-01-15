@@ -261,7 +261,7 @@
                                                         <div class="col-lg-4">
                                                             <div class="form-group text-left">
                                                                 <asp:Label CssClass="control-label fuente_css02" ID="lbl_telefono_clte" runat="server" Text="Teléfono"></asp:Label>
-                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_telefono_clte" runat="server" MaxLength="16" placeholder="000-000-00000000" TextMode="Phone" ToolTip="Un número de teléfono válido consiste en un código de lada de 3 dígitos, un guión (-),un código de área de 3 dígitos, un guión (-) y el número telefónico con valores del 0 al 9, una x y enseguida 5 0, demas un / y enseguida 5 0" TabIndex="10"></asp:TextBox>
+                                                                <asp:TextBox CssClass="form-control input-box" ID="txt_telefono_clte" runat="server" MaxLength="30" placeholder="000-000-00000000x00000/00000" TextMode="Phone" ToolTip="Un número de teléfono válido consiste en un código de lada de 3 dígitos, un guión (-),un código de área de 3 dígitos, un guión (-) y el número telefónico con valores del 0 al 9, una x y enseguida 5 0, demas un / y enseguida 5 0" TabIndex="10"></asp:TextBox>
                                                                 <div class="text-right">
                                                                     <asp:RegularExpressionValidator ID="revPhone" runat="server"
                                                                         ErrorMessage="Formato Invalido" ControlToValidate="txt_telefono_clte"
@@ -1313,7 +1313,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <hr />
+                                                
                                                     </h6>
                                                 </div>
                                             </div>

@@ -218,7 +218,7 @@
                                                                     <asp:RequiredFieldValidator ID="rfv_serv_prospecto" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="ddl_serv_prospecto" InitialValue="0" ForeColor="DarkRed" Enabled="false" TabIndex="14"></asp:RequiredFieldValidator>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -240,7 +240,7 @@
                                                                     <asp:TextBox CssClass="form-control input-box" ID="txt_cp_prospecto" runat="server" placeholder="5 (0-9)" MaxLength="5" ToolTip="Un código postal valido consiste en 5 numeros con valores del 0-9" TabIndex="13"></asp:TextBox>
                                                                     <ajaxToolkit:MaskedEditExtender ID="mee_cp_prospecto" runat="server" TargetControlID="txt_cp_prospecto" Mask="99999" />
                                                                     <span class="input-group-btn">
-                                                                        <asp:Button CssClass="btn btn02" ID="btn_cp_prospecto" runat="server" Text="VALIDAR" TabIndex="14"  />
+                                                                        <asp:Button CssClass="btn btn02" ID="btn_cp_prospecto" runat="server" Text="VALIDAR" TabIndex="14" OnClick="btn_cp_prospecto_Click" />
                                                                     </span>
                                                                 </div>
                                                                 <div class="text-right">
@@ -276,10 +276,10 @@
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_estado_prospecto" runat="server" placeholder="letras/números" Enabled="false" BackColor="LightGray" TabIndex="17"></asp:TextBox>
                                                             </div>
                                                         </div>
-                                                       <div class="text-right">
+                                                        <div class="text-right">
 
-                                                                <asp:Button CssClass="btn btn02" ID="btn_gprosp_alt" runat="server" Text="GUARDAR" TabIndex="18" Visible="false" OnClick="btn_gprosp_alt_Click" />
-                                                            </div>
+                                                            <asp:Button CssClass="btn btn02" ID="btn_gprosp_alt" runat="server" Text="GUARDAR" TabIndex="18" Visible="false" OnClick="btn_gprosp_alt_Click" />
+                                                        </div>
                                                     </div>
                                                     <div runat="server" id="div_cont_prosp" visible="false">
                                                         <div class="row">
@@ -331,25 +331,33 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-3">
+                                                            <div class="col-lg-4">
                                                                 <div class="form-group text-left">
                                                                     <asp:Label CssClass="control-label fuente_css02" ID="lbl_email1_prospecto" runat="server" Text="e-mail"></asp:Label>
                                                                     <asp:TextBox CssClass="form-control input-box" ID="txt_email1_prospecto" runat="server" placeholder="xxxx@xxxx.xxx" TextMode="Email" ToolTip="xxxx@xxxx.xxx" TabIndex="11"></asp:TextBox>
                                                                     <br />
                                                                 </div>
-                                                                <asp:Label CssClass="control-label fuente_css02" ID="Label1" runat="server" Text="Web"></asp:Label>
 
-                                                                <asp:TextBox CssClass="form-control input-box" ID="TextBox1" runat="server" placeholder="letras/números" BackColor="LightGray" ForeColor="#104D8D" TabIndex="17"></asp:TextBox>
                                                             </div>
 
-                                                            <div class="col-lg-3">
+                                                            <div class="col-lg-4">
                                                                 <div class="form-group text-left">
                                                                     <asp:Label CssClass="control-label fuente_css02" ID="lbl_email2_prospecto" runat="server" Text="e-mail"></asp:Label>
                                                                     <asp:TextBox CssClass="form-control input-box" ID="txt_email2_prospecto" runat="server" placeholder="xxxx@xxxx.xxx" TextMode="Email" ToolTip="xxxx@xxxx.xxx" TabIndex="11"></asp:TextBox>
                                                                     <br />
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-2">
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group text-left">
+                                                                    <asp:Label CssClass="control-label fuente_css02" ID="Label1" runat="server" Text="Web"></asp:Label>
+                                                                    <asp:TextBox CssClass="form-control input-box" ID="TextBox1" runat="server" placeholder="letras/números" BackColor="LightGray" ForeColor="#104D8D" TabIndex="17"></asp:TextBox>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
                                                                 <div class="form-group text-left">
 
                                                                     <asp:Label CssClass="control-label fuente_css02" ID="lbl_acc_prospecto" runat="server" Text="Acción"></asp:Label>
@@ -360,7 +368,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-4">
+                                                            <div class="col-lg-6">
                                                                 <div class="form-group text-left">
                                                                     <asp:Label CssClass="control-label fuente_css02" ID="lbl_prospecto_coment" runat="server" Text="Comentarios"></asp:Label>
 
@@ -369,8 +377,11 @@
                                                                         <asp:RequiredFieldValidator ID="rfv_prospecto_coment" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="txt_prospecto_coment" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
                                                                 <div class="text-right">
 
+                                                                    <br />
                                                                     <asp:Button CssClass="btn btn02" ID="btn_guardar_prospecto" runat="server" Text="GUARDAR" TabIndex="18" OnClick="btn_guardar_prospecto_Click" />
                                                                 </div>
                                                             </div>
@@ -384,7 +395,7 @@
                                                         <div class="col-md-8 col-sm-8">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
-                                                                    <asp:Label CssClass="control-label fuente_css02" ID="lbl_buscar_prospcontf" runat="server" Text="*BUSCAR CONTACTO:"></asp:Label>
+                                                                    <asp:Label CssClass="control-label fuente_css02" ID="lbl_buscar_prospcontf" runat="server" Text="*BUSCAR Cliente:"></asp:Label>
                                                                 </span>
                                                                 <asp:TextBox CssClass="form-control input-box" ID="txt_buscar_prospcontf" runat="server" placeholder="letras/números" TextMode="Search" TabIndex="1"></asp:TextBox>
                                                                 <span class="input-group-btn">
@@ -420,7 +431,7 @@
                                                             <Columns>
                                                                 <asp:TemplateField>
                                                                     <ItemTemplate>
-                                                                        <asp:CheckBox ID="chk_cont_prosp" runat="server" onclick="CheckOne(this)" AutoPostBack="true" />
+                                                                        <asp:CheckBox ID="chk_cont_prosp" runat="server" onclick="CheckOne(this)" AutoPostBack="true" OnCheckedChanged="chk_cont_prosp_CheckedChanged" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:BoundField DataField="id_cont_prosp" HeaderText="ID" SortExpression="id_cont_prosp" Visible="true" HeaderStyle-CssClass="hideGridColumn" ItemStyle-CssClass="hideGridColumn" />
@@ -444,7 +455,7 @@
 
                                                     <div runat="server" id="div_cont_prospf" visible="true">
                                                         <div class="row">
-                                                            <div class="col-lg-3">
+                                                            <div class="col-lg-2">
                                                                 <div class="form-group text-left">
 
                                                                     <asp:Label CssClass="control-label fuente_css02" ID="lbl_dpto_prospcontf" runat="server" Text="Departamento contacto"></asp:Label>
@@ -455,7 +466,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3">
+                                                            <div class="col-lg-4">
                                                                 <div class="form-group text-left">
 
                                                                     <asp:Label CssClass="control-label fuente_css02" ID="lbl_cont_prospcontf" runat="server" Text="*Contacto"></asp:Label>
@@ -489,52 +500,36 @@
                                                                         </asp:RegularExpressionValidator>
                                                                     </div>
                                                                 </div>
+
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-3">
+                                                            <div class="col-lg-4">
                                                                 <div class="form-group text-left">
                                                                     <asp:Label CssClass="control-label fuente_css02" ID="lbl_email1_prospcontf" runat="server" Text="e-mail"></asp:Label>
                                                                     <asp:TextBox CssClass="form-control input-box" ID="txt_email1_prospcontf" runat="server" placeholder="xxxx@xxxx.xxx" TextMode="Email" ToolTip="xxxx@xxxx.xxx" TabIndex="11"></asp:TextBox>
                                                                     <br />
                                                                 </div>
-                                                                <asp:Label CssClass="control-label fuente_css02" ID="Label3" runat="server" Text="Web"></asp:Label>
 
-                                                                <asp:TextBox CssClass="form-control input-box" ID="TextBox3" runat="server" placeholder="letras/números" BackColor="LightGray" ForeColor="#104D8D" TabIndex="17"></asp:TextBox>
                                                             </div>
 
-                                                            <div class="col-lg-3">
+                                                            <div class="col-lg-4">
                                                                 <div class="form-group text-left">
                                                                     <asp:Label CssClass="control-label fuente_css02" ID="lbl_email2_prospcontf" runat="server" Text="e-mail"></asp:Label>
                                                                     <asp:TextBox CssClass="form-control input-box" ID="txt_email2_prospcontf" runat="server" placeholder="xxxx@xxxx.xxx" TextMode="Email" ToolTip="xxxx@xxxx.xxx" TabIndex="11"></asp:TextBox>
                                                                     <br />
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-2">
-                                                                <div class="form-group text-left">
-
-                                                                    <asp:Label CssClass="control-label fuente_css02" ID="lbl_acc_prospcontf" runat="server" Text="Acción"></asp:Label>
-
-                                                                    <asp:DropDownList CssClass="form-control input-box" ID="ddl_acc_prospcontf" runat="server" TabIndex="16" BackColor="LightGray" ForeColor="#104D8D"></asp:DropDownList>
-                                                                    <div class="text-right">
-                                                                        <asp:RequiredFieldValidator ID="rfv_acc_prospcontf" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="ddl_acc_prospcontf" InitialValue="0" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group text-left">
-                                                                    <asp:Label CssClass="control-label fuente_css02" ID="lbl_prospcontf_coment" runat="server" Text="Comentarios"></asp:Label>
-
-                                                                    <asp:TextBox CssClass="form-control input-box" ID="txt_prospcontf_coment" runat="server" placeholder="letras/números" TextMode="MultiLine" BackColor="LightGray" ForeColor="#104D8D" TabIndex="17"></asp:TextBox>
-                                                                    <div class="text-right">
-                                                                        <asp:RequiredFieldValidator ID="rfv_prospcontf_coment" runat="server" ErrorMessage="*Obligatorio" ControlToValidate="txt_prospcontf_coment" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
-                                                                    </div>
-                                                                </div>
                                                                 <div class="text-right">
-
-                                                                    <asp:Button CssClass="btn btn02" ID="btn_guardar_prospcontf" runat="server" Text="GUARDAR" TabIndex="18" />
+                                                                    <br />
+                                                                    <asp:Button CssClass="btn btn02" ID="btn_guardar_prospcontf" runat="server" Text="GUARDAR" TabIndex="18" OnClick="btn_guardar_prospcontf_Click" />
+                                                                </div>  
                                                                 </div>
+                                                                
                                                             </div>
+
                                                         </div>
                                                     </div>
                                                 </div>

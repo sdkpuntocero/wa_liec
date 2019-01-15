@@ -15,7 +15,7 @@
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="styles/estilos_liec.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
 
     <script src="Scripts/jquery-3.3.1.min.js"></script>
 
@@ -150,8 +150,7 @@
                                                     <ajaxToolkit:AutoCompleteExtender ID="ace_buscar_rub" runat="server" ServiceMethod="SearchCustomers" MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="true" CompletionSetCount="10" TargetControlID="txt_buscar_rub" FirstRowSelected="false"></ajaxToolkit:AutoCompleteExtender>
                                                     <asp:RequiredFieldValidator ID="rfv_buscar_rub" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_buscar_rub" ForeColor="white" Enabled="false"></asp:RequiredFieldValidator>
                                                 </div>
-                                                <p>
-                                                </p>
+                                             
                                                 <p class="text-right">
                                                     REGISTRO DE RUBROS <span>
                                                         <asp:LinkButton ID="btn_agr_rubro" runat="server" CssClass="btn btn02" OnClick="btn_agr_rubro_Click" TabIndex="1" ToolTip="AGREGAR RUBRO">
@@ -164,8 +163,7 @@
                                                     <br />
                                                     <asp:CheckBox ID="chkb_des_rubro" runat="server" AutoPostBack="true" OnCheckedChanged="chkb_des_rubro_CheckedChanged" Text="Desactivar validaciones" />
                                                 </p>
-                                                <p>
-                                                </p>
+                                           
                                             </p>
                                         </div>
                                         <div class="panel-body">

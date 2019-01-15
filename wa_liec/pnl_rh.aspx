@@ -8,7 +8,7 @@
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
     <!-- Bootstrap -->
 
@@ -51,8 +51,8 @@
                         </div>
 
                         <div class="col-lg-6">
-                           <div>
-                               <p class="text-right">
+                            <div>
+                                <p class="text-right">
 
                                     <label class="control-label fuente_css02">BIENVENID@:</label>
                                     <asp:LinkButton CssClass="buttonClass" ID="lkb_usr_oper" runat="server">
@@ -62,7 +62,7 @@
                                     <br />
 
                                     <label class="control-label fuente_css02">PERFIL:</label>
-                                    <asp:Label CssClass="fuente_css02" ID="lbl_tusr" runat="server" Text=""></asp:Label>&nbsp;<i class="fas fa-user-shield fuente_css02" id="i1" runat="server"></i> 
+                                    <asp:Label CssClass="fuente_css02" ID="lbl_tusr" runat="server" Text=""></asp:Label>&nbsp;<i class="fas fa-user-shield fuente_css02" id="i1" runat="server"></i>
 
                                     <br />
 

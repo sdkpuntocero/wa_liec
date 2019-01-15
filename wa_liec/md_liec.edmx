@@ -193,6 +193,14 @@
           <Property Name="desc_tserv_prosp" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'dd_liec.dbo.fact_turnos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="fact_turnos">
+          <Property Name="id_turno" Type="int" />
+          <Property Name="desc_turno" Type="nchar" MaxLength="10" />
+          <Property Name="hora_entrada" Type="time" Precision="7" />
+          <Property Name="hora_salida" Type="time" Precision="7" />
+        </EntityType>-->
+        <!--Errores durante la generación:
 advertencia 6013: La tabla o vista 'dd_liec.dbo.filtro' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="filtro">
           <Property Name="filtro" Type="varchar" MaxLength="50" />
@@ -223,7 +231,7 @@ advertencia 6013: La tabla o vista 'dd_liec.dbo.filtro' no tiene definida una cl
           <Property Name="id_tipo_rfc" Type="int" />
           <Property Name="rfc" Type="varchar" MaxLength="50" />
           <Property Name="razon_social" Type="varchar" MaxLength="150" />
-          <Property Name="telefono" Type="varchar" MaxLength="28" />
+          <Property Name="telefono" Type="varchar" MaxLength="30" />
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="callenum" Type="varchar" MaxLength="300" />
           <Property Name="d_codigo" Type="varchar" MaxLength="6" />
@@ -424,7 +432,7 @@ advertencia 6013: La tabla o vista 'dd_liec.dbo.filtro' no tiene definida una cl
           <Property Name="id_est_prospecto" Type="int" />
           <Property Name="cod_prospecto" Type="varchar" MaxLength="20" />
           <Property Name="id_tipo_contprosp" Type="int" Nullable="false" />
-          <Property Name="empresa" Type="varchar" MaxLength="50" />
+          <Property Name="empresa" Type="varchar" MaxLength="250" />
           <Property Name="web" Type="varchar" MaxLength="50" />
           <Property Name="callenum" Type="varchar" MaxLength="300" />
           <Property Name="d_codigo" Type="varchar" MaxLength="6" />
@@ -1822,7 +1830,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
           <Property Name="id_tipo_rfc" Type="Int32" />
           <Property Name="rfc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="razon_social" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="telefono" Type="String" MaxLength="28" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="callenum" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="d_codigo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
@@ -2059,7 +2067,7 @@ advertencia 6002: La tabla o vista 'dd_liec.dbo.v_pfe' no tiene definida ninguna
           <Property Name="id_est_prospecto" Type="Int32" />
           <Property Name="cod_prospecto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_tipo_contprosp" Type="Int32" Nullable="false" />
-          <Property Name="empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="empresa" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="callenum" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="d_codigo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
