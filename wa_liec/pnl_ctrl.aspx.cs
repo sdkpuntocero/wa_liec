@@ -19,7 +19,7 @@ namespace wa_liec
             {
                 if (!IsPostBack)
                 {
-                    inf_usr_oper();
+                    //inf_usr_oper();
                 }
                 else
                 {

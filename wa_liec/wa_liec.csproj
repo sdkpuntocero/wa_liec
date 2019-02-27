@@ -160,6 +160,7 @@
     <Content Include="acceso\vendor\select2\select2.js" />
     <Content Include="acceso\vendor\select2\select2.min.css" />
     <Content Include="acceso\vendor\select2\select2.min.js" />
+    <Content Include="acceso_cliente.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -211,6 +212,7 @@
     </Content>
     <Content Include="pnl_capt.aspx" />
     <Content Include="pnl_cont.aspx" />
+    <Content Include="pnl_control_cliente.aspx" />
     <Content Include="pnl_ctrl.aspx" />
     <Content Include="pnl_desa_tec.aspx" />
     <Content Include="pnl_prospectos.aspx" />
@@ -348,6 +350,7 @@
     <Content Include="Content\webfonts\fa-brands-400.woff" />
     <Content Include="Content\webfonts\fa-brands-400.ttf" />
     <Content Include="Content\webfonts\fa-brands-400.eot" />
+    <None Include="Properties\PublishProfiles\carpeta.pubxml" />
     <None Include="Properties\PublishProfiles\externo.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\server_uno.pubxml" />
@@ -396,6 +399,13 @@
     </Compile>
     <Compile Include="acceso.aspx.designer.cs">
       <DependentUpon>acceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="acceso_cliente.aspx.cs">
+      <DependentUpon>acceso_cliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="acceso_cliente.aspx.designer.cs">
+      <DependentUpon>acceso_cliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="cn.cs" />
     <Compile Include="encrypta.cs" />
@@ -572,6 +582,13 @@
     </Compile>
     <Compile Include="pnl_cont.aspx.designer.cs">
       <DependentUpon>pnl_cont.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pnl_control_cliente.aspx.cs">
+      <DependentUpon>pnl_control_cliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pnl_control_cliente.aspx.designer.cs">
+      <DependentUpon>pnl_control_cliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="pnl_ctrl.aspx.cs">
       <DependentUpon>pnl_ctrl.aspx</DependentUpon>
